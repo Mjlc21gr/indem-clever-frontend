@@ -1,0 +1,188 @@
+/* ============================================
+   Global Styles — CleverFlow
+   Paleta Seguros Bolívar:
+     Verde corporativo: #0a6e45
+     Verde oscuro:      #0d3b2a
+     Dorado acento:     #f2c010
+   ============================================ */
+
+:root {
+  --app-topbar-height: 3.5rem;
+  --app-sidebar-width: 16rem;
+  --app-sidebar-collapsed-width: 4rem;
+  --app-sidebar-bg: #ffffff;
+  --app-topbar-bg: #0a6e45;
+  --app-accent: #f2c010;
+  --app-accent-hover: #d4a80e;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--p-font-family, 'Inter', ui-sans-serif, system-ui, sans-serif);
+  font-size: 14px;
+  color: var(--p-text-color);
+  background-color: var(--p-surface-ground, #f4f6f8);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--p-surface-300, #cbd5e1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--p-surface-400, #94a3b8);
+}
+
+/* Links */
+a {
+  color: var(--p-primary-color);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--p-primary-hover-color);
+  }
+}
+
+/* =============================================
+   PrimeNG Panel — header verde Seguros Bolívar
+   ============================================= */
+.p-panel {
+  .p-panel-header {
+    background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--p-border-radius) var(--p-border-radius) 0 0;
+    padding: 0.875rem 1.25rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    border-bottom: 3px solid var(--app-accent);
+  }
+
+  .p-panel-content {
+    border: 1px solid var(--p-surface-200, #e2e8f0);
+    border-top: none;
+    border-radius: 0 0 var(--p-border-radius) var(--p-border-radius);
+    padding: 1.25rem;
+  }
+
+  .p-panel-title {
+    color: #ffffff;
+  }
+
+  .p-panel-icons {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* =============================================
+   PrimeNG Card
+   ============================================= */
+.p-card {
+  border: 1px solid var(--p-surface-200, #e2e8f0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(10, 110, 69, 0.1);
+    transform: translateY(-3px);
+  }
+
+  .p-card-title {
+    color: #0a6e45;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .p-card-body {
+    font-size: 0.875rem;
+    color: var(--p-text-muted-color, #64748b);
+    line-height: 1.6;
+  }
+}
+
+/* =============================================
+   PrimeNG Dialog
+   ============================================= */
+.p-dialog {
+  .p-dialog-header {
+    background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
+    color: #ffffff;
+    border-bottom: 3px solid var(--app-accent);
+
+    .p-dialog-title {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .p-dialog-header-close {
+      color: rgba(255, 255, 255, 0.7);
+
+      &:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.12);
+      }
+    }
+  }
+}
+
+/* =============================================
+   PrimeNG DataTable
+   ============================================= */
+.p-datatable {
+  .p-datatable-thead > tr > th {
+    background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border: none;
+  }
+
+  .p-datatable-tbody > tr {
+    &:hover {
+      background-color: rgba(10, 110, 69, 0.04);
+    }
+
+    > td {
+      font-size: 0.8125rem;
+      border-bottom: 1px solid var(--p-surface-200, #e2e8f0);
+    }
+  }
+}
+
+/* Utility */
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

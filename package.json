@@ -1,0 +1,52 @@
+{
+  "name": "cls-servicios-dim-asignacion-frontend",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "config": "ts-node ./projects/dim-asignacion/src/assets/setenv.ts",
+    "start": "ng serve dim-asignacion-mfe",
+    "build": "ng build dim-asignacion-mfe",
+    "build:dev": "npm run config -- --environment=dev && ng build dim-asignacion-mfe --configuration=production",
+    "build:stage": "npm run config -- --environment=stage && ng build dim-asignacion-mfe --configuration=production",
+    "build:prod": "npm run config -- --environment=prod && ng build dim-asignacion-mfe --configuration=production",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@angular/animations": "20.3.17",
+    "@angular/common": "20.3.17",
+    "@angular/compiler": "20.3.17",
+    "@angular/core": "20.3.17",
+    "@angular/forms": "20.3.17",
+    "@angular/platform-browser": "20.3.17",
+    "@angular/router": "20.3.17",
+    "@primeng/themes": "20.4.0",
+    "primeicons": "7.0.0",
+    "primeng": "20.4.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.15.0"
+  },
+  "devDependencies": {
+    "@angular-architects/module-federation": "20.0.0",
+    "@angular-devkit/build-angular": "20.3.17",
+    "@angular/build": "20.3.17",
+    "@angular/cli": "20.3.17",
+    "@angular/compiler-cli": "20.3.17",
+    "@angular/platform-browser-dynamic": "20.3.17",
+    "@types/jest": "30.0.0",
+    "autoprefixer": "^10.4.0",
+    "dotenv": "^17.4.2",
+    "jest": "30.2.0",
+    "jest-environment-jsdom": "30.2.0",
+    "jest-preset-angular": "15.0.3",
+    "ngx-build-plus": "20.0.0",
+    "postcss": "8.5.6",
+    "tailwindcss": "^3.4.0",
+    "ts-node": "10.9.2",
+    "typescript": "~5.9.2",
+    "webpack-merge": "6.0.0"
+  }
+}

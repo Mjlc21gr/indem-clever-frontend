@@ -1,0 +1,19 @@
+<p-toolbar styleClass="topbar">
+  <ng-template #start>
+    <p-button
+      icon="pi pi-bars"
+      [text]="true"
+      severity="contrast"
+      (onClick)="onToggleSidebar()"
+      ariaLabel="Alternar menú lateral" />
+    <p-tag styleClass="topbar__title" value="CLEVERFLOW" [rounded]="true" />
+  </ng-template>
+
+  <ng-template #end>
+    <p-avatar
+      icon="pi pi-user"
+      shape="circle"
+      styleClass="topbar__avatar" />
+    <p-tag styleClass="topbar__user-name" [value]="userName()" severity="contrast" />
+  </ng-template>
+</p-toolbar>

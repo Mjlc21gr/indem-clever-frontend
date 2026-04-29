@@ -1,0 +1,12 @@
+/dist
+/tmp
+/out-tsc
+.npmrc
+/node_modules
+npm-debug.log
+.idea/
+.vscode/
+/.angular/cache
+/coverage
+.DS_Store
+Thumbs.db

@@ -1,0 +1,88 @@
+{
+  "environment": {
+    "releasePath": "dist",
+    "mainPath": ".",
+    "buildAll": "true"
+  },
+  "s3": {
+    "dev": {
+      "name": "cls-servicios-dim-asignacion-dev-front",
+      "acl": "private"
+    },
+    "stage": {
+      "name": "cls-servicios-dim-asignacion-stage-front",
+      "acl": "private"
+    },
+    "prod": {
+      "name": "cls-servicios-dim-asignacion-prod-front",
+      "acl": "private"
+    }
+  },
+  "sites": {
+    "dev": [
+      {
+        "name": "dim-asignacion",
+        "path": "dim-asignacion-mfe",
+        "build": "dim-asignacion-mfe",
+        "test": "dim-asignacion-mfe"
+      }
+    ],
+    "stage": [
+      {
+        "name": "dim-asignacion",
+        "path": "dim-asignacion-mfe",
+        "build": "dim-asignacion-mfe",
+        "test": "dim-asignacion-mfe"
+      }
+    ],
+    "prod": [
+      {
+        "name": "dim-asignacion",
+        "path": "dim-asignacion-mfe",
+        "build": "dim-asignacion-mfe",
+        "test": "dim-asignacion-mfe"
+      }
+    ]
+  },
+  "cloudfront": {
+    "dev": {
+      "distributionId": "EDFDVBD6EXAMPLE",
+      "invalidationPaths": "/*"
+    },
+    "stage": {
+      "distributionId": "EDFDVBD6EXAMPLE",
+      "invalidationPaths": "/*"
+    },
+    "prod": {
+      "distributionId": "EDFDVBD6EXAMPLE",
+      "invalidationPaths": "/*"
+    }
+  },
+  "repositoryUrl": {
+    "dev": {
+      "repository_url": "bolivar-npm-core-web-kit-components-lib-prod-virtual"
+    },
+    "stage": {
+      "repository_url": "bolivar-npm-core-web-kit-components-lib-prod-virtual"
+    },
+    "prod": {
+      "repository_url": "bolivar-npm-core-web-kit-components-lib-prod-virtual"
+    }
+  },
+  "configuration": {
+    "develop": "dev",
+    "stage": "stage",
+    "master": "prod"
+  },
+  "environments": {
+    "dev": {
+      "apiBaseUrl": "/cls-dim-asignacion/dev/cls-dim-asignacion-dev/url-api"
+    },
+    "stage": {
+      "apiBaseUrl": "/cls-dim-asignacion/stage/cls-dim-asignacion-stage/url-api"
+    },
+    "prod": {
+      "apiBaseUrl": "/cls-dim-asignacion/prod/cls-dim-asignacion-prod/url-api"
+    }
+  }
+}

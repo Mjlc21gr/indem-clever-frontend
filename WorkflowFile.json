@@ -1,0 +1,78 @@
+{
+    "environment": {
+        "releasePath": "dist",
+        "mainPath": ".",
+        "buildAll": "true",
+        "region": "us-east-1"
+    },
+    "s3": {
+        "dev": {
+            "name": "cls-servicios-dim-asignacion-dev-front",
+            "acl": "private"
+        },
+        "stage": {
+            "name": "cls-servicios-dim-asignacion-stage-front",
+            "acl": "private"
+        },
+        "prod": {
+            "name": "cls-servicios-dim-asignacion-prod-front",
+            "acl": "private"
+        }
+    },
+    "sites": {
+        "dev": [
+            {
+                "name": "dim-asignacion",
+                "path": "dim-asignacion-mfe",
+                "build": "dim-asignacion-mfe",
+                "test": "dim-asignacion-mfe"
+            }
+        ],
+        "stage": [
+            {
+                "name": "dim-asignacion",
+                "path": "dim-asignacion-mfe",
+                "build": "dim-asignacion-mfe",
+                "test": "dim-asignacion-mfe"
+            }
+        ],
+        "prod": [
+            {
+                "name": "dim-asignacion",
+                "path": "dim-asignacion-mfe",
+                "build": "dim-asignacion-mfe",
+                "test": "dim-asignacion-mfe"
+            }
+        ]
+    },
+    "cloudfront": {
+        "dev": {
+            "distributionId": "EDFDVBD6EXAMPLE",
+            "invalidationPaths": "/*"
+        },
+        "stage": {
+            "distributionId": "EDFDVBD6EXAMPLE",
+            "invalidationPaths": "/*"
+        },
+        "prod": {
+            "distributionId": "EDFDVBD6EXAMPLE",
+            "invalidationPaths": "/*"
+        }
+    },
+    "repositoryUrl": {
+        "dev": {
+            "repository_url": "bolivar-npm-core-web-kit-components-lib-prod-virtual"
+        },
+        "stage": {
+            "repository_url": "bolivar-npm-core-web-kit-components-lib-prod-virtual"
+        },
+        "prod": {
+            "repository_url": "bolivar-npm-core-web-kit-components-lib-prod-virtual"
+        }
+    },
+    "configuration": {
+        "develop": "dev",
+        "stage": "stage",
+        "master": "prod"
+    }
+}

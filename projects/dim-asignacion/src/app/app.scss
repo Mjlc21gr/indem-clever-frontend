@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: var(--p-surface-ground, #f8fafb);
+}
+
+.app-main {
+  margin-top: var(--app-topbar-height, 3.5rem);
+  margin-left: var(--app-sidebar-width, 16rem);
+  padding: 1.5rem;
+  transition: margin-left 0.3s ease;
+  min-height: calc(100vh - var(--app-topbar-height, 3.5rem));
+
+  &--collapsed {
+    margin-left: var(--app-sidebar-collapsed-width, 4rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}

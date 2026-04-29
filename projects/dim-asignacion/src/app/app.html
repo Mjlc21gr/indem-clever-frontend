@@ -1,0 +1,11 @@
+<app-topbar
+  [userName]="userName()"
+  (toggleSidebar)="toggleSidebar()" />
+
+<app-sidebar [collapsed]="sidebarCollapsed()" />
+
+<main
+  class="app-main"
+  [class.app-main--collapsed]="sidebarCollapsed()">
+  <router-outlet />
+</main>

@@ -1,0 +1,73 @@
+/* =============================================
+   Topbar — Colores Seguros Bolívar
+   Verde corporativo: #0a6e45
+   ============================================= */
+
+$topbar-bg: #0a6e45;
+$gold: #f2c010;
+
+:host {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Toolbar */
+:host ::ng-deep .topbar.p-toolbar {
+  background: linear-gradient(135deg, $topbar-bg 0%, #075a38 100%);
+  border: none;
+  border-radius: 0;
+  padding: 0 1.5rem;
+  min-height: var(--app-topbar-height, 3.5rem);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid $gold;
+}
+
+/* Title — transparent tag, looks like text */
+:host ::ng-deep .topbar__title.p-tag {
+  background: transparent;
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0 0 0 0.5rem;
+  border: none;
+  box-shadow: none;
+}
+
+/* User name — gold chip */
+:host ::ng-deep .topbar__user-name.p-tag {
+  background: rgba($gold, 0.15);
+  color: $gold;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.3rem 0.875rem;
+  border: 1px solid rgba($gold, 0.3);
+  margin-left: 0.625rem;
+  letter-spacing: 0.01em;
+}
+
+/* Avatar — gold ring */
+:host ::ng-deep .topbar__avatar.p-avatar {
+  background-color: rgba($gold, 0.2);
+  color: $gold;
+  width: 2.125rem;
+  height: 2.125rem;
+  font-size: 0.9375rem;
+  border: 2px solid rgba($gold, 0.4);
+}
+
+/* Toggle button */
+:host ::ng-deep .topbar .p-button.p-button-text.p-button-contrast {
+  color: #ffffff;
+  width: 2.25rem;
+  height: 2.25rem;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: $gold;
+  }
+}
