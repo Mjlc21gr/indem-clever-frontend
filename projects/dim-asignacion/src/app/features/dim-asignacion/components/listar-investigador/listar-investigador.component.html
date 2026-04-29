@@ -1,3 +1,9 @@
 <p-panel header="Investigador">
-  <p>Contenido de Investigador</p>
+  <app-tabla-dinamica
+    [columnas]="columnas"
+    [datos]="data()"
+    [loading]="loading()"
+    [showActions]="true"
+    [acciones]="acciones"
+    (accionEjecutada)="onAccion($event)" />
 </p-panel>

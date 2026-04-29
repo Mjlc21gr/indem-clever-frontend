@@ -29,6 +29,13 @@ $collapsed-width: 4rem;
   &.sidebar-collapsed {
     width: $collapsed-width;
   }
+
+  /* When used as mobile overlay, start from top and fill height */
+  &.mobile-sidebar {
+    top: 0;
+    width: 280px;
+    padding-top: 0.5rem;
+  }
 }
 
 /* Logo */

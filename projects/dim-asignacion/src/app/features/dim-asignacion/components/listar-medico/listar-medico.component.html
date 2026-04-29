@@ -1,3 +1,9 @@
 <p-panel header="Médico">
-  <p>Contenido de Médico</p>
+  <app-tabla-dinamica
+    [columnas]="columnas"
+    [datos]="data()"
+    [loading]="loading()"
+    [showActions]="true"
+    [acciones]="acciones"
+    (accionEjecutada)="onAccion($event)" />
 </p-panel>

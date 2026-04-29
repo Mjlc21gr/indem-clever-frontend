@@ -1,7 +1,10 @@
-import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, computed, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './shared/components/topbar/topbar.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+
+/** Breakpoint below which the sidebar becomes a mobile overlay. */
+const MOBILE_BREAKPOINT = 768;
 
 @Component({
   selector: 'app-root',
@@ -11,14 +14,42 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  /** Whether the sidebar is collapsed. */
+  /** Whether the sidebar is collapsed (desktop) or hidden (mobile). */
   sidebarCollapsed = signal(false);
+
+  /** Whether we are in mobile viewport. */
+  isMobile = signal(window.innerWidth <= MOBILE_BREAKPOINT);
+
+  /** On mobile the sidebar is open as overlay; on desktop it's the inverse of collapsed. */
+  sidebarMobileOpen = signal(false);
 
   /** Current user display name. */
   userName = signal('Usuario');
 
-  /** Toggles the sidebar collapsed state. */
+  /** Listens for window resize to update mobile state. */
+  @HostListener('window:resize')
+  onResize(): void {
+    const mobile = window.innerWidth <= MOBILE_BREAKPOINT;
+    this.isMobile.set(mobile);
+    if (!mobile) {
+      this.sidebarMobileOpen.set(false);
+    }
+  }
+
+  /** Toggles the sidebar: collapse on desktop, overlay on mobile. */
   toggleSidebar(): void {
-    this.sidebarCollapsed.update((collapsed) => !collapsed);
+    if (this.isMobile()) {
+      this.sidebarMobileOpen.update((open) => !open);
+    } else {
+      this.sidebarCollapsed.update((collapsed) => !collapsed);
+      document.documentElement.classList.toggle('sidebar-collapsed', this.sidebarCollapsed());
+    }
+  }
+
+  /** Closes the mobile sidebar overlay (called when a menu item is selected). */
+  closeMobileSidebar(): void {
+    if (this.isMobile()) {
+      this.sidebarMobileOpen.set(false);
+    }
   }
 }

@@ -1,15 +1,47 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { TableModule } from 'primeng/table';
 import { Panel } from 'primeng/panel';
+import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
+import { MOCK_ANALISIS } from '../../../../shared/mocks';
 
 @Component({
   selector: 'app-listar-mis-analisis',
-  imports: [TableModule, Panel],
+  imports: [Panel, TablaDinamicaComponent],
   templateUrl: './listar-mis-analisis.component.html',
   styleUrl: './listar-mis-analisis.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListarmisanalisisComponent {
   loading = signal(false);
-  data = signal<unknown[]>([]);
+  data = signal<unknown[]>(MOCK_ANALISIS);
+
+  columnas: ColumnaTabla[] = [
+    { field: 'id', header: 'ID', sortable: true, width: '80px' },
+    { field: 'nombre', header: 'Nombre', sortable: true },
+    { field: 'numeroPoliza', header: 'Numero Poliza', sortable: true },
+    { field: 'fechaAviso', header: 'Fecha Aviso', type: 'date', sortable: true },
+    { field: 'fechaSiniestro', header: 'Fecha Siniestro', type: 'date', sortable: true },
+    { field: 'cobertura', header: 'Cobertura', sortable: true },
+    { field: 'decisionIA', header: 'Decisión IA', type: 'tag', sortable: true, tagMap: {
+      'Aprobado': { label: 'Aprobado', severity: 'success' },
+      'Rechazado': { label: 'Rechazado', severity: 'danger' },
+      'Pendiente': { label: 'Pendiente', severity: 'warn' },
+      'En análisis': { label: 'En análisis', severity: 'info' },
+    }},
+    { field: 'tipoPoliza', header: 'Tipo Poliza', sortable: true },
+    { field: 'estado', header: 'Estado', type: 'tag', sortable: true, tagMap: {
+      'Activo': { label: 'Activo', severity: 'success' },
+      'Inactivo': { label: 'Inactivo', severity: 'danger' },
+      'En proceso': { label: 'En proceso', severity: 'info' },
+      'Cerrado': { label: 'Cerrado', severity: 'secondary' },
+    }},
+  ];
+
+  acciones = [
+    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver detalle', severity: 'info' },
+    { action: 'editar', icon: 'pi pi-pencil', tooltip: 'Editar', severity: 'success' },
+  ];
+
+  onAccion(event: AccionFila): void {
+    // TODO: implement action handling
+  }
 }

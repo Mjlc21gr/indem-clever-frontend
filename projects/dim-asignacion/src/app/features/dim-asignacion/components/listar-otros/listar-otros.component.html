@@ -1,3 +1,9 @@
-<p-panel header="Radicaciones">
-  <p>Contenido de Radicaciones</p>
+<p-panel header="Objeciones">
+  <app-tabla-dinamica
+    [columnas]="columnas"
+    [datos]="data()"
+    [loading]="loading()"
+    [showActions]="true"
+    [acciones]="acciones"
+    (accionEjecutada)="onAccion($event)" />
 </p-panel>

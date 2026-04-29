@@ -1,0 +1,39 @@
+<app-seccion-consulta
+  [(consultaTipoDoc)]="consultaTipoDoc"
+  [(consultaNumDoc)]="consultaNumDoc"
+  (consultar)="consultarDataOperativa()" />
+
+@if (showResultadosData()) {
+  <p-divider />
+
+  <app-seccion-datos-asegurado
+    [(nombreCliente)]="nombreCliente"
+    [(tipoDocumentoClever)]="tipoDocumentoClever"
+    [(numeroDocumentoClever)]="numeroDocumentoClever"
+    [(tipoPersona)]="tipoPersona"
+    [(nombreEmpresaData)]="nombreEmpresaData"
+    [(estadoCliente)]="estadoCliente" />
+
+  <p-divider />
+
+  <app-seccion-demografica
+    [(demSexo)]="demSexo"
+    [(demFechaNacimiento)]="demFechaNacimiento"
+    [(demEdad)]="demEdad"
+    [(demDireccion)]="demDireccion"
+    [(demMunicipio)]="demMunicipio" />
+
+  <p-divider />
+
+  <p-panel header="Portafolio" [toggleable]="true" [collapsed]="true">
+    <p>Sin datos de portafolio.</p>
+  </p-panel>
+
+  <p-panel header="Siniestros" [toggleable]="true" [collapsed]="true" class="mt-2">
+    <p>Sin datos de siniestros.</p>
+  </p-panel>
+
+  <p-panel header="Asistencias" [toggleable]="true" [collapsed]="true" class="mt-2">
+    <p>Sin datos de asistencias.</p>
+  </p-panel>
+}

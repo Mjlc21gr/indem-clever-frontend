@@ -15,7 +15,13 @@
       (onClick)="openMesaPerfeccionamiento()" />
   </ng-template>
 
-  <p>Contenido de Radicaciones</p>
+  <app-tabla-dinamica
+    [columnas]="columnas"
+    [datos]="data()"
+    [loading]="loading()"
+    [showActions]="true"
+    [acciones]="acciones"
+    (accionEjecutada)="onAccion($event)" />
 </p-panel>
 
 <app-modal-agregar-caso

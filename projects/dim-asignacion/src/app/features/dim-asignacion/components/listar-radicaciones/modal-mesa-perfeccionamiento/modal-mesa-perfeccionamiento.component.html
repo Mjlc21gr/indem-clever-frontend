@@ -1,0 +1,51 @@
+<p-dialog
+  header="Mesa de Perfeccionamiento"
+  [visible]="visible()"
+  (visibleChange)="onVisibleChange($event)"
+  [modal]="true"
+  [draggable]="false"
+  [maximizable]="true"
+  [closable]="true"
+  [style]="{ width: '70vw' }"
+  styleClass="app-dialog-constrained"
+  (onHide)="close()">
+
+  <app-seccion-datos-caso
+    [(idClever)]="idClever"
+    [(numCaso)]="numCaso"
+    [(identificacion)]="identificacion"
+    [(correo)]="correo"
+    [(telefono)]="telefono" />
+
+  <p-divider />
+
+  <app-seccion-checklist
+    [(regCivilDefuncion)]="regCivilDefuncion"
+    [(docIdentidadAsegurado)]="docIdentidadAsegurado"
+    [(epicrisis)]="epicrisis"
+    [(certFiscalia)]="certFiscalia"
+    [(sentenciaFecha)]="sentenciaFecha"
+    [(croquis)]="croquis"
+    [(dictamenCapacidad)]="dictamenCapacidad"
+    [(regCivilBeneficiarios)]="regCivilBeneficiarios"
+    [(docBeneficiarios)]="docBeneficiarios"
+    [(formB114)]="formB114"
+    [(formB121)]="formB121"
+    [(certHospitalizacion)]="certHospitalizacion"
+    [(certIncapacidad)]="certIncapacidad"
+    [(examenesDiagnostico)]="examenesDiagnostico"
+    [(formB337)]="formB337"
+    [(pruebaAlcoholemia)]="pruebaAlcoholemia"
+    [(reciboFactura)]="reciboFactura"
+    [(certDeuda)]="certDeuda" />
+
+  <p-divider />
+
+  <app-seccion-observaciones-mesa [(observaciones)]="observaciones" />
+
+  <ng-template #footer>
+    <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (onClick)="close()" />
+    <p-button label="Guardar" icon="pi pi-save" severity="success" (onClick)="guardar()" />
+  </ng-template>
+
+</p-dialog>

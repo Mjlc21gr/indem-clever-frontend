@@ -1,0 +1,27 @@
+<p-fieldset legend="Información del Asegurado" [toggleable]="true">
+  <p-fluid>
+    <section class="form-grid">
+      <label>Tipo Documento
+        <input pInputText [ngModel]="tipoDocumento()" (ngModelChange)="tipoDocumento.set($event)" [readonly]="true" />
+      </label>
+      <label>Número Documento
+        <input pInputText [ngModel]="numeroDocumento()" (ngModelChange)="numeroDocumento.set($event)" [readonly]="true" />
+      </label>
+      <label>Nombre Asegurado
+        <input pInputText [ngModel]="nombre()" (ngModelChange)="nombre.set($event)" [readonly]="true" />
+      </label>
+      <label>Apellidos
+        <input pInputText [ngModel]="apellidos()" (ngModelChange)="apellidos.set($event)" [readonly]="true" />
+      </label>
+      <label>Edad Asegurado
+        <input pInputText [ngModel]="edad()" (ngModelChange)="edad.set($event)" [readonly]="true" />
+      </label>
+      <label>Correo Electrónico
+        <input pInputText [ngModel]="correo()" (ngModelChange)="correo.set($event)" [readonly]="true" />
+      </label>
+      <label>Teléfono de Contacto
+        <input pInputText [ngModel]="telefono()" (ngModelChange)="telefono.set($event)" [readonly]="true" />
+      </label>
+    </section>
+  </p-fluid>
+</p-fieldset>

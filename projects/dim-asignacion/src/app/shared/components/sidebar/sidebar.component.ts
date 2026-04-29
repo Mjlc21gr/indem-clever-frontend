@@ -1,4 +1,4 @@
-import { Component, input, inject, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { Component, input, output, inject, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { PanelMenu } from 'primeng/panelmenu';
 import { ScrollPanel } from 'primeng/scrollpanel';
@@ -31,6 +31,9 @@ export class SidebarComponent {
   /** Whether the sidebar is collapsed to icon-only mode. */
   collapsed = input(false);
 
+  /** Emits when a menu item is selected (used to close mobile sidebar). */
+  readonly itemSelected = output<void>();
+
   /** Binds the collapsed class directly to the host element. */
   @HostBinding('class.sidebar-collapsed')
   get isCollapsed(): boolean {
@@ -44,7 +47,10 @@ export class SidebarComponent {
     items: group.items.map((item) => ({
       label: item.label,
       icon: item.icon,
-      command: () => this.router.navigate([item.routerLink]),
+      command: () => {
+        this.router.navigate([item.routerLink]);
+        this.itemSelected.emit();
+      },
     })),
   }));
 

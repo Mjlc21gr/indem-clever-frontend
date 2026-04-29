@@ -7,8 +7,45 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 
 ## [No publicado]
 
+### Eliminado
+- Se eliminó directorio `components/` duplicado en `indem-clever-frontend/projects/dim-asignacion/src/app/features/dim-asignacion/` (componentes `listar-radicaciones` y `modal-agregar-caso`)
+- Se eliminó carpeta duplicada `indem-clever-frontend/` anidada en la raíz del workspace
+
+### Corregido
+- Se corrigió error de tipo en `modal-agregar-caso.component.html`: `valueChange` de `p-tabs` emitía `string | number | undefined` pero el signal esperaba `string`
+- Se eliminó import no utilizado de `Toolbar` en `listar-radicaciones.component.ts`
+- Se corrigió checklist de documentos en `seccion-checklist`: los labels no se asociaban a los checkboxes — se reemplazó `label` attribute por `<label for="">` con `inputId` para vincular correctamente
+- Se corrigió botón X de cierre en ambos modales: se agregó `(visibleChange)` handler que emite `onClose` cuando PrimeNG cambia `visible` a `false` (click en X o Escape)
+- Se ajustó el maximizar de ambos modales para que respete el área de contenido (entre topbar y sidebar) usando clase `app-dialog-constrained` con CSS que reposiciona el mask y el dialog dentro del área del módulo
+- Se ajustó el modal maximizado para que responda al colapso del sidebar: se agrega clase `sidebar-collapsed` en `<html>` al togglear, y el CSS adapta el ancho/posición del dialog con transición suave
+
+### Cambiado
+- Se reorganizó la estructura de componentes siguiendo la regla de proyecto: modales anidados dentro de su componente padre
+- Se movió `modal-agregar-caso/` y `modal-mesa-perfeccionamiento/` dentro de `listar-radicaciones/`
+- Se dividió `modal-agregar-caso` en 2 ventanas: `ventana-datos-generales/` (Tab Datos Generales) y `ventana-data-operativa/` (Tab Data Operativa)
+- Se dividió `ventana-datos-generales` en 9 secciones: `seccion-asegurado`, `seccion-radicado`, `seccion-siniestro`, `seccion-bancaria`, `seccion-numero-siniestro`, `seccion-archivos`, `seccion-historial`, `seccion-observaciones`, `seccion-derivacion`
+- Se dividió `ventana-data-operativa` en 3 secciones: `seccion-consulta`, `seccion-datos-asegurado`, `seccion-demografica`
+- Se movieron modales huérfanos (`modal-crear-otros`, `modal-reapertura`, `modal-ver-enlaces`) a `shared/components/`
+- Se creó steering `rule-project-structure.md` con la regla de organización de componentes Angular (módulo → modal → ventana → sección)
+- Se migró `modal-mesa-perfeccionamiento` de Bootstrap a PrimeNG: se reemplazó modal Bootstrap, clases `row/col/form-control/form-check/btn`, e íconos Font Awesome por `p-dialog`, `p-fieldset`, `p-fluid`, `p-checkbox`, `p-button`, `p-divider` e íconos PrimeIcons
+- Se dividió `modal-mesa-perfeccionamiento` en 3 secciones: `seccion-datos-caso`, `seccion-checklist`, `seccion-observaciones-mesa`
+- Se aplicó pase completo de UI/UX y responsive: se centralizaron estilos de formulario (`form-grid`, `checklist-grid`, `form-radio-group`) en `styles.scss` global, se simplificaron SCSS de modales, se agregaron breakpoints responsive (992px tablet, 768px mobile, 576px small mobile) para dialogs, paneles, tablas, formularios y footer de modales
+- Se mejoró la tabla dinámica con `text-overflow: ellipsis`, `white-space: nowrap`, scroll horizontal, y toolbar responsive
+- Se mejoró visualmente PrimeNG Fieldset, Tabs, Tag, Inputs con sizing consistente y colores corporativos
+- Se agregó responsive a `p-panel-icons` para que los botones del header se ajusten en pantallas pequeñas
+- Se agregó responsive a `p-dialog-footer` para que los botones se apilen verticalmente en mobile
+- Se implementó sidebar mobile overlay: en pantallas ≤768px el sidebar se oculta completamente, el botón hamburguesa lo abre como overlay con backdrop oscuro y animación slide-in, al seleccionar un módulo se cierra automáticamente
+- Se creó carpeta `shared/mocks/` con datos mock realistas para todos los módulos: `mock-radicaciones.data.ts` (12 registros), `mock-analisis.data.ts` (10 registros), `mock-proveedores.data.ts` (UIFA 6, Médico 5, Investigador 7, Técnico 4), `mock-pagos.data.ts` (Órdenes 8, Objeciones 6)
+- Se conectaron los mocks a los 11 módulos de listado para visualizar datos en las tablas
+
 ### Agregado
 - Se creó componente `TopbarComponent` (`shared/components/topbar/`) usando PrimeNG Toolbar, Button y Avatar
+- Se creó componente `TablaDinamicaComponent` (`shared/components/tabla-dinamica/`) — tabla reutilizable que se adapta dinámicamente al número de columnas y tipos de datos de cada módulo, con soporte para filtro global, paginación, ordenamiento, selección de filas, columna de acciones, y tipos de renderizado (text, date, currency, tag, boolean)
+- Se integró `TablaDinamicaComponent` en `listar-radicaciones` con columnas: ID Radicado, Numero Poliza, Fecha Aviso, Decisión, Cobertura, Tipo Poliza, Estado + Acciones (ver, editar)
+- Se integró `TablaDinamicaComponent` en `listar-mesa-perfect` con las mismas columnas: ID Radicado, Numero Poliza, Fecha Aviso, Decisión, Cobertura, Tipo Poliza, Estado + Acciones (ver, editar)
+- Se integró `TablaDinamicaComponent` en `listar-analisis` (Análisis), `listar-analisis-linea` (Línea de Negocio) y `listar-mis-analisis` (Mis Casos) con columnas: ID, Nombre, Numero Poliza, Fecha Aviso, Fecha Siniestro, Cobertura, Decisión IA, Tipo Poliza, Estado + Acciones
+- Se integró `TablaDinamicaComponent` en `listar-uifa`, `listar-medico`, `listar-investigador` y `listar-tecnico` con columnas: ID Radicado, Numero Poliza, Fecha Aviso + Acciones
+- Se integró `TablaDinamicaComponent` en `listar-pagos` (Órdenes de Pago) y `listar-otros` (Objeciones) con columnas: ID, Fecha, No. Siniestro, Cobertura, Póliza, Total, Info. + Acciones
 - Se creó componente `SidebarComponent` (`shared/components/sidebar/`) con navegación basada en datos y PrimeNG Tooltip
 - Se creó modelo `SidebarMenuGroup` y `SidebarMenuItem` en `shared/models/sidebar-menu.model.ts`
 - Se creó archivo de datos de menú `shared/data/sidebar-menu.data.ts` con la definición centralizada de navegación

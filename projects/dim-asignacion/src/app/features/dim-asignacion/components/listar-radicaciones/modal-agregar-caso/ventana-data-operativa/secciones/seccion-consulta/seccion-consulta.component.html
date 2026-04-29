@@ -1,0 +1,13 @@
+<p-fieldset legend="Consultar Data Operativa">
+  <p-fluid>
+    <section class="form-grid form-grid--2col">
+      <label>Tipo Documento
+        <input pInputText [ngModel]="consultaTipoDoc()" (ngModelChange)="consultaTipoDoc.set($event)" />
+      </label>
+      <label>Número Documento
+        <input pInputText [ngModel]="consultaNumDoc()" (ngModelChange)="consultaNumDoc.set($event)" />
+      </label>
+    </section>
+  </p-fluid>
+  <p-button label="Consultar data operativa" icon="pi pi-search" severity="success" (onClick)="onConsultar()" class="mt-3" />
+</p-fieldset>

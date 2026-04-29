@@ -1,0 +1,11 @@
+<p-fieldset legend="Adjuntar Archivos" [toggleable]="true">
+  <p-fileUpload
+    mode="advanced"
+    [multiple]="true"
+    accept="application/pdf,image/*"
+    chooseLabel="Seleccionar archivos"
+    chooseIcon="pi pi-paperclip"
+    (onSelect)="onFileSelect($event)"
+    [showUploadButton]="false"
+    [showCancelButton]="false" />
+</p-fieldset>

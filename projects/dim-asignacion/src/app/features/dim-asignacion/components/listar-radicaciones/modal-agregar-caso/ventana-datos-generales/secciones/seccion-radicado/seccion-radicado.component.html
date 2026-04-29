@@ -1,0 +1,60 @@
+<p-fieldset legend="Información del Radicado" [toggleable]="true">
+  <p-fluid>
+    <section class="form-grid">
+      <label>Número Póliza
+        <input pInputText [ngModel]="numeroPoliza()" (ngModelChange)="numeroPoliza.set($event)" [readonly]="true" />
+      </label>
+      <label>Código Producto
+        <input pInputText [ngModel]="codigoProducto()" (ngModelChange)="codigoProducto.set($event)" [readonly]="true" />
+      </label>
+      <label>Portafolio Cod.
+        <input pInputText [ngModel]="portafolioCodigo()" (ngModelChange)="portafolioCodigo.set($event)" [readonly]="true" />
+      </label>
+      <label>Portafolio Nombre
+        <input pInputText [ngModel]="portafolioNombre()" (ngModelChange)="portafolioNombre.set($event)" [readonly]="true" />
+      </label>
+      <label>Número de Riesgo
+        <input pInputText [ngModel]="numeroDeRiesgo()" (ngModelChange)="numeroDeRiesgo.set($event)" [readonly]="true" />
+      </label>
+      <label>Riesgo Cliente
+        <input pInputText [ngModel]="riesgoCliente()" (ngModelChange)="riesgoCliente.set($event)" [readonly]="true" />
+      </label>
+      <label>Cobertura
+        <input pInputText [ngModel]="cobertura()" (ngModelChange)="cobertura.set($event)" [readonly]="true" />
+      </label>
+      <label>Cod. Cobertura
+        <input pInputText [ngModel]="codCobertura()" (ngModelChange)="codCobertura.set($event)" [readonly]="true" />
+      </label>
+      <label>Fecha Aviso
+        <input pInputText [ngModel]="fechaAviso()" (ngModelChange)="fechaAviso.set($event)" [readonly]="true" />
+      </label>
+      <label>Valor Asegurado
+        <input pInputText [ngModel]="valorAsegurado()" (ngModelChange)="valorAsegurado.set($event)" [readonly]="true" />
+      </label>
+      <label>Valor Aseg. Vida
+        <input pInputText [ngModel]="valorAseguradoVida()" (ngModelChange)="valorAseguradoVida.set($event)" [readonly]="true" />
+      </label>
+      <label>Valor Aseg. ITP
+        <input pInputText [ngModel]="valorAseguradoItp()" (ngModelChange)="valorAseguradoItp.set($event)" [readonly]="true" />
+      </label>
+      <label>Score Cliente
+        <input pInputText [ngModel]="scoreCliente()" (ngModelChange)="scoreCliente.set($event)" [readonly]="true" />
+      </label>
+      <label>Superó Peso
+        <input pInputText [ngModel]="superoPeso()" (ngModelChange)="superoPeso.set($event)" [readonly]="true" />
+      </label>
+      <label>Más de un Ingreso
+        <input pInputText [ngModel]="masDeUnIngreso()" (ngModelChange)="masDeUnIngreso.set($event)" [readonly]="true" />
+      </label>
+      <label>Aprobación Términos
+        <input pInputText [ngModel]="aprobacionTerminos()" (ngModelChange)="aprobacionTerminos.set($event)" [readonly]="true" />
+      </label>
+      <label>NIT Empresa
+        <input pInputText [ngModel]="nitEmpresa()" (ngModelChange)="nitEmpresa.set($event)" [readonly]="true" />
+      </label>
+      <label>Nombre Empresa
+        <input pInputText [ngModel]="nombreEmpresa()" (ngModelChange)="nombreEmpresa.set($event)" [readonly]="true" />
+      </label>
+    </section>
+  </p-fluid>
+</p-fieldset>

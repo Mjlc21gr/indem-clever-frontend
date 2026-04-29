@@ -25,6 +25,7 @@
         [pTooltip]="item.label"
         tooltipPosition="right"
         [routerLink]="item.routerLink"
+        (onClick)="itemSelected.emit()"
         styleClass="sidebar__icon-btn" />
     }
   }

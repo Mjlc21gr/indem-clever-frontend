@@ -1,3 +1,9 @@
 <p-panel header="Mesa de Perfeccionamiento">
-  <p>Contenido de Mesa de Perfeccionamiento</p>
+  <app-tabla-dinamica
+    [columnas]="columnas"
+    [datos]="data()"
+    [loading]="loading()"
+    [showActions]="true"
+    [acciones]="acciones"
+    (accionEjecutada)="onAccion($event)" />
 </p-panel>

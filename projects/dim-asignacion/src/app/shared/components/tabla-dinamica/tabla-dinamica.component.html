@@ -1,0 +1,107 @@
+@if (showGlobalFilter()) {
+  <div class="tabla-toolbar">
+    <p-iconfield>
+      <p-inputicon styleClass="pi pi-search" />
+      <input
+        pInputText
+        type="text"
+        [ngModel]="globalFilterValue()"
+        (ngModelChange)="onGlobalFilter($event, dt)"
+        placeholder="Buscar..."
+        class="tabla-search" />
+    </p-iconfield>
+  </div>
+}
+
+<p-table
+  #dt
+  [value]="datos()"
+  [loading]="loading()"
+  [paginator]="showPaginator()"
+  [rows]="rowsPerPage()"
+  [rowsPerPageOptions]="rowsPerPageOptions()"
+  [globalFilterFields]="camposFiltrables()"
+  [scrollable]="true"
+  scrollHeight="flex"
+  [selectionMode]="selectable() ? selectionMode() : undefined"
+  [(selection)]="selection"
+  (onRowSelect)="onRowSelect($any($event))"
+  [rowHover]="true"
+  [showGridlines]="false"
+  [stripedRows]="true"
+  styleClass="p-datatable-sm">
+
+  <ng-template #header>
+    <tr>
+      @for (col of columnas(); track col.field) {
+        <th
+          [pSortableColumn]="col.sortable ? col.field : undefined"
+          [style.width]="col.width ?? 'auto'">
+          {{ col.header }}
+          @if (col.sortable) {
+            <p-sortIcon [field]="col.field" />
+          }
+        </th>
+      }
+      @if (showActions()) {
+        <th [style.width]="actionsWidth()" class="tabla-acciones-header">
+          {{ actionsHeader() }}
+        </th>
+      }
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-row let-rowIndex="rowIndex">
+    <tr>
+      @for (col of columnas(); track col.field) {
+        <td [style.width]="col.width ?? 'auto'">
+          @switch (col.type) {
+            @case ('tag') {
+              @let tagConfig = getTagConfig(col, getFieldValue(row, col.field));
+              <p-tag [value]="tagConfig.label" [severity]="$any(tagConfig.severity)" />
+            }
+            @case ('date') {
+              {{ getFieldValue(row, col.field) }}
+            }
+            @case ('currency') {
+              {{ $any(getFieldValue(row, col.field)) | currency:'COP':'symbol-narrow':'1.0-0' }}
+            }
+            @case ('boolean') {
+              <i [class]="getFieldValue(row, col.field) ? 'pi pi-check text-green-500' : 'pi pi-times text-red-500'"></i>
+            }
+            @default {
+              {{ getFieldValue(row, col.field) }}
+            }
+          }
+        </td>
+      }
+      @if (showActions()) {
+        <td [style.width]="actionsWidth()" class="tabla-acciones-cell">
+          @for (accion of acciones(); track accion.action) {
+            <p-button
+              [icon]="accion.icon"
+              [rounded]="true"
+              [text]="true"
+              [severity]="$any(accion.severity ?? 'secondary')"
+              [pTooltip]="accion.tooltip"
+              tooltipPosition="top"
+              size="small"
+              (onClick)="ejecutarAccion(accion.action, row, rowIndex)" />
+          }
+        </td>
+      }
+    </tr>
+  </ng-template>
+
+  <ng-template #emptymessage>
+    <tr>
+      <td [attr.colspan]="columnas().length + (showActions() ? 1 : 0)" class="tabla-empty">
+        <div class="tabla-empty-content">
+          <i class="pi pi-inbox"></i>
+          <span>{{ emptyMessage() }}</span>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-table>

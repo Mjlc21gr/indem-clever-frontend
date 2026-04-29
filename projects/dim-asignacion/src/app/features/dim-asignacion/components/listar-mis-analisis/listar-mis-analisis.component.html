@@ -1,3 +1,9 @@
 <p-panel header="Mis Casos">
-  <p>Contenido de Mis Casos</p>
+  <app-tabla-dinamica
+    [columnas]="columnas"
+    [datos]="data()"
+    [loading]="loading()"
+    [showActions]="true"
+    [acciones]="acciones"
+    (accionEjecutada)="onAccion($event)" />
 </p-panel>

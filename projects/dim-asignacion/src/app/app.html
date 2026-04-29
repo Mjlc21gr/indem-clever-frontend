@@ -2,10 +2,21 @@
   [userName]="userName()"
   (toggleSidebar)="toggleSidebar()" />
 
-<app-sidebar [collapsed]="sidebarCollapsed()" />
+@if (!isMobile()) {
+  <app-sidebar [collapsed]="sidebarCollapsed()" />
+}
+
+@if (isMobile() && sidebarMobileOpen()) {
+  <div class="mobile-backdrop" (click)="closeMobileSidebar()"></div>
+  <app-sidebar
+    [collapsed]="false"
+    (itemSelected)="closeMobileSidebar()"
+    class="mobile-sidebar" />
+}
 
 <main
   class="app-main"
-  [class.app-main--collapsed]="sidebarCollapsed()">
+  [class.app-main--collapsed]="!isMobile() && sidebarCollapsed()"
+  [class.app-main--mobile]="isMobile()">
   <router-outlet />
 </main>

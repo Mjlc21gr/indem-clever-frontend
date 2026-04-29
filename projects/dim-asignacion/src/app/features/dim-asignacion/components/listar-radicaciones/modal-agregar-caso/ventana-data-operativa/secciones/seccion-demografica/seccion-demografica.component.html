@@ -1,0 +1,21 @@
+<p-fieldset legend="Demográfica">
+  <p-fluid>
+    <section class="form-grid">
+      <label>Sexo
+        <input pInputText [ngModel]="demSexo()" [readonly]="true" />
+      </label>
+      <label>Fecha Nacimiento
+        <input pInputText [ngModel]="demFechaNacimiento()" [readonly]="true" />
+      </label>
+      <label>Edad
+        <input pInputText [ngModel]="demEdad()" [readonly]="true" />
+      </label>
+      <label>Dirección
+        <input pInputText [ngModel]="demDireccion()" [readonly]="true" />
+      </label>
+      <label>Municipio
+        <input pInputText [ngModel]="demMunicipio()" [readonly]="true" />
+      </label>
+    </section>
+  </p-fluid>
+</p-fieldset>

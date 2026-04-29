@@ -1,0 +1,5 @@
+<p-fieldset legend="Observaciones">
+  <p-fluid>
+    <textarea pTextarea [ngModel]="observaciones()" (ngModelChange)="observaciones.set($event)" rows="4" placeholder="Añadir observaciones..."></textarea>
+  </p-fluid>
+</p-fieldset>

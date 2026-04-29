@@ -14,6 +14,10 @@
   --app-topbar-bg: #0a6e45;
   --app-accent: #f2c010;
   --app-accent-hover: #d4a80e;
+  --app-radius: 0.5rem;
+  --app-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --app-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --app-transition: 0.25s ease;
 }
 
 /* Reset */
@@ -33,6 +37,7 @@ body {
   background-color: var(--p-surface-ground, #f4f6f8);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* Scrollbar */
@@ -65,33 +70,40 @@ a {
 }
 
 /* =============================================
-   PrimeNG Panel — header verde Seguros Bolívar
+   PrimeNG Panel
    ============================================= */
 .p-panel {
   .p-panel-header {
     background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
     color: #ffffff;
     border: none;
-    border-radius: var(--p-border-radius) var(--p-border-radius) 0 0;
-    padding: 0.875rem 1.25rem;
+    border-radius: var(--app-radius) var(--app-radius) 0 0;
+    padding: 0.75rem 1.25rem;
     font-weight: 600;
     font-size: 0.9375rem;
     border-bottom: 3px solid var(--app-accent);
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .p-panel-content {
     border: 1px solid var(--p-surface-200, #e2e8f0);
     border-top: none;
-    border-radius: 0 0 var(--p-border-radius) var(--p-border-radius);
-    padding: 1.25rem;
+    border-radius: 0 0 var(--app-radius) var(--app-radius);
+    padding: 1rem;
+    overflow-x: auto;
   }
 
   .p-panel-title {
     color: #ffffff;
+    white-space: nowrap;
   }
 
   .p-panel-icons {
     color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
   }
 }
 
@@ -100,12 +112,12 @@ a {
    ============================================= */
 .p-card {
   border: 1px solid var(--p-surface-200, #e2e8f0);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  box-shadow: var(--app-shadow-sm);
+  transition: box-shadow var(--app-transition), transform var(--app-transition);
 
   &:hover {
-    box-shadow: 0 8px 24px rgba(10, 110, 69, 0.1);
-    transform: translateY(-3px);
+    box-shadow: var(--app-shadow-md);
+    transform: translateY(-2px);
   }
 
   .p-card-title {
@@ -125,24 +137,52 @@ a {
    PrimeNG Dialog
    ============================================= */
 .p-dialog {
+  max-height: 90vh;
+  border-radius: var(--app-radius);
+  overflow: hidden;
+
   .p-dialog-header {
     background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
     color: #ffffff;
     border-bottom: 3px solid var(--app-accent);
+    padding: 0.875rem 1.25rem;
 
     .p-dialog-title {
       color: #ffffff;
       font-weight: 600;
+      font-size: 1rem;
     }
 
-    .p-dialog-header-close {
+    .p-dialog-header-actions {
+      gap: 0.25rem;
+    }
+
+    .p-dialog-header-close,
+    .p-dialog-maximize-button {
       color: rgba(255, 255, 255, 0.7);
+      border-radius: var(--app-radius);
+      transition: all var(--app-transition);
 
       &:hover {
         color: #ffffff;
-        background-color: rgba(255, 255, 255, 0.12);
+        background-color: rgba(255, 255, 255, 0.15);
       }
     }
+  }
+
+  .p-dialog-content {
+    padding: 1.25rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .p-dialog-footer {
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--p-surface-200, #e2e8f0);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 }
 
@@ -150,25 +190,324 @@ a {
    PrimeNG DataTable
    ============================================= */
 .p-datatable {
+  border-radius: var(--app-radius);
+  overflow: hidden;
+
   .p-datatable-thead > tr > th {
     background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
     color: #ffffff;
     font-weight: 600;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     border: none;
+    padding: 0.625rem 0.75rem;
+    white-space: nowrap;
   }
 
   .p-datatable-tbody > tr {
+    transition: background-color var(--app-transition);
+
     &:hover {
       background-color: rgba(10, 110, 69, 0.04);
     }
 
     > td {
       font-size: 0.8125rem;
+      padding: 0.5rem 0.75rem;
       border-bottom: 1px solid var(--p-surface-200, #e2e8f0);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
     }
+  }
+
+  .p-datatable-emptymessage td {
+    max-width: none;
+    white-space: normal;
+  }
+
+  /* Paginator */
+  .p-paginator {
+    padding: 0.5rem;
+    font-size: 0.8125rem;
+    border-top: 1px solid var(--p-surface-200, #e2e8f0);
+  }
+
+  /* Sort icon */
+  .p-sortable-column-icon {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
+  }
+}
+
+/* =============================================
+   PrimeNG Fieldset
+   ============================================= */
+.p-fieldset {
+  border: 1px solid var(--p-surface-200, #e2e8f0);
+  border-radius: var(--app-radius);
+  margin-bottom: 0;
+
+  .p-fieldset-legend {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0a6e45;
+    padding: 0.5rem 1rem;
+    border-radius: var(--app-radius);
+    background: var(--p-surface-0, #ffffff);
+  }
+
+  .p-fieldset-content {
+    padding: 0.75rem 0 0;
+  }
+}
+
+/* =============================================
+   PrimeNG Tabs
+   ============================================= */
+.p-tabs {
+  .p-tablist {
+    border-bottom: 2px solid var(--p-surface-200, #e2e8f0);
+  }
+
+  .p-tab {
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.625rem 1rem;
+    transition: all var(--app-transition);
+
+    &.p-tab-active {
+      color: #0a6e45;
+      border-bottom-color: #0a6e45;
+    }
+  }
+}
+
+/* =============================================
+   PrimeNG Tag — compact
+   ============================================= */
+.p-tag {
+  font-size: 0.6875rem;
+  padding: 0.2rem 0.5rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* =============================================
+   PrimeNG Inputs — consistent sizing
+   ============================================= */
+.p-inputtext {
+  font-size: 0.8125rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.p-textarea {
+  font-size: 0.8125rem;
+}
+
+.p-select {
+  font-size: 0.8125rem;
+}
+
+/* =============================================
+   Form Grid — global (usado por todos los modales)
+   ============================================= */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 0.75rem;
+
+  &--2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &--full {
+    grid-template-columns: 1fr;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #374151;
+    min-width: 0;
+  }
+}
+
+.form-radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.form-checkbox-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.form-field-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.required {
+  color: #dc3545;
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.8125rem;
+    color: #374151;
+    cursor: pointer;
+  }
+}
+
+/* Proveedor fieldsets */
+.proveedor-fieldset {
+  &--investigador .p-fieldset-legend {
+    border-left: 4px solid #6c757d;
+  }
+
+  &--uifa .p-fieldset-legend {
+    border-left: 4px solid #17a2b8;
+  }
+
+  &--tecnico .p-fieldset-legend {
+    border-left: 4px solid #f2c010;
+  }
+}
+
+/* =============================================
+   Dialog maximizado — respeta topbar y sidebar
+   ============================================= */
+.p-dialog-mask:has(.app-dialog-constrained.p-dialog-maximized) {
+  top: var(--app-topbar-height, 3.5rem) !important;
+  left: var(--app-sidebar-width, 16rem) !important;
+  width: calc(100vw - var(--app-sidebar-width, 16rem)) !important;
+  height: calc(100vh - var(--app-topbar-height, 3.5rem)) !important;
+  transition: left 0.3s ease, width 0.3s ease;
+}
+
+.sidebar-collapsed .p-dialog-mask:has(.app-dialog-constrained.p-dialog-maximized) {
+  left: var(--app-sidebar-collapsed-width, 4rem) !important;
+  width: calc(100vw - var(--app-sidebar-collapsed-width, 4rem)) !important;
+}
+
+.app-dialog-constrained.p-dialog-maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* =============================================
+   Responsive — Mobile first breakpoints
+   ============================================= */
+
+/* Tablet (≤992px) */
+@media (max-width: 992px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .p-dialog {
+    width: 95vw !important;
+    max-width: 95vw !important;
+  }
+}
+
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  .p-dialog-mask:has(.app-dialog-constrained.p-dialog-maximized),
+  .sidebar-collapsed .p-dialog-mask:has(.app-dialog-constrained.p-dialog-maximized) {
+    left: 0 !important;
+    width: 100vw !important;
+  }
+
+  .p-dialog {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+
+    .p-dialog-content {
+      padding: 0.75rem;
+    }
+
+    .p-dialog-footer {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+
+  .p-panel {
+    .p-panel-header {
+      padding: 0.625rem 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .p-panel-content {
+      padding: 0.75rem;
+    }
+
+    .p-panel-icons {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+
+  .checklist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small mobile (≤576px) */
+@media (max-width: 576px) {
+  .form-grid,
+  .form-grid--2col {
+    grid-template-columns: 1fr;
+  }
+
+  .form-radio-group,
+  .form-checkbox-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .p-dialog .p-dialog-footer {
+    flex-direction: column;
+
+    .p-button {
+      width: 100%;
+    }
+  }
+
+  .p-datatable .p-datatable-tbody > tr > td {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.5rem;
+  }
+
+  .p-datatable .p-datatable-thead > tr > th {
+    font-size: 0.6875rem;
+    padding: 0.5rem;
   }
 }
 
@@ -186,3 +525,6 @@ a {
     opacity: 0.5;
   }
 }
+
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 0.75rem; }

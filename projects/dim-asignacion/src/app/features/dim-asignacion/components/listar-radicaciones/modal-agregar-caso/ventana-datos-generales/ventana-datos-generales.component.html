@@ -1,0 +1,72 @@
+<app-seccion-asegurado
+  [(tipoDocumento)]="tipoDocumentoAsegurado"
+  [(numeroDocumento)]="numeroDocumentoAsegurado"
+  [(nombre)]="nombreAsegurado"
+  [(apellidos)]="apellidos"
+  [(edad)]="edadAsegurado"
+  [(correo)]="correoAsegurado"
+  [(telefono)]="telefonoContacto" />
+
+<p-divider />
+
+<app-seccion-radicado
+  [(numeroPoliza)]="numeroPoliza"
+  [(codigoProducto)]="codigoProducto"
+  [(portafolioCodigo)]="portafolioCodigoProducto"
+  [(portafolioNombre)]="portafolioNombreProducto"
+  [(numeroDeRiesgo)]="numeroDeRiesgo"
+  [(riesgoCliente)]="riesgoCliente"
+  [(cobertura)]="cobertura"
+  [(codCobertura)]="codCobertura"
+  [(fechaAviso)]="fechaAviso"
+  [(valorAsegurado)]="valorAsegurado"
+  [(valorAseguradoVida)]="valorAseguradoVida"
+  [(valorAseguradoItp)]="valorAseguradoItp"
+  [(scoreCliente)]="scoreCliente"
+  [(superoPeso)]="superoPeso"
+  [(masDeUnIngreso)]="masDeUnIngreso"
+  [(aprobacionTerminos)]="aprobacionTerminos"
+  [(nitEmpresa)]="nitEmpresa"
+  [(nombreEmpresa)]="nombreEmpresa" />
+
+<p-divider />
+
+<app-seccion-siniestro
+  [(cucConceptoGeneral)]="cucConceptoGeneral"
+  [(coberturaPrincipal)]="coberturaPrincipal"
+  [(fechaSiniestro)]="fechaSiniestro"
+  [(ciudadOcurrencia)]="ciudadOcurrencia"
+  [(causaCodificada)]="causaCodificada"
+  [(intencion)]="intencion"
+  [(accionData)]="accionData"
+  [(casoPadre)]="casoPadre"
+  [(causa)]="causa"
+  [(consecuencia)]="consecuencia"
+  [(observacion)]="observacion" />
+
+<p-divider />
+
+<app-seccion-bancaria
+  [(numeroCuenta)]="numeroCuentaBancaria"
+  [(entidadBancaria)]="entidadBancaria"
+  [(codBanco)]="codBanco"
+  [(tipoCuenta)]="tipoCuentaBancaria"
+  [(aprobacionCuenta)]="aprobacionCuenta" />
+
+<p-divider />
+
+<app-seccion-numero-siniestro
+  [(numeroSiniestro)]="numeroSiniestroRadi"
+  [(superoPesoDocumentos)]="superoPesoRadicacion" />
+
+<p-divider />
+
+<app-seccion-archivos (filesSelected)="onFilesSelected($event)" />
+
+<p-divider />
+
+<app-seccion-historial />
+
+<p-divider />
+
+<app-seccion-observaciones [(observacionRadicado)]="observacionRadicado" />
