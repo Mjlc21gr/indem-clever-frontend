@@ -1,6 +1,6 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
-import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila } from '@shared';
 import { ModalCasoComponent } from './modal-caso/modal-caso.component';
 
 @Component({
@@ -21,7 +21,8 @@ export class ListarcasosComponent {
   ]);
   showModal = signal(false);
 
-  columnas: ColumnaTabla[] = [
+  /** Definición de columnas para la tabla de consultar casos. */
+  readonly columnas: ColumnaTabla[] = [
     { field: 'idRadicado', header: 'ID Radicado', sortable: true, width: '120px' },
     { field: 'documento', header: 'Documento', sortable: true },
     { field: 'fechaAviso', header: 'Fecha Aviso', type: 'date', sortable: true },
@@ -32,7 +33,8 @@ export class ListarcasosComponent {
     }},
   ];
 
-  acciones = [
+  /** Acciones disponibles por fila. */
+  readonly acciones: { action: string; icon: string; tooltip: string; severity: string }[] = [
     { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver caso', severity: 'info' },
   ];
 

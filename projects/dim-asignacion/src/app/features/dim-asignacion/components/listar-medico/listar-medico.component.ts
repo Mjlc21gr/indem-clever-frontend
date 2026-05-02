@@ -1,8 +1,7 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
-import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_MEDICO } from '@shared';
 import { ModalMedicoComponent } from './modal-medico/modal-medico.component';
-import { MOCK_MEDICO } from '../../../../shared/mocks';
 
 @Component({
   selector: 'app-listar-medico',

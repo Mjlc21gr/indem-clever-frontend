@@ -19,7 +19,6 @@ export { SeccionDerivacionComponent } from './components/secciones/seccion-deriv
 export { SeccionConsultaComponent } from './components/secciones/seccion-consulta/seccion-consulta.component';
 export { SeccionDecisionComponent } from './components/secciones/seccion-decision/seccion-decision.component';
 export { SeccionAnalisisIaComponent } from './components/secciones/seccion-analisis-ia/seccion-analisis-ia.component';
-export { SeccionInfoCasoComponent } from './components/secciones/seccion-info-caso/seccion-info-caso.component';
 export { SeccionChecklistComponent } from './components/secciones/seccion-checklist/seccion-checklist.component';
 export { SeccionLineaTiempoComponent } from './components/secciones/seccion-linea-tiempo/seccion-linea-tiempo.component';
 export type { EtapaLineaTiempo, GestionEtapa } from './components/secciones/seccion-linea-tiempo/seccion-linea-tiempo.component';

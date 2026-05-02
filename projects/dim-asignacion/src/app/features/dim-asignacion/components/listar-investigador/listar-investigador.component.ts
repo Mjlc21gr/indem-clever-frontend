@@ -1,8 +1,7 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
-import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_INVESTIGADOR } from '@shared';
 import { ModalInvestigadorComponent } from './modal-investigador/modal-investigador.component';
-import { MOCK_INVESTIGADOR } from '../../../../shared/mocks';
 
 @Component({
   selector: 'app-listar-investigador',

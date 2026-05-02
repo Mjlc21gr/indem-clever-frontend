@@ -1,12 +1,6 @@
 import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
-import { SeccionFormularioDinamicoComponent } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
-import type { CampoFormulario } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
-import { SeccionPanelGenericoComponent } from '@shared/components/secciones/seccion-panel-generico/seccion-panel-generico.component';
-import { SeccionArchivosComponent } from '@shared/components/secciones/seccion-archivos/seccion-archivos.component';
-import { SeccionAnalisisIaComponent } from '@shared/components/secciones/seccion-analisis-ia/seccion-analisis-ia.component';
-import { SeccionDecisionComponent } from '@shared/components/secciones/seccion-decision/seccion-decision.component';
-import { BotonAccionComponent } from '@shared/components/boton-accion/boton-accion.component';
+import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionPanelGenericoComponent, SeccionArchivosComponent, SeccionAnalisisIaComponent, SeccionDecisionComponent, BotonAccionComponent } from '@shared';
 
 @Component({
   selector: 'app-modal-analisis',
@@ -86,6 +80,9 @@ export class ModalAnalisisComponent {
 
   close(): void { this.onClose.emit(); }
   onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
-  guardarDocumentos(): void {}
-  confirmarDecision(): void {}
+  /** TODO: Conectar al backend — guardar documentos adjuntos. */
+  guardarDocumentos(): void { /* TODO: implementar */ }
+
+  /** TODO: Conectar al backend — confirmar decisión del analista. */
+  confirmarDecision(): void { /* TODO: implementar */ }
 }

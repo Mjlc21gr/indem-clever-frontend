@@ -1,8 +1,7 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
-import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_TECNICO } from '@shared';
 import { ModalTecnicoComponent } from './modal-tecnico/modal-tecnico.component';
-import { MOCK_TECNICO } from '../../../../shared/mocks';
 
 @Component({
   selector: 'app-listar-tecnico',

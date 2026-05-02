@@ -10,6 +10,20 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 ### Agregado
 - Se creó sección `seccion-linea-tiempo` en shared: stepper horizontal con 5 etapas + acordeón expandible con gestiones (responsable, fecha, observación) por etapa
 - Se convirtió modal de Consultar Casos (Bootstrap → PrimeNG): información del caso en 3 bloques (Asegurado, Radicado, Siniestro), historial con línea de tiempo, resumen de tiempos con 2 tablas (por etapa y por responsable), documentos adjuntos
+- Se aplicó pase de UX/UI global: spacing entre secciones en modales, fieldset legend con borde izquierdo verde, inputs readonly con fondo diferenciado, footer de modales con fondo sutil, checklist con hover feedback, accordion con bordes y hover, tabs con barra activa más gruesa, focus verde en inputs, file upload con estilo corporativo, botones de acción con hover scale
+- Se creó capa `core/` con arquitectura enterprise: modelos tipados (Radicacion, Analisis, CasoProveedor, OrdenPago, Objecion, CasoConsulta, Usuario), servicios (AuthService, NotificacionService), guards (authGuard, roleGuard), interceptor HTTP (JWT + manejo global de errores 401/403/500), páginas de error (404, acceso denegado)
+- Se configuró `authGuard` en todas las rutas protegidas y `roleGuard` en rutas de admin (pagos, usuarios)
+- Se registró `authInterceptor` con `withInterceptors()` en app.config
+- Se agregó `<p-toast />` al app shell para notificaciones globales
+- Se conectó `AuthService` al topbar para mostrar el nombre del usuario autenticado
+- Se crearon archivos de environment (dev/prod) con URL de API stub
+- Se creó README corporativo con arquitectura, stack, roles, endpoints y ejecución
+
+### Eliminado
+- Se eliminaron 11 servicios legacy no utilizados en `features/dim-asignacion/services/` (admin, controlador, whatsapp, etc.)
+- Se eliminó archivo de environment duplicado `config/environment.ts` (reemplazado por `src/environments/`)
+- Se eliminó `SeccionInfoCasoComponent` no utilizado de shared y de `public-api.ts`
+- Se eliminaron 3 carpetas de secciones locales muertas en `modal-mesa-perfeccionamiento/secciones/` (seccion-checklist, seccion-datos-caso, seccion-observaciones-mesa)
 
 ### Corregido
 - Se corrigió selección de checkboxes en tabla de Consultar Casos: se agregó `dataKey="idRadicado"` para que cada fila se identifique de forma única

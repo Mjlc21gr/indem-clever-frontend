@@ -1,8 +1,7 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
-import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_ANALISIS } from '@shared';
 import { ModalAnalisisComponent } from './modal-analisis/modal-analisis.component';
-import { MOCK_ANALISIS } from '../../../../shared/mocks';
 
 @Component({
   selector: 'app-listar-analisis',
@@ -15,7 +14,8 @@ export class ListaranalisisComponent {
   loading = signal(false);
   data = signal<unknown[]>(MOCK_ANALISIS);
 
-  columnas: ColumnaTabla[] = [
+  /** Definición de columnas para la tabla de análisis. */
+  readonly columnas: ColumnaTabla[] = [
     { field: 'id', header: 'ID', sortable: true, width: '80px' },
     { field: 'nombre', header: 'Nombre', sortable: true },
     { field: 'numeroPoliza', header: 'Numero Poliza', sortable: true },
@@ -37,7 +37,8 @@ export class ListaranalisisComponent {
     }},
   ];
 
-  acciones = [
+  /** Acciones disponibles por fila. */
+  readonly acciones: { action: string; icon: string; tooltip: string; severity: string }[] = [
     { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver análisis', severity: 'info' },
   ];
 

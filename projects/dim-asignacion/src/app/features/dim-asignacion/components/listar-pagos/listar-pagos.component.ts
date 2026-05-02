@@ -1,10 +1,8 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
 import { Button } from 'primeng/button';
-import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
-import { MOCK_ORDENES_PAGO } from '../../../../shared/mocks';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_ORDENES_PAGO, DialogoConfirmacionComponent } from '@shared';
 import { ModalPagoComponent } from './modal-pago/modal-pago.component';
-import { DialogoConfirmacionComponent } from '../../../../shared/components/dialogo-confirmacion/dialogo-confirmacion.component';
 
 @Component({
   selector: 'app-listar-pagos',
@@ -24,7 +22,8 @@ export class ListarpagosComponent {
   confirmSeverity = signal<'success' | 'danger' | 'warn' | 'info'>('success');
   accionPendiente = signal('');
 
-  columnas: ColumnaTabla[] = [
+  /** Definición de columnas para la tabla de órdenes de pago. */
+  readonly columnas: ColumnaTabla[] = [
     { field: 'id', header: 'ID', sortable: true, width: '80px' },
     { field: 'fecha', header: 'Fecha', type: 'date', sortable: true },
     { field: 'numeroSiniestro', header: 'No. Siniestro', sortable: true },
@@ -33,7 +32,8 @@ export class ListarpagosComponent {
     { field: 'total', header: 'Total', type: 'currency', sortable: true },
   ];
 
-  acciones = [
+  /** Acciones disponibles por fila. */
+  readonly acciones: { action: string; icon: string; tooltip: string; severity: string }[] = [
     { action: 'info', icon: 'pi pi-info-circle', tooltip: 'Ver detalle', severity: 'info' },
     { action: 'aprobar', icon: 'pi pi-check', tooltip: 'Aprobar', severity: 'success' },
     { action: 'devolver', icon: 'pi pi-replay', tooltip: 'Devolver a análisis', severity: 'warn' },

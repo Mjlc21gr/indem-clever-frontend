@@ -528,3 +528,206 @@ a {
 
 .mt-2 { margin-top: 0.5rem; }
 .mt-3 { margin-top: 0.75rem; }
+
+/* =============================================
+   UX/UI Polish — Mejoras visuales globales
+   ============================================= */
+
+/* --- Spacing entre fieldsets dentro de modales --- */
+.p-dialog-content {
+  > app-seccion-formulario-dinamico,
+  > app-seccion-panel-generico,
+  > app-seccion-archivos,
+  > app-seccion-analisis-ia,
+  > app-seccion-decision,
+  > app-seccion-checklist,
+  > app-seccion-observaciones-generica,
+  > app-seccion-derivacion,
+  > app-seccion-linea-tiempo,
+  > p-fieldset {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* --- Fieldset legend con icono de borde izquierdo --- */
+.p-fieldset .p-fieldset-legend {
+  border-left: 3px solid #0a6e45;
+  transition: background-color var(--app-transition);
+}
+
+.p-fieldset:hover > .p-fieldset-legend {
+  background-color: #f0faf5;
+}
+
+/* --- Inputs readonly: fondo sutil para diferenciar --- */
+.p-inputtext[readonly],
+textarea.p-textarea[readonly] {
+  background-color: var(--p-surface-50, #f8fafc);
+  color: #374151;
+  border-color: var(--p-surface-200, #e2e8f0);
+  cursor: default;
+  opacity: 0.85;
+}
+
+/* --- Dialog footer: separación visual más clara --- */
+.p-dialog .p-dialog-footer {
+  background-color: var(--p-surface-50, #f8fafc);
+  border-top: 2px solid var(--p-surface-200, #e2e8f0);
+}
+
+/* --- Checklist items: hover feedback --- */
+.checklist-item {
+  padding: 0.375rem 0.5rem;
+  border-radius: var(--app-radius);
+  transition: background-color var(--app-transition);
+
+  &:hover {
+    background-color: #f0faf5;
+  }
+}
+
+/* --- Accordion dentro de línea de tiempo --- */
+.p-accordion {
+  .p-accordionpanel {
+    border: 1px solid var(--p-surface-200, #e2e8f0);
+    border-radius: var(--app-radius);
+    margin-bottom: 0.375rem;
+    overflow: hidden;
+  }
+
+  .p-accordionheader {
+    background-color: var(--p-surface-50, #f8fafc);
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #1f2937;
+    transition: background-color var(--app-transition);
+    border: none;
+
+    &:hover {
+      background-color: #e8f5ee;
+    }
+  }
+
+  .p-accordioncontent {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--p-surface-200, #e2e8f0);
+  }
+}
+
+/* --- Panel genérico (historial, documentos) --- */
+.p-panel:not(:has(.p-panel-header)) {
+  border: 1px solid var(--p-surface-200, #e2e8f0);
+  border-radius: var(--app-radius);
+}
+
+/* --- Tabla de acciones: botones más visibles --- */
+.tabla-acciones-cell .p-button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: scale(1.15);
+    box-shadow: 0 2px 8px rgba(10, 110, 69, 0.15);
+  }
+}
+
+/* --- Tabla header checkbox: alineación --- */
+.p-datatable .p-datatable-thead th:has(p-tableHeaderCheckbox) {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* --- Divider dentro de modales: más sutil --- */
+.p-dialog-content .p-divider {
+  margin: 0.75rem 0;
+
+  &::before {
+    border-color: var(--p-surface-200, #e2e8f0);
+  }
+}
+
+/* --- Tabs: active tab con barra verde más gruesa --- */
+.p-tabs .p-tab.p-tab-active {
+  border-bottom: 3px solid #0a6e45;
+  color: #0a6e45;
+  font-weight: 600;
+}
+
+/* --- Select/Dropdown: borde sutil en focus --- */
+.p-select:focus-within,
+.p-inputtext:focus {
+  border-color: #0a6e45;
+  box-shadow: 0 0 0 2px rgba(10, 110, 69, 0.1);
+}
+
+/* --- FileUpload: estilo corporativo --- */
+.p-fileupload {
+  border: 2px dashed var(--p-surface-300, #cbd5e1);
+  border-radius: var(--app-radius);
+  transition: border-color var(--app-transition), background-color var(--app-transition);
+
+  &:hover {
+    border-color: #0a6e45;
+    background-color: #f0faf5;
+  }
+}
+
+/* --- Radio/Checkbox: color corporativo --- */
+.p-checkbox.p-checkbox-checked .p-checkbox-box,
+.p-radiobutton.p-radiobutton-checked .p-radiobutton-box {
+  background-color: #0a6e45;
+  border-color: #0a6e45;
+}
+
+/* --- Inicio cards grid --- */
+.inicio__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.inicio__card.p-card {
+  border-radius: var(--app-radius);
+  overflow: hidden;
+
+  .p-card-header img {
+    height: 180px;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+/* --- Smooth scroll para dialog content --- */
+.p-dialog .p-dialog-content {
+  scroll-behavior: smooth;
+}
+
+/* --- Proveedor fieldsets: borde izquierdo más visible --- */
+.proveedor-fieldset .p-fieldset-legend {
+  border-left-width: 4px;
+}
+
+/* --- Text muted utility --- */
+.text-muted {
+  color: #9ca3af;
+  font-size: 0.8125rem;
+  font-style: italic;
+}
+
+/* --- Responsive: accordion en mobile --- */
+@media (max-width: 576px) {
+  .p-accordion .p-accordionheader {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .p-accordion .p-accordioncontent {
+    padding: 0.5rem 0.75rem;
+  }
+}

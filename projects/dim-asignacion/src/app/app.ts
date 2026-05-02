@@ -1,19 +1,23 @@
-import { Component, signal, computed, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, computed, inject, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './shared/components/topbar/topbar.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { AuthService } from './core/services/auth.service';
+import { Toast } from 'primeng/toast';
 
 /** Breakpoint below which the sidebar becomes a mobile overlay. */
 const MOBILE_BREAKPOINT = 768;
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TopbarComponent, SidebarComponent],
+  imports: [RouterOutlet, TopbarComponent, SidebarComponent, Toast],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
+  private readonly auth = inject(AuthService);
+
   /** Whether the sidebar is collapsed (desktop) or hidden (mobile). */
   sidebarCollapsed = signal(false);
 
@@ -23,8 +27,8 @@ export class App {
   /** On mobile the sidebar is open as overlay; on desktop it's the inverse of collapsed. */
   sidebarMobileOpen = signal(false);
 
-  /** Current user display name. */
-  userName = signal('Usuario');
+  /** Current user display name (from auth service). */
+  userName = computed(() => this.auth.nombreUsuario());
 
   /** Listens for window resize to update mobile state. */
   @HostListener('window:resize')

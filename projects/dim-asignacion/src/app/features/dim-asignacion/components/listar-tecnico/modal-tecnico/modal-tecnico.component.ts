@@ -1,11 +1,6 @@
 import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
-import { SeccionFormularioDinamicoComponent } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
-import type { CampoFormulario } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
-import { SeccionPanelGenericoComponent } from '@shared/components/secciones/seccion-panel-generico/seccion-panel-generico.component';
-import { SeccionArchivosComponent } from '@shared/components/secciones/seccion-archivos/seccion-archivos.component';
-import { SeccionObservacionesGenericaComponent } from '@shared/components/secciones/seccion-observaciones-generica/seccion-observaciones-generica.component';
-import { BotonAccionComponent } from '@shared/components/boton-accion/boton-accion.component';
+import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionPanelGenericoComponent, SeccionArchivosComponent, SeccionObservacionesGenericaComponent, BotonAccionComponent } from '@shared';
 @Component({
   selector: 'app-modal-tecnico',
   imports: [Dialog, SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent, SeccionArchivosComponent, SeccionObservacionesGenericaComponent, BotonAccionComponent],
@@ -45,7 +40,12 @@ export class ModalTecnicoComponent {
   valoresSiniestro = signal<Record<string, string>>({});
   valoresTecnico = signal<Record<string, string>>({});
   observacionProveedor = signal('');
+  /** Cierra el modal. */
   close(): void { this.onClose.emit(); }
+
+  /** Maneja cambio de visibilidad del diálogo. */
   onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
-  completar(): void {}
+
+  /** TODO: Conectar al backend — completar movilización técnico. */
+  completar(): void { /* TODO: implementar */ }
 }

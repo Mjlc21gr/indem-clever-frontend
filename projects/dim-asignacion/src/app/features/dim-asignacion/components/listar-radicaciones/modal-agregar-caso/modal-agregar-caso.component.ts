@@ -4,8 +4,7 @@ import { TabPanel, Tabs, TabList, Tab, TabPanels } from 'primeng/tabs';
 import { Divider } from 'primeng/divider';
 import { VentanaDatosGeneralesComponent } from './ventana-datos-generales/ventana-datos-generales.component';
 import { VentanaDataOperativaComponent } from './ventana-data-operativa/ventana-data-operativa.component';
-import { SeccionDerivacionComponent } from '@shared/components/secciones/seccion-derivacion/seccion-derivacion.component';
-import { BotonAccionComponent } from '@shared/components/boton-accion/boton-accion.component';
+import { SeccionDerivacionComponent, BotonAccionComponent } from '@shared';
 
 @Component({
   selector: 'app-modal-agregar-caso',
@@ -40,9 +39,18 @@ export class ModalAgregarCasoComponent {
   agenteTecnicoRadi = signal('');
   motivoMovilizacionTecnico = signal('');
 
+  /** Cierra el modal. */
   close(): void { this.onClose.emit(); }
+
+  /** Maneja cambio de visibilidad del diálogo. */
   onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
-  onFileUpload(_e: { files: File[] }): void {}
-  guardarRadicado(): void {}
-  anularCaso(): void {}
+
+  /** TODO: Conectar al backend — subir archivos adjuntos al caso. */
+  onFileUpload(_e: { files: File[] }): void { /* TODO: implementar */ }
+
+  /** TODO: Conectar al backend — guardar radicado con datos del formulario. */
+  guardarRadicado(): void { /* TODO: implementar */ }
+
+  /** TODO: Conectar al backend — anular caso con confirmación. */
+  anularCaso(): void { /* TODO: implementar */ }
 }

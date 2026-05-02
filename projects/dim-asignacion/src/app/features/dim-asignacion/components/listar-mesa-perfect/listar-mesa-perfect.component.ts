@@ -1,7 +1,6 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
-import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
-import { MOCK_RADICACIONES } from '../../../../shared/mocks';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_RADICACIONES } from '@shared';
 
 @Component({
   selector: 'app-listar-mesa-perfect',

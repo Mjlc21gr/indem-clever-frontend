@@ -1,9 +1,6 @@
 import { Component, model, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Divider } from 'primeng/divider';
-import { SeccionConsultaComponent } from '@shared/components/secciones/seccion-consulta/seccion-consulta.component';
-import { SeccionFormularioDinamicoComponent } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
-import { SeccionPanelGenericoComponent } from '@shared/components/secciones/seccion-panel-generico/seccion-panel-generico.component';
-import type { CampoFormulario } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
+import { SeccionConsultaComponent, SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent, type CampoFormulario } from '@shared';
 
 @Component({
   selector: 'app-ventana-data-operativa',

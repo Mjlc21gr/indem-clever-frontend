@@ -2,12 +2,7 @@ import { Component, input, output, signal, ChangeDetectionStrategy } from '@angu
 import { Dialog } from 'primeng/dialog';
 import { Fieldset } from 'primeng/fieldset';
 import { TableModule } from 'primeng/table';
-import { SeccionFormularioDinamicoComponent } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
-import type { CampoFormulario } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
-import { SeccionLineaTiempoComponent } from '@shared/components/secciones/seccion-linea-tiempo/seccion-linea-tiempo.component';
-import type { EtapaLineaTiempo } from '@shared/components/secciones/seccion-linea-tiempo/seccion-linea-tiempo.component';
-import { SeccionPanelGenericoComponent } from '@shared/components/secciones/seccion-panel-generico/seccion-panel-generico.component';
-import { BotonAccionComponent } from '@shared/components/boton-accion/boton-accion.component';
+import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionLineaTiempoComponent, type EtapaLineaTiempo, SeccionPanelGenericoComponent, BotonAccionComponent } from '@shared';
 
 /**
  * Modal de seguimiento de caso para Consultar Casos.
@@ -24,7 +19,7 @@ import { BotonAccionComponent } from '@shared/components/boton-accion/boton-acci
     BotonAccionComponent,
   ],
   templateUrl: './modal-caso.component.html',
-  styleUrl: './modal-caso.component.scss',
+  styleUrls: ['./modal-caso.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalCasoComponent {
@@ -122,6 +117,6 @@ export class ModalCasoComponent {
   /** Maneja cambio de visibilidad del diálogo. */
   onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
 
-  /** Genera reporte del caso. */
-  generarReporte(): void {}
+  /** TODO: Conectar al backend — generar reporte PDF del caso. */
+  generarReporte(): void { /* TODO: implementar */ }
 }

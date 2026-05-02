@@ -1,8 +1,7 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
 import { Button } from 'primeng/button';
-import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
-import { MOCK_RADICACIONES } from '../../../../shared/mocks';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_RADICACIONES } from '@shared';
 import { ModalAgregarCasoComponent } from './modal-agregar-caso/modal-agregar-caso.component';
 import { ModalMesaPerfeccionamientoComponent } from './modal-mesa-perfeccionamiento/modal-mesa-perfeccionamiento.component';
 import { ModalRadicacionComponent } from './modal-radicacion/modal-radicacion.component';
