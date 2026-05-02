@@ -1,6 +1,6 @@
 const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
 const { merge } = require('webpack-merge');
-const mf = withModuleFederationPlugin({ name: 'dim-asignacion', filename: 'remoteEntry.js', exposes: { './Routes': './projects/dim-asignacion/src/app/exposed.routes.ts' }, shared: { ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }) } });
+const mf = withModuleFederationPlugin({ name: 'indem-clever', filename: 'remoteEntry.js', exposes: { './Routes': './projects/indem-clever/src/app/exposed.routes.ts' }, shared: { ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }) } });
 module.exports = function webpackConfig(config) {
   const merged = merge(config, mf);
   merged.output = merged.output || {};

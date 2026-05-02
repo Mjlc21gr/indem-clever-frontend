@@ -1,2 +1,2 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = { content: ['./projects/dim-asignacion/src/**/*.{html,ts}'], theme: { extend: {} }, plugins: [] };
+module.exports = { content: ['./projects/indem-clever/src/**/*.{html,ts}'], theme: { extend: {} }, plugins: [] };

@@ -15,8 +15,8 @@
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "paths": {
-      "@shared": ["projects/dim-asignacion/src/app/shared/public-api"],
-      "@shared/*": ["projects/dim-asignacion/src/app/shared/*"]
+      "@shared": ["projects/indem-clever/src/app/shared/public-api"],
+      "@shared/*": ["projects/indem-clever/src/app/shared/*"]
     }
   },
   "angularCompilerOptions": {
@@ -26,7 +26,7 @@
     "strictTemplates": true
   },
   "include": [
-    "projects/dim-asignacion/src/**/*.ts",
-    "projects/dim-asignacion/src/**/*.d.ts"
+    "projects/indem-clever/src/**/*.ts",
+    "projects/indem-clever/src/**/*.d.ts"
   ]
 }

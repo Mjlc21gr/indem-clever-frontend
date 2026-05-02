@@ -1,4 +1,5 @@
 import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Toolbar } from 'primeng/toolbar';
 import { Button } from 'primeng/button';
 import { Avatar } from 'primeng/avatar';
@@ -6,7 +7,7 @@ import { Tag } from 'primeng/tag';
 
 @Component({
   selector: 'app-topbar',
-  imports: [Toolbar, Button, Avatar, Tag],
+  imports: [Toolbar, Button, Avatar, Tag, RouterLink],
   templateUrl: './topbar.component.html',
   styleUrl: './topbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

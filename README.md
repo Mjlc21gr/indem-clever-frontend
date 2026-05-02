@@ -4,23 +4,17 @@
 
 Aplicación web para la gestión de indemnizaciones de Seguros Bolívar. Permite radicar casos, asignar analistas, derivar a proveedores externos, aprobar pagos y consultar el historial completo de cada caso.
 
-## Ruta API
-
-```
-/seguros/api/v1/indemnizaciones
-```
-
 ## Arquitectura
 
 ```
-projects/dim-asignacion/src/app/
+projects/indem-clever/src/app/
 ├── core/                          # Servicios singleton, guards, interceptors, modelos
 │   ├── guards/                    # authGuard, roleGuard
 │   ├── interceptors/              # authInterceptor (JWT + error handling)
 │   ├── models/                    # Interfaces TypeScript del dominio
 │   ├── pages/                     # Páginas de error (404, acceso denegado)
 │   └── services/                  # AuthService, NotificacionService
-├── features/dim-asignacion/       # Feature module principal
+├── features/indem-clever/       # Feature module principal
 │   └── components/                # Componentes por módulo (lazy loaded)
 │       ├── listar-radicaciones/   # Radicaciones + modales (agregar, ver, mesa)
 │       ├── listar-analisis/       # Análisis + modal
@@ -78,13 +72,13 @@ projects/dim-asignacion/src/app/
 
 ```bash
 npm install
-npx ng serve dim-asignacion-mfe --port 4201
+npx ng serve indem-clever-mfe --port 4201
 ```
 
 ## Build
 
 ```bash
-npx ng build dim-asignacion-mfe
+npx ng build indem-clever-mfe
 ```
 
 ## Autores

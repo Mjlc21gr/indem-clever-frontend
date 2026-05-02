@@ -8,7 +8,7 @@ import type { Usuario, RolUsuario } from '../models';
  */
 const USUARIO_STUB: Usuario = {
   id: '1',
-  nombre: 'Usuario Desarrollo',
+  nombre: 'Jorge Morales',
   correo: 'dev@segurosbolivar.com',
   rol: 'admin',
 };

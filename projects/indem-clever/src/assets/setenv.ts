@@ -5,7 +5,7 @@ const args = process.argv.slice(2);
 const envArg = args.find((a) => a.startsWith("--environment="));
 const environment = envArg ? envArg.split("=")[1] : undefined;
 const isProduction = environment === "prod";
-const targetPath = "./projects/dim-asignacion/src/app/config/environment.ts";
+const targetPath = "./projects/indem-clever/src/app/config/environment.ts";
 const envDirectory = path.dirname(targetPath);
 if (!existsSync(envDirectory)) mkdirSync(envDirectory, { recursive: true });
 const apiBaseUrl = process.env["apiBaseUrl"] || "http://localhost:4202/api";

@@ -20,7 +20,7 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 - Se creó README corporativo con arquitectura, stack, roles, endpoints y ejecución
 
 ### Eliminado
-- Se eliminaron 11 servicios legacy no utilizados en `features/dim-asignacion/services/` (admin, controlador, whatsapp, etc.)
+- Se eliminaron 11 servicios legacy no utilizados en `features/indem-clever/services/` (admin, controlador, whatsapp, etc.)
 - Se eliminó archivo de environment duplicado `config/environment.ts` (reemplazado por `src/environments/`)
 - Se eliminó `SeccionInfoCasoComponent` no utilizado de shared y de `public-api.ts`
 - Se eliminaron 3 carpetas de secciones locales muertas en `modal-mesa-perfeccionamiento/secciones/` (seccion-checklist, seccion-datos-caso, seccion-observaciones-mesa)
@@ -30,7 +30,7 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 - Se corrigió acordeón de etapas en línea de tiempo: se agregó `[(value)]="activeValue"` con signal inicializado en `null` para que todas las etapas arranquen cerradas y solo una se abra a la vez
 
 ### Eliminado
-- Se eliminó directorio `components/` duplicado en `indem-clever-frontend/projects/dim-asignacion/src/app/features/dim-asignacion/` (componentes `listar-radicaciones` y `modal-agregar-caso`)
+- Se eliminó directorio `components/` duplicado en `indem-clever-frontend/projects/indem-clever/src/app/features/indem-clever/` (componentes `listar-radicaciones` y `modal-agregar-caso`)
 - Se eliminó carpeta duplicada `indem-clever-frontend/` anidada en la raíz del workspace
 
 ### Corregido
@@ -83,7 +83,7 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 - Se reemplazaron todos los elementos HTML nativos (`div`, `h2`, `p`, `nav`, `img`, `span`, `i`) por componentes PrimeNG (`p-panel`, `p-card`, `p-image`, `p-toolbar`, `p-button`, `p-avatar`, `p-tag`, `p-panelMenu`, `p-scrollPanel`, `p-dialog`, `p-fluid`)
 
 ### Corregido
-- Se corrigió la ruta de importación de `environment` en los 11 servicios bajo `features/dim-asignacion/services/`
+- Se corrigió la ruta de importación de `environment` en los 11 servicios bajo `features/indem-clever/services/`
 - Se eliminó método duplicado `listarPagosAdmin()` en `admin.service.ts`
 - Se eliminaron métodos duplicados `formatearFecha()` y `formatearCOP()` en `funciones-auxiliares.service.ts`
 - Se creó preset PrimeNG personalizado `CleverFlowPreset` en `app.config.ts` con paleta corporativa (#004D40 verde, superficies slate) integrada al tema Aura

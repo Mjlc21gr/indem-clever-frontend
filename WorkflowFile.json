@@ -7,41 +7,41 @@
     },
     "s3": {
         "dev": {
-            "name": "cls-servicios-dim-asignacion-dev-front",
+            "name": "cls-servicios-indem-clever-dev-front",
             "acl": "private"
         },
         "stage": {
-            "name": "cls-servicios-dim-asignacion-stage-front",
+            "name": "cls-servicios-indem-clever-stage-front",
             "acl": "private"
         },
         "prod": {
-            "name": "cls-servicios-dim-asignacion-prod-front",
+            "name": "cls-servicios-indem-clever-prod-front",
             "acl": "private"
         }
     },
     "sites": {
         "dev": [
             {
-                "name": "dim-asignacion",
-                "path": "dim-asignacion-mfe",
-                "build": "dim-asignacion-mfe",
-                "test": "dim-asignacion-mfe"
+                "name": "indem-clever",
+                "path": "indem-clever-mfe",
+                "build": "indem-clever-mfe",
+                "test": "indem-clever-mfe"
             }
         ],
         "stage": [
             {
-                "name": "dim-asignacion",
-                "path": "dim-asignacion-mfe",
-                "build": "dim-asignacion-mfe",
-                "test": "dim-asignacion-mfe"
+                "name": "indem-clever",
+                "path": "indem-clever-mfe",
+                "build": "indem-clever-mfe",
+                "test": "indem-clever-mfe"
             }
         ],
         "prod": [
             {
-                "name": "dim-asignacion",
-                "path": "dim-asignacion-mfe",
-                "build": "dim-asignacion-mfe",
-                "test": "dim-asignacion-mfe"
+                "name": "indem-clever",
+                "path": "indem-clever-mfe",
+                "build": "indem-clever-mfe",
+                "test": "indem-clever-mfe"
             }
         ]
     },

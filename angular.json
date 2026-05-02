@@ -2,32 +2,32 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dim-asignacion-mfe": {
+    "indem-clever-mfe": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/dim-asignacion",
-      "sourceRoot": "projects/dim-asignacion/src",
+      "root": "projects/indem-clever",
+      "sourceRoot": "projects/indem-clever/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/dim-asignacion-mfe",
-            "index": "projects/dim-asignacion/src/index.html",
-            "main": "projects/dim-asignacion/src/main.ts",
-            "tsConfig": "projects/dim-asignacion/tsconfig.app.json",
+            "outputPath": "dist/indem-clever-mfe",
+            "index": "projects/indem-clever/src/index.html",
+            "main": "projects/indem-clever/src/main.ts",
+            "tsConfig": "projects/indem-clever/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [],
             "styles": [
               "node_modules/primeicons/primeicons.css",
-              "projects/dim-asignacion/src/tailwind.css",
-              "projects/dim-asignacion/src/styles.scss"
+              "projects/indem-clever/src/tailwind.css",
+              "projects/indem-clever/src/styles.scss"
             ],
-            "extraWebpackConfig": "projects/dim-asignacion/webpack.config.js",
+            "extraWebpackConfig": "projects/indem-clever/webpack.config.js",
             "commonChunk": false
           },
           "configurations": {
@@ -45,13 +45,13 @@
                 }
               ],
               "outputHashing": "all",
-              "extraWebpackConfig": "projects/dim-asignacion/webpack.prod.config.js"
+              "extraWebpackConfig": "projects/indem-clever/webpack.prod.config.js"
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "tsConfig": "projects/dim-asignacion/tsconfig.app.dev.json"
+              "tsConfig": "projects/indem-clever/tsconfig.app.dev.json"
             }
           },
           "defaultConfiguration": "production"
@@ -61,15 +61,15 @@
           "options": {
             "port": 4202,
             "publicHost": "http://localhost:4202",
-            "extraWebpackConfig": "projects/dim-asignacion/webpack.config.js"
+            "extraWebpackConfig": "projects/indem-clever/webpack.config.js"
           },
           "configurations": {
             "production": {
-              "buildTarget": "dim-asignacion-mfe:build:production",
-              "extraWebpackConfig": "projects/dim-asignacion/webpack.prod.config.js"
+              "buildTarget": "indem-clever-mfe:build:production",
+              "extraWebpackConfig": "projects/indem-clever/webpack.prod.config.js"
             },
             "development": {
-              "buildTarget": "dim-asignacion-mfe:build:development"
+              "buildTarget": "indem-clever-mfe:build:development"
             }
           },
           "defaultConfiguration": "development"

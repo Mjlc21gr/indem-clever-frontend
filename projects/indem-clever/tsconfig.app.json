@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/dim-asignacion",
+    "outDir": "../../out-tsc/indem-clever",
     "rootDir": "../..",
     "types": []
   },
