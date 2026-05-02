@@ -19,49 +19,6 @@
     <p-tabpanels>
       <p-tabpanel value="0">
         <app-ventana-datos-generales
-          [(tipoDocumentoAsegurado)]="tipoDocumentoAsegurado"
-          [(numeroDocumentoAsegurado)]="numeroDocumentoAsegurado"
-          [(nombreAsegurado)]="nombreAsegurado"
-          [(apellidos)]="apellidos"
-          [(edadAsegurado)]="edadAsegurado"
-          [(correoAsegurado)]="correoAsegurado"
-          [(telefonoContacto)]="telefonoContacto"
-          [(numeroPoliza)]="numeroPoliza"
-          [(codigoProducto)]="codigoProducto"
-          [(portafolioCodigoProducto)]="portafolioCodigoProducto"
-          [(portafolioNombreProducto)]="portafolioNombreProducto"
-          [(numeroDeRiesgo)]="numeroDeRiesgo"
-          [(riesgoCliente)]="riesgoCliente"
-          [(cobertura)]="cobertura"
-          [(codCobertura)]="codCobertura"
-          [(fechaAviso)]="fechaAviso"
-          [(valorAsegurado)]="valorAsegurado"
-          [(valorAseguradoVida)]="valorAseguradoVida"
-          [(valorAseguradoItp)]="valorAseguradoItp"
-          [(scoreCliente)]="scoreCliente"
-          [(superoPeso)]="superoPeso"
-          [(masDeUnIngreso)]="masDeUnIngreso"
-          [(aprobacionTerminos)]="aprobacionTerminos"
-          [(nitEmpresa)]="nitEmpresa"
-          [(nombreEmpresa)]="nombreEmpresa"
-          [(cucConceptoGeneral)]="cucConceptoGeneral"
-          [(coberturaPrincipal)]="coberturaPrincipal"
-          [(fechaSiniestro)]="fechaSiniestro"
-          [(ciudadOcurrencia)]="ciudadOcurrencia"
-          [(causaCodificada)]="causaCodificada"
-          [(intencion)]="intencion"
-          [(accionData)]="accionData"
-          [(casoPadre)]="casoPadre"
-          [(causa)]="causa"
-          [(consecuencia)]="consecuencia"
-          [(observacion)]="observacion"
-          [(numeroCuentaBancaria)]="numeroCuentaBancaria"
-          [(entidadBancaria)]="entidadBancaria"
-          [(codBanco)]="codBanco"
-          [(tipoCuentaBancaria)]="tipoCuentaBancaria"
-          [(aprobacionCuenta)]="aprobacionCuenta"
-          [(numeroSiniestroRadi)]="numeroSiniestroRadi"
-          [(superoPesoRadicacion)]="superoPesoRadicacion"
           [(observacionRadicado)]="observacionRadicado"
           (filesSelected)="onFileUpload($event)" />
       </p-tabpanel>
@@ -69,18 +26,7 @@
       <p-tabpanel value="1">
         <app-ventana-data-operativa
           [(consultaTipoDoc)]="consultaTipoDoc"
-          [(consultaNumDoc)]="consultaNumDoc"
-          [(nombreCliente)]="nombreCliente"
-          [(tipoDocumentoClever)]="tipoDocumentoClever"
-          [(numeroDocumentoClever)]="numeroDocumentoClever"
-          [(tipoPersona)]="tipoPersona"
-          [(nombreEmpresaData)]="nombreEmpresaData"
-          [(estadoCliente)]="estadoCliente"
-          [(demSexo)]="demSexo"
-          [(demFechaNacimiento)]="demFechaNacimiento"
-          [(demEdad)]="demEdad"
-          [(demDireccion)]="demDireccion"
-          [(demMunicipio)]="demMunicipio" />
+          [(consultaNumDoc)]="consultaNumDoc" />
       </p-tabpanel>
     </p-tabpanels>
   </p-tabs>
@@ -102,9 +48,9 @@
     [(motivoMovilizacionTecnico)]="motivoMovilizacionTecnico" />
 
   <ng-template #footer>
-    <p-button label="Anular caso" icon="pi pi-ban" severity="danger" [outlined]="true" (onClick)="anularCaso()" />
-    <p-button label="Cerrar" icon="pi pi-times" severity="secondary" (onClick)="close()" />
-    <p-button label="Guardar Radicado" icon="pi pi-save" severity="success" (onClick)="guardarRadicado()" />
+    <app-boton-accion label="Anular caso" icon="pi pi-ban" severity="danger" [outlined]="true" (accion)="anularCaso()" />
+    <app-boton-accion label="Cerrar" icon="pi pi-times" severity="secondary" (accion)="close()" />
+    <app-boton-accion label="Guardar Radicado" icon="pi pi-save" severity="success" (accion)="guardarRadicado()" />
   </ng-template>
 
 </p-dialog>

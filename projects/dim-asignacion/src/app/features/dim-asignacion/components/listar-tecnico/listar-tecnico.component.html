@@ -7,3 +7,4 @@
     [acciones]="acciones"
     (accionEjecutada)="onAccion($event)" />
 </p-panel>
+<app-modal-tecnico [visible]="showModal()" (onClose)="closeModal()" />

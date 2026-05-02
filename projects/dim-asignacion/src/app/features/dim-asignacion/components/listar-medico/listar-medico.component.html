@@ -7,3 +7,4 @@
     [acciones]="acciones"
     (accionEjecutada)="onAccion($event)" />
 </p-panel>
+<app-modal-medico [visible]="showModal()" (onClose)="closeModal()" />

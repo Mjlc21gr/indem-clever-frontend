@@ -1,0 +1,56 @@
+<p-dialog
+  header="Radicación"
+  [visible]="visible()"
+  (visibleChange)="onVisibleChange($event)"
+  [modal]="true"
+  [draggable]="false"
+  [maximizable]="true"
+  [closable]="true"
+  [style]="{ width: '90vw' }"
+  styleClass="app-dialog-constrained"
+  (onHide)="close()">
+
+  <p-tabs [value]="activeTab()" (valueChange)="activeTab.set('' + $event)">
+    <p-tablist>
+      <p-tab value="0">Datos Generales</p-tab>
+      <p-tab value="1">Data Operativa</p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <p-tabpanel value="0">
+        <app-ventana-datos-generales
+          [(observacionRadicado)]="observacionRadicado"
+          (filesSelected)="onFileUpload($event)" />
+      </p-tabpanel>
+
+      <p-tabpanel value="1">
+        <app-ventana-data-operativa
+          [(consultaTipoDoc)]="consultaTipoDoc"
+          [(consultaNumDoc)]="consultaNumDoc" />
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+
+  <p-divider />
+
+  <app-seccion-derivacion
+    [(enviarProveedores)]="enviarProveedores"
+    [(enviarLineaNegocio)]="enviarLineaNegocio"
+    [(proveedorInvestigador)]="proveedorInvestigador"
+    [(proveedorUIFA)]="proveedorUIFA"
+    [(proveedorTecnico)]="proveedorTecnico"
+    [(agentesInvestigador)]="agentesInvestigador"
+    [(agentesTecnico)]="agentesTecnico"
+    [(agenteInvestigadorRadi)]="agenteInvestigadorRadi"
+    [(motivoMovilizacionInvestigador)]="motivoMovilizacionInvestigador"
+    [(motivoMovilizacionUIFA)]="motivoMovilizacionUIFA"
+    [(agenteTecnicoRadi)]="agenteTecnicoRadi"
+    [(motivoMovilizacionTecnico)]="motivoMovilizacionTecnico" />
+
+  <ng-template #footer>
+    <app-boton-accion label="Anular caso" icon="pi pi-ban" severity="danger" [outlined]="true" (accion)="anularCaso()" />
+    <app-boton-accion label="Cerrar" icon="pi pi-times" severity="secondary" (accion)="close()" />
+    <app-boton-accion label="Guardar Radicado" icon="pi pi-save" severity="success" (accion)="guardarRadicado()" />
+  </ng-template>
+
+</p-dialog>

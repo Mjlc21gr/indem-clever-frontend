@@ -13,7 +13,11 @@
     "target": "ES2022",
     "module": "preserve",
     "moduleResolution": "bundler",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@shared": ["projects/dim-asignacion/src/app/shared/public-api"],
+      "@shared/*": ["projects/dim-asignacion/src/app/shared/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

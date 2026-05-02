@@ -1,0 +1,57 @@
+<p-dialog
+  header="Detalles del Caso (Historial y Adjuntos)"
+  [visible]="visible()"
+  (visibleChange)="onVisibleChange($event)"
+  [modal]="true"
+  [draggable]="false"
+  [maximizable]="true"
+  [closable]="true"
+  [style]="{ width: '90vw' }"
+  styleClass="app-dialog-constrained"
+  (onHide)="close()">
+
+  <app-seccion-formulario-dinamico
+    legend="Información del Asegurado"
+    [campos]="camposAsegurado"
+    [valores]="valoresAsegurado()"
+    (valoresChange)="valoresAsegurado.set($event)" />
+
+  <app-seccion-formulario-dinamico
+    legend="Información del Radicado"
+    [campos]="camposRadicado"
+    [valores]="valoresRadicado()"
+    (valoresChange)="valoresRadicado.set($event)" />
+
+  <app-seccion-formulario-dinamico
+    legend="Información del Siniestro"
+    [campos]="camposSiniestro"
+    [valores]="valoresSiniestro()"
+    (valoresChange)="valoresSiniestro.set($event)" />
+
+  <app-seccion-formulario-dinamico
+    legend="Información Bancaria"
+    [campos]="camposBancaria"
+    [valores]="valoresBancaria()"
+    (valoresChange)="valoresBancaria.set($event)" />
+
+  <app-seccion-formulario-dinamico
+    legend="Sugerencia Final (OpenL)"
+    [campos]="camposOpenL"
+    [valores]="valoresOpenL()"
+    (valoresChange)="valoresOpenL.set($event)" />
+
+  <app-seccion-analisis-ia />
+
+  <app-seccion-panel-generico
+    header="Resumen del Caso"
+    emptyMessage="Cargando historial del caso..." />
+
+  <app-seccion-panel-generico
+    header="Enlaces del Caso"
+    emptyMessage="No hay enlaces de documentos cargados." />
+
+  <ng-template #footer>
+    <app-boton-accion label="Cerrar" icon="pi pi-times" severity="secondary" (accion)="close()" />
+  </ng-template>
+
+</p-dialog>

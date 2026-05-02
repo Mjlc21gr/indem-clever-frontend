@@ -1,0 +1,38 @@
+<p-fieldset legend="Análisis de la IA" [toggleable]="true">
+
+  <app-seccion-formulario-dinamico legend="Hospitalización (General)" [campos]="camposHospGeneral" [valores]="valoresHospGeneral()" (valoresChange)="valoresHospGeneral.set($event)" />
+  <app-seccion-formulario-dinamico legend="Reglas: Hospitalización" [campos]="camposReglasHosp" [valores]="valoresReglasHosp()" (valoresChange)="valoresReglasHosp.set($event)" />
+
+  <p-divider />
+
+  <app-seccion-formulario-dinamico legend="Hospitalización (Accidente)" [campos]="camposHospAccidente" [valores]="valoresHospAccidente()" (valoresChange)="valoresHospAccidente.set($event)" />
+  <app-seccion-formulario-dinamico legend="Reglas: Accidente" [campos]="camposReglasAccidente" [valores]="valoresReglasAccidente()" (valoresChange)="valoresReglasAccidente.set($event)" />
+
+  <p-divider />
+
+  <app-seccion-formulario-dinamico legend="Cirugía" [campos]="camposCirugia" [valores]="valoresCirugia()" (valoresChange)="valoresCirugia.set($event)" />
+  <app-seccion-formulario-dinamico legend="Reglas: Cirugía" [campos]="camposReglasCirugia" [valores]="valoresReglasCirugia()" (valoresChange)="valoresReglasCirugia.set($event)" />
+
+  <p-divider />
+
+  <app-seccion-formulario-dinamico legend="Incapacidad" [campos]="camposIncapacidad" [valores]="valoresIncapacidad()" (valoresChange)="valoresIncapacidad.set($event)" />
+  <app-seccion-formulario-dinamico legend="Reglas: Incapacidad" [campos]="camposReglasIncapacidad" [valores]="valoresReglasIncapacidad()" (valoresChange)="valoresReglasIncapacidad.set($event)" />
+
+  <p-divider />
+
+  <p-fieldset legend="Retroalimentación IA">
+    <p-fluid>
+      <section class="form-grid form-grid--2col">
+        <div>
+          <label class="form-field-label">¿Fue útil el análisis de la IA?</label>
+          <section class="form-radio-group">
+            <p-radioButton name="asertividadIA" value="si" [(ngModel)]="asertividadIA" label="✅ Sí" />
+            <p-radioButton name="asertividadIA" value="no" [(ngModel)]="asertividadIA" label="❌ No" />
+          </section>
+        </div>
+        <app-seccion-observaciones-generica legend="Observaciones IA" [(valor)]="observacionesIA" [rows]="4" />
+      </section>
+    </p-fluid>
+  </p-fieldset>
+
+</p-fieldset>

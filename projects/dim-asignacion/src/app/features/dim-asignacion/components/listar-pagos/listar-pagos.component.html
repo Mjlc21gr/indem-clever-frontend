@@ -1,9 +1,40 @@
 <p-panel header="Órdenes de Pago">
+  <ng-template #icons>
+    <p-button
+      label="Aprobar seleccionados"
+      icon="pi pi-check"
+      severity="success"
+      size="small"
+      (onClick)="confirmarMasivo('aprobar')" />
+    <p-button
+      label="Devolver seleccionados"
+      icon="pi pi-replay"
+      severity="warn"
+      size="small"
+      [outlined]="true"
+      (onClick)="confirmarMasivo('devolver')" />
+  </ng-template>
+
   <app-tabla-dinamica
     [columnas]="columnas"
     [datos]="data()"
     [loading]="loading()"
     [showActions]="true"
     [acciones]="acciones"
+    [selectable]="true"
+    selectionMode="multiple"
     (accionEjecutada)="onAccion($event)" />
 </p-panel>
+
+<app-modal-pago
+  [visible]="showModal()"
+  (onClose)="closeModal()" />
+
+<app-dialogo-confirmacion
+  [visible]="showConfirm()"
+  [titulo]="confirmTitulo()"
+  [mensaje]="confirmMensaje()"
+  [labelConfirmar]="confirmLabel()"
+  [severityConfirmar]="confirmSeverity()"
+  (confirmar)="onConfirmar()"
+  (cancelar)="onCancelar()" />

@@ -91,6 +91,9 @@ export class TablaDinamicaComponent {
   /** Modo de selección: 'single' o 'multiple'. */
   selectionMode = input<'single' | 'multiple'>('single');
 
+  /** Campo clave para identificar filas (requerido para selección múltiple). */
+  dataKey = input('id');
+
   /** Texto cuando no hay datos. */
   emptyMessage = input('No se encontraron registros.');
 
@@ -162,5 +165,18 @@ export class TablaDinamicaComponent {
       return col.tagMap[String(value)] ?? { label: String(value), severity: 'info' };
     }
     return { label: String(value ?? ''), severity: 'info' };
+  }
+
+  /** Obtiene el valor numérico de un campo para el pipe currency. */
+  getNumericValue(row: unknown, field: string): number {
+    const val = this.getFieldValue(row, field);
+    return typeof val === 'number' ? val : 0;
+  }
+
+  /** Obtiene el severity tipado para PrimeNG components. */
+  getSeverity(value: string | undefined): 'success' | 'info' | 'warn' | 'danger' | 'secondary' | 'contrast' {
+    const valid = ['success', 'info', 'warn', 'danger', 'secondary', 'contrast'] as const;
+    type Severity = typeof valid[number];
+    return valid.includes(value as Severity) ? (value as Severity) : 'info';
   }
 }

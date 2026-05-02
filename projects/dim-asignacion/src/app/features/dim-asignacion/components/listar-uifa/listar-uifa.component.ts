@@ -1,11 +1,12 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
 import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
+import { ModalUifaComponent } from './modal-uifa/modal-uifa.component';
 import { MOCK_UIFA } from '../../../../shared/mocks';
 
 @Component({
   selector: 'app-listar-uifa',
-  imports: [Panel, TablaDinamicaComponent],
+  imports: [Panel, TablaDinamicaComponent, ModalUifaComponent],
   templateUrl: './listar-uifa.component.html',
   styleUrl: './listar-uifa.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,11 +22,14 @@ export class ListaruifaComponent {
   ];
 
   acciones = [
-    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver detalle', severity: 'info' },
-    { action: 'editar', icon: 'pi pi-pencil', tooltip: 'Editar', severity: 'success' },
+    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver análisis', severity: 'info' },
   ];
 
+  showModal = signal(false);
+
   onAccion(event: AccionFila): void {
-    // TODO: implement action handling
+    if (event.action === 'ver') { this.showModal.set(true); }
   }
+
+  closeModal(): void { this.showModal.set(false); }
 }

@@ -1,0 +1,100 @@
+<p-dialog
+  header="Seguimiento del Radicado"
+  [visible]="visible()"
+  (visibleChange)="onVisibleChange($event)"
+  [modal]="true"
+  [draggable]="false"
+  [maximizable]="true"
+  [closable]="true"
+  [style]="{ width: '90vw' }"
+  styleClass="app-dialog-constrained"
+  (onHide)="close()">
+
+  <!-- Información del Caso: 3 bloques lado a lado -->
+  <p-fieldset legend="Información del Caso" [toggleable]="true">
+    <div class="info-caso-grid">
+      <app-seccion-formulario-dinamico
+        legend="Datos del Asegurado"
+        [toggleable]="false"
+        [campos]="camposAsegurado"
+        [valores]="valoresAsegurado()"
+        (valoresChange)="valoresAsegurado.set($event)" />
+
+      <app-seccion-formulario-dinamico
+        legend="Información del Radicado"
+        [toggleable]="false"
+        [campos]="camposRadicado"
+        [valores]="valoresRadicado()"
+        (valoresChange)="valoresRadicado.set($event)" />
+
+      <app-seccion-formulario-dinamico
+        legend="Información del Siniestro"
+        [toggleable]="false"
+        [campos]="camposSiniestro"
+        [valores]="valoresSiniestro()"
+        (valoresChange)="valoresSiniestro.set($event)" />
+    </div>
+  </p-fieldset>
+
+  <!-- Historial del Caso — Línea de Tiempo -->
+  <app-seccion-linea-tiempo
+    legend="Historial del Caso"
+    [etapas]="etapas()" />
+
+  <!-- Resumen de Tiempos: 2 tablas lado a lado -->
+  <p-fieldset legend="Resumen de Tiempos" [toggleable]="true">
+    <div class="resumen-tiempos-grid">
+      <div class="resumen-tiempos-bloque">
+        <h6 class="resumen-tiempos-titulo"><i class="pi pi-clock"></i> Por Etapa</h6>
+        <p-table [value]="tiemposPorEtapa()" [scrollable]="false" styleClass="p-datatable-sm p-datatable-gridlines">
+          <ng-template #header>
+            <tr>
+              <th>Etapa</th>
+              <th style="text-align: right">Tiempo</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-row>
+            <tr>
+              <td>{{ row.etapa }}</td>
+              <td style="text-align: right">{{ row.tiempo }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <div class="resumen-tiempos-bloque">
+        <h6 class="resumen-tiempos-titulo"><i class="pi pi-user"></i> Por Responsable</h6>
+        <p-table [value]="tiemposPorResponsable()" [scrollable]="false" styleClass="p-datatable-sm p-datatable-gridlines">
+          <ng-template #header>
+            <tr>
+              <th>Usuario (Gestión)</th>
+              <th style="text-align: right">Tiempo</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-row>
+            <tr>
+              <td>{{ row.usuario }}</td>
+              <td style="text-align: right">{{ row.tiempo }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <p class="resumen-tiempos-nota">
+          * PROVEEDOR: Se calcula el tiempo de cada actor en paralelo.<br>
+          * OTROS: Se calcula un acumulado/resumen (quien tiene el caso).
+        </p>
+      </div>
+    </div>
+  </p-fieldset>
+
+  <!-- Documentos Adjuntos del Caso (solo lectura) -->
+  <app-seccion-panel-generico
+    header="Documentos Adjuntos del Caso"
+    emptyMessage="Sin documentos adjuntos registrados."
+    [collapsed]="false" />
+
+  <ng-template #footer>
+    <app-boton-accion label="Generar Reporte" icon="pi pi-file" severity="info" (accion)="generarReporte()" />
+    <app-boton-accion label="Cerrar" icon="pi pi-times" severity="secondary" (accion)="close()" />
+  </ng-template>
+
+</p-dialog>

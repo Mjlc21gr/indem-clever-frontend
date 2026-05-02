@@ -1,63 +1,40 @@
-<app-seccion-asegurado
-  [(tipoDocumento)]="tipoDocumentoAsegurado"
-  [(numeroDocumento)]="numeroDocumentoAsegurado"
-  [(nombre)]="nombreAsegurado"
-  [(apellidos)]="apellidos"
-  [(edad)]="edadAsegurado"
-  [(correo)]="correoAsegurado"
-  [(telefono)]="telefonoContacto" />
+<app-seccion-formulario-dinamico
+  legend="Información del Asegurado"
+  [campos]="camposAsegurado"
+  [valores]="valoresAsegurado()"
+  (valoresChange)="valoresAsegurado.set($event)" />
 
 <p-divider />
 
-<app-seccion-radicado
-  [(numeroPoliza)]="numeroPoliza"
-  [(codigoProducto)]="codigoProducto"
-  [(portafolioCodigo)]="portafolioCodigoProducto"
-  [(portafolioNombre)]="portafolioNombreProducto"
-  [(numeroDeRiesgo)]="numeroDeRiesgo"
-  [(riesgoCliente)]="riesgoCliente"
-  [(cobertura)]="cobertura"
-  [(codCobertura)]="codCobertura"
-  [(fechaAviso)]="fechaAviso"
-  [(valorAsegurado)]="valorAsegurado"
-  [(valorAseguradoVida)]="valorAseguradoVida"
-  [(valorAseguradoItp)]="valorAseguradoItp"
-  [(scoreCliente)]="scoreCliente"
-  [(superoPeso)]="superoPeso"
-  [(masDeUnIngreso)]="masDeUnIngreso"
-  [(aprobacionTerminos)]="aprobacionTerminos"
-  [(nitEmpresa)]="nitEmpresa"
-  [(nombreEmpresa)]="nombreEmpresa" />
+<app-seccion-formulario-dinamico
+  legend="Información del Radicado"
+  [campos]="camposRadicado"
+  [valores]="valoresRadicado()"
+  (valoresChange)="valoresRadicado.set($event)" />
 
 <p-divider />
 
-<app-seccion-siniestro
-  [(cucConceptoGeneral)]="cucConceptoGeneral"
-  [(coberturaPrincipal)]="coberturaPrincipal"
-  [(fechaSiniestro)]="fechaSiniestro"
-  [(ciudadOcurrencia)]="ciudadOcurrencia"
-  [(causaCodificada)]="causaCodificada"
-  [(intencion)]="intencion"
-  [(accionData)]="accionData"
-  [(casoPadre)]="casoPadre"
-  [(causa)]="causa"
-  [(consecuencia)]="consecuencia"
-  [(observacion)]="observacion" />
+<app-seccion-formulario-dinamico
+  legend="Información del Siniestro"
+  [campos]="camposSiniestro"
+  [valores]="valoresSiniestro()"
+  (valoresChange)="valoresSiniestro.set($event)" />
 
 <p-divider />
 
-<app-seccion-bancaria
-  [(numeroCuenta)]="numeroCuentaBancaria"
-  [(entidadBancaria)]="entidadBancaria"
-  [(codBanco)]="codBanco"
-  [(tipoCuenta)]="tipoCuentaBancaria"
-  [(aprobacionCuenta)]="aprobacionCuenta" />
+<app-seccion-formulario-dinamico
+  legend="Información Bancaria"
+  [campos]="camposBancaria"
+  [valores]="valoresBancaria()"
+  (valoresChange)="valoresBancaria.set($event)" />
 
 <p-divider />
 
-<app-seccion-numero-siniestro
-  [(numeroSiniestro)]="numeroSiniestroRadi"
-  [(superoPesoDocumentos)]="superoPesoRadicacion" />
+<app-seccion-formulario-dinamico
+  legend="Número del Siniestro"
+  [campos]="camposNumeroSiniestro"
+  [valores]="valoresNumeroSiniestro()"
+  (valoresChange)="valoresNumeroSiniestro.set($event)" />
 
 <p-divider />
 
@@ -65,8 +42,10 @@
 
 <p-divider />
 
-<app-seccion-historial />
+<app-seccion-panel-generico header="Historial del Caso" emptyMessage="Sin historial registrado." />
 
 <p-divider />
 
-<app-seccion-observaciones [(observacionRadicado)]="observacionRadicado" />
+<app-seccion-observaciones-generica
+  legend="Observaciones del Radicado"
+  [(valor)]="observacionRadicado" />

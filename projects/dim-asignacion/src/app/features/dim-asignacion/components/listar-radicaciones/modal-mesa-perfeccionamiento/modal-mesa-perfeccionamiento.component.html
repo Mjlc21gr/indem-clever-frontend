@@ -10,12 +10,11 @@
   styleClass="app-dialog-constrained"
   (onHide)="close()">
 
-  <app-seccion-datos-caso
-    [(idClever)]="idClever"
-    [(numCaso)]="numCaso"
-    [(identificacion)]="identificacion"
-    [(correo)]="correo"
-    [(telefono)]="telefono" />
+  <app-seccion-formulario-dinamico
+    legend="Datos del Caso"
+    [campos]="camposDatosCaso"
+    [valores]="valoresDatosCaso()"
+    (valoresChange)="valoresDatosCaso.set($event)" />
 
   <p-divider />
 
@@ -41,11 +40,13 @@
 
   <p-divider />
 
-  <app-seccion-observaciones-mesa [(observaciones)]="observaciones" />
+  <app-seccion-observaciones-generica
+    legend="Observaciones"
+    [(valor)]="observaciones" />
 
   <ng-template #footer>
-    <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (onClick)="close()" />
-    <p-button label="Guardar" icon="pi pi-save" severity="success" (onClick)="guardar()" />
+    <app-boton-accion label="Cancelar" icon="pi pi-times" severity="secondary" (accion)="close()" />
+    <app-boton-accion label="Guardar" icon="pi pi-save" severity="success" (accion)="guardar()" />
   </ng-template>
 
 </p-dialog>

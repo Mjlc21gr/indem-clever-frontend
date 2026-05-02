@@ -6,34 +6,23 @@
 @if (showResultadosData()) {
   <p-divider />
 
-  <app-seccion-datos-asegurado
-    [(nombreCliente)]="nombreCliente"
-    [(tipoDocumentoClever)]="tipoDocumentoClever"
-    [(numeroDocumentoClever)]="numeroDocumentoClever"
-    [(tipoPersona)]="tipoPersona"
-    [(nombreEmpresaData)]="nombreEmpresaData"
-    [(estadoCliente)]="estadoCliente" />
+  <app-seccion-formulario-dinamico
+    legend="Datos del Asegurado"
+    [campos]="camposDatosAsegurado"
+    [valores]="valoresDatosAsegurado()"
+    (valoresChange)="valoresDatosAsegurado.set($event)" />
 
   <p-divider />
 
-  <app-seccion-demografica
-    [(demSexo)]="demSexo"
-    [(demFechaNacimiento)]="demFechaNacimiento"
-    [(demEdad)]="demEdad"
-    [(demDireccion)]="demDireccion"
-    [(demMunicipio)]="demMunicipio" />
+  <app-seccion-formulario-dinamico
+    legend="Demográfica"
+    [campos]="camposDemografica"
+    [valores]="valoresDemografica()"
+    (valoresChange)="valoresDemografica.set($event)" />
 
   <p-divider />
 
-  <p-panel header="Portafolio" [toggleable]="true" [collapsed]="true">
-    <p>Sin datos de portafolio.</p>
-  </p-panel>
-
-  <p-panel header="Siniestros" [toggleable]="true" [collapsed]="true" class="mt-2">
-    <p>Sin datos de siniestros.</p>
-  </p-panel>
-
-  <p-panel header="Asistencias" [toggleable]="true" [collapsed]="true" class="mt-2">
-    <p>Sin datos de asistencias.</p>
-  </p-panel>
+  <app-seccion-panel-generico header="Portafolio" emptyMessage="Sin datos de portafolio." />
+  <app-seccion-panel-generico header="Siniestros" emptyMessage="Sin datos de siniestros." />
+  <app-seccion-panel-generico header="Asistencias" emptyMessage="Sin datos de asistencias." />
 }

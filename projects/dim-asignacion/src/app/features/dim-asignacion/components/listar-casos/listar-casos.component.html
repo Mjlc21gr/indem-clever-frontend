@@ -1,3 +1,16 @@
 <p-panel header="Consultar Casos">
-  <p>Contenido de Consultar Casos</p>
+  <app-tabla-dinamica
+    [columnas]="columnas"
+    [datos]="data()"
+    [loading]="loading()"
+    [showActions]="true"
+    [acciones]="acciones"
+    [selectable]="true"
+    selectionMode="multiple"
+    dataKey="idRadicado"
+    (accionEjecutada)="onAccion($event)" />
 </p-panel>
+
+<app-modal-caso
+  [visible]="showModal()"
+  (onClose)="closeModal()" />

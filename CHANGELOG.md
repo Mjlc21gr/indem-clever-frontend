@@ -7,6 +7,14 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 
 ## [No publicado]
 
+### Agregado
+- Se creó sección `seccion-linea-tiempo` en shared: stepper horizontal con 5 etapas + acordeón expandible con gestiones (responsable, fecha, observación) por etapa
+- Se convirtió modal de Consultar Casos (Bootstrap → PrimeNG): información del caso en 3 bloques (Asegurado, Radicado, Siniestro), historial con línea de tiempo, resumen de tiempos con 2 tablas (por etapa y por responsable), documentos adjuntos
+
+### Corregido
+- Se corrigió selección de checkboxes en tabla de Consultar Casos: se agregó `dataKey="idRadicado"` para que cada fila se identifique de forma única
+- Se corrigió acordeón de etapas en línea de tiempo: se agregó `[(value)]="activeValue"` con signal inicializado en `null` para que todas las etapas arranquen cerradas y solo una se abra a la vez
+
 ### Eliminado
 - Se eliminó directorio `components/` duplicado en `indem-clever-frontend/projects/dim-asignacion/src/app/features/dim-asignacion/` (componentes `listar-radicaciones` y `modal-agregar-caso`)
 - Se eliminó carpeta duplicada `indem-clever-frontend/` anidada en la raíz del workspace

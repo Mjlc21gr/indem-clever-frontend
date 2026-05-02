@@ -5,6 +5,7 @@ import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../sh
 import { MOCK_RADICACIONES } from '../../../../shared/mocks';
 import { ModalAgregarCasoComponent } from './modal-agregar-caso/modal-agregar-caso.component';
 import { ModalMesaPerfeccionamientoComponent } from './modal-mesa-perfeccionamiento/modal-mesa-perfeccionamiento.component';
+import { ModalRadicacionComponent } from './modal-radicacion/modal-radicacion.component';
 
 @Component({
   selector: 'app-listar-radicaciones',
@@ -14,6 +15,7 @@ import { ModalMesaPerfeccionamientoComponent } from './modal-mesa-perfeccionamie
     TablaDinamicaComponent,
     ModalAgregarCasoComponent,
     ModalMesaPerfeccionamientoComponent,
+    ModalRadicacionComponent,
   ],
   templateUrl: './listar-radicaciones.component.html',
   styleUrl: './listar-radicaciones.component.scss',
@@ -46,15 +48,12 @@ export class ListarradicacionesComponent {
 
   /** Acciones disponibles por fila. */
   acciones = [
-    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver detalle', severity: 'info' },
-    { action: 'editar', icon: 'pi pi-pencil', tooltip: 'Editar', severity: 'success' },
+    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver caso', severity: 'info' },
   ];
 
-  /** Controls visibility of the Agregar Caso modal. */
   showModalAgregarCaso = signal(false);
-
-  /** Controls visibility of the Mesa de Perfeccionamiento modal. */
   showModalMesaPerfeccionamiento = signal(false);
+  showModalRadicacion = signal(false);
 
   /** Opens the Agregar Caso modal. */
   openAgregarCaso(): void {
@@ -78,6 +77,12 @@ export class ListarradicacionesComponent {
 
   /** Handles row action clicks. */
   onAccion(event: AccionFila): void {
-    // TODO: implement action handling
+    if (event.action === 'ver') {
+      this.showModalRadicacion.set(true);
+    }
+  }
+
+  closeRadicacion(): void {
+    this.showModalRadicacion.set(false);
   }
 }

@@ -1,0 +1,22 @@
+<p-fieldset legend="Análisis de Terceros" [toggleable]="true">
+  <p class="text-muted">No hay historial de gestiones registradas.</p>
+
+  <p-divider />
+
+  <p-fluid>
+    <section class="form-grid form-grid--2col">
+      <label>Tomar Decisión
+        <p-select [options]="opcionesDecision" [(ngModel)]="nuevoEstado" optionLabel="label" optionValue="value" placeholder="Seleccionar" />
+      </label>
+      <label>Causal Abordada
+        <p-select [options]="opcionesCausal" [(ngModel)]="causalAbordada" optionLabel="label" optionValue="value" placeholder="Seleccionar" />
+      </label>
+    </section>
+  </p-fluid>
+
+  <p-divider />
+
+  <app-seccion-observaciones-generica
+    legend="Observaciones del Analista"
+    [(valor)]="observacionAnalista" />
+</p-fieldset>

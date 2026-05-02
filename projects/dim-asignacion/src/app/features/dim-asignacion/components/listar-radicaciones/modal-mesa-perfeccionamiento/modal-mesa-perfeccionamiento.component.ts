@@ -1,37 +1,39 @@
 import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Dialog } from 'primeng/dialog';
-import { Button } from 'primeng/button';
 import { Divider } from 'primeng/divider';
-import { SeccionDatosCasoComponent } from './secciones/seccion-datos-caso/seccion-datos-caso.component';
-import { SeccionChecklistComponent } from './secciones/seccion-checklist/seccion-checklist.component';
-import { SeccionObservacionesMesaComponent } from './secciones/seccion-observaciones-mesa/seccion-observaciones-mesa.component';
+import { SeccionFormularioDinamicoComponent } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
+import type { CampoFormulario } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
+import { SeccionChecklistComponent } from '@shared/components/secciones/seccion-checklist/seccion-checklist.component';
+import { SeccionObservacionesGenericaComponent } from '@shared/components/secciones/seccion-observaciones-generica/seccion-observaciones-generica.component';
+import { BotonAccionComponent } from '@shared/components/boton-accion/boton-accion.component';
 
-/** Modal: Mesa de Perfeccionamiento. */
 @Component({
   selector: 'app-modal-mesa-perfeccionamiento',
   imports: [
-    Dialog, Button, Divider,
-    SeccionDatosCasoComponent,
+    Dialog, Divider,
+    SeccionFormularioDinamicoComponent,
     SeccionChecklistComponent,
-    SeccionObservacionesMesaComponent,
+    SeccionObservacionesGenericaComponent,
+    BotonAccionComponent,
   ],
   templateUrl: './modal-mesa-perfeccionamiento.component.html',
   styleUrl: './modal-mesa-perfeccionamiento.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalMesaPerfeccionamientoComponent {
-  /** Controls the visibility of the dialog. */
   visible = input(false);
-
-  /** Emits when the dialog is closed. */
   readonly onClose = output<void>();
 
-  /* Datos del caso */
-  idClever = signal('');
-  numCaso = signal('');
-  identificacion = signal('');
-  correo = signal('');
-  telefono = signal('');
+  readonly camposDatosCaso: CampoFormulario[] = [
+    { key: 'idClever', label: 'Id Clever', readonly: true },
+    { key: 'numCaso', label: '# Caso' },
+    { key: 'identificacion', label: '# Identificación' },
+    { key: 'correo', label: 'Correo', type: 'email' },
+    { key: 'telefono', label: 'Teléfono', type: 'tel' },
+  ];
+
+  valoresDatosCaso = signal<Record<string, string>>({});
+  observaciones = signal('');
 
   /* Checklist */
   regCivilDefuncion = signal(false);
@@ -53,23 +55,7 @@ export class ModalMesaPerfeccionamientoComponent {
   reciboFactura = signal(false);
   certDeuda = signal(false);
 
-  /* Observaciones */
-  observaciones = signal('');
-
-  /** Closes the dialog. */
-  close(): void {
-    this.onClose.emit();
-  }
-
-  /** Handles PrimeNG visibleChange when X button or escape is pressed. */
-  onVisibleChange(value: boolean): void {
-    if (!value) {
-      this.onClose.emit();
-    }
-  }
-
-  /** Saves the mesa de perfeccionamiento data. */
-  guardar(): void {
-    // TODO: call service
-  }
+  close(): void { this.onClose.emit(); }
+  onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
+  guardar(): void {}
 }

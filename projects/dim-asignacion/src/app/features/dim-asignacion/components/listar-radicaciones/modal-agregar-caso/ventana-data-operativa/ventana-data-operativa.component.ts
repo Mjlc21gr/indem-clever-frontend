@@ -1,49 +1,42 @@
 import { Component, model, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Divider } from 'primeng/divider';
-import { Panel } from 'primeng/panel';
-import { SeccionConsultaComponent } from './secciones/seccion-consulta/seccion-consulta.component';
-import { SeccionDatosAseguradoComponent } from './secciones/seccion-datos-asegurado/seccion-datos-asegurado.component';
-import { SeccionDemograficaComponent } from './secciones/seccion-demografica/seccion-demografica.component';
+import { SeccionConsultaComponent } from '@shared/components/secciones/seccion-consulta/seccion-consulta.component';
+import { SeccionFormularioDinamicoComponent } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
+import { SeccionPanelGenericoComponent } from '@shared/components/secciones/seccion-panel-generico/seccion-panel-generico.component';
+import type { CampoFormulario } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
 
-/** Ventana: Data Operativa (Tab 1 del modal Agregar Caso). */
 @Component({
   selector: 'app-ventana-data-operativa',
-  imports: [
-    Divider,
-    Panel,
-    SeccionConsultaComponent,
-    SeccionDatosAseguradoComponent,
-    SeccionDemograficaComponent,
-  ],
+  imports: [Divider, SeccionConsultaComponent, SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent],
   templateUrl: './ventana-data-operativa.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VentanaDataOperativaComponent {
-  /* Consulta */
   consultaTipoDoc = model('');
   consultaNumDoc = model('');
-
-  /* Datos Asegurado */
-  nombreCliente = model('');
-  tipoDocumentoClever = model('');
-  numeroDocumentoClever = model('');
-  tipoPersona = model('');
-  nombreEmpresaData = model('');
-  estadoCliente = model('');
-
-  /* Demográfica */
-  demSexo = model('');
-  demFechaNacimiento = model('');
-  demEdad = model('');
-  demDireccion = model('');
-  demMunicipio = model('');
-
-  /** Controls visibility of results after consultation. */
   showResultadosData = signal(false);
 
-  /** Handles consultation trigger from seccion-consulta. */
+  readonly camposDatosAsegurado: CampoFormulario[] = [
+    { key: 'nombreCliente', label: 'Nombre Cliente', readonly: true },
+    { key: 'tipoDocumentoClever', label: 'Tipo Documento', readonly: true },
+    { key: 'numeroDocumentoClever', label: 'Número Documento', readonly: true },
+    { key: 'tipoPersona', label: 'Tipo Persona', readonly: true },
+    { key: 'nombreEmpresaData', label: 'Nombre Empresa', readonly: true },
+    { key: 'estadoCliente', label: 'Estado Cliente', readonly: true },
+  ];
+
+  readonly camposDemografica: CampoFormulario[] = [
+    { key: 'demSexo', label: 'Sexo', readonly: true },
+    { key: 'demFechaNacimiento', label: 'Fecha Nacimiento', readonly: true },
+    { key: 'demEdad', label: 'Edad', readonly: true },
+    { key: 'demDireccion', label: 'Dirección', readonly: true },
+    { key: 'demMunicipio', label: 'Municipio', readonly: true },
+  ];
+
+  valoresDatosAsegurado = signal<Record<string, string>>({});
+  valoresDemografica = signal<Record<string, string>>({});
+
   consultarDataOperativa(): void {
     this.showResultadosData.set(true);
-    // TODO: call service
   }
 }

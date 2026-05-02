@@ -7,3 +7,16 @@
     [acciones]="acciones"
     (accionEjecutada)="onAccion($event)" />
 </p-panel>
+
+<app-modal-objecion
+  [visible]="showModal()"
+  (onClose)="closeModal()" />
+
+<app-dialogo-confirmacion
+  [visible]="showConfirm()"
+  [titulo]="confirmTitulo()"
+  [mensaje]="confirmMensaje()"
+  [labelConfirmar]="confirmLabel()"
+  [severityConfirmar]="confirmSeverity()"
+  (confirmar)="onConfirmar()"
+  (cancelar)="onCancelar()" />

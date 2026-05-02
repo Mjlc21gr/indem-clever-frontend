@@ -1,11 +1,12 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
 import { TablaDinamicaComponent, ColumnaTabla, AccionFila } from '../../../../shared/components/tabla-dinamica/tabla-dinamica.component';
+import { ModalAnalisisComponent } from '../listar-analisis/modal-analisis/modal-analisis.component';
 import { MOCK_ANALISIS } from '../../../../shared/mocks';
 
 @Component({
   selector: 'app-listar-mis-analisis',
-  imports: [Panel, TablaDinamicaComponent],
+  imports: [Panel, TablaDinamicaComponent, ModalAnalisisComponent],
   templateUrl: './listar-mis-analisis.component.html',
   styleUrl: './listar-mis-analisis.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,11 +38,14 @@ export class ListarmisanalisisComponent {
   ];
 
   acciones = [
-    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver detalle', severity: 'info' },
-    { action: 'editar', icon: 'pi pi-pencil', tooltip: 'Editar', severity: 'success' },
+    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver análisis', severity: 'info' },
   ];
 
+  showModal = signal(false);
+
   onAccion(event: AccionFila): void {
-    // TODO: implement action handling
+    if (event.action === 'ver') { this.showModal.set(true); }
   }
+
+  closeModal(): void { this.showModal.set(false); }
 }

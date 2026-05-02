@@ -1,0 +1,30 @@
+<p-fieldset [legend]="legend()" [toggleable]="toggleable()">
+  <p-fluid>
+    @if (camposFull().length > 0) {
+      <section class="form-grid form-grid--full">
+        @for (campo of camposFull(); track campo.key) {
+          <label>{{ campo.label }}
+            @if (campo.type === 'textarea') {
+              <textarea pTextarea [ngModel]="getValor(campo.key)" (ngModelChange)="setValor(campo.key, $event)" [rows]="campo.rows ?? 2" [readonly]="campo.readonly ?? false"></textarea>
+            } @else {
+              <input pInputText [type]="campo.type ?? 'text'" [ngModel]="getValor(campo.key)" (ngModelChange)="setValor(campo.key, $event)" [readonly]="campo.readonly ?? false" />
+            }
+          </label>
+        }
+      </section>
+    }
+    @if (camposGrid().length > 0) {
+      <section class="form-grid">
+        @for (campo of camposGrid(); track campo.key) {
+          <label>{{ campo.label }}
+            @if (campo.type === 'textarea') {
+              <textarea pTextarea [ngModel]="getValor(campo.key)" (ngModelChange)="setValor(campo.key, $event)" [rows]="campo.rows ?? 2" [readonly]="campo.readonly ?? false"></textarea>
+            } @else {
+              <input pInputText [type]="campo.type ?? 'text'" [ngModel]="getValor(campo.key)" (ngModelChange)="setValor(campo.key, $event)" [readonly]="campo.readonly ?? false" />
+            }
+          </label>
+        }
+      </section>
+    }
+  </p-fluid>
+</p-fieldset>

@@ -1,0 +1,57 @@
+<p-fieldset [legend]="legend()" [toggleable]="toggleable()">
+
+  <!-- Stepper visual con las etapas numeradas -->
+  <div class="stepper">
+    @for (etapa of etapas(); track etapa.label; let i = $index; let last = $last) {
+      <div class="stepper__paso"
+           [class.stepper__paso--completado]="etapa.completada"
+           [class.stepper__paso--activo]="etapa.activa">
+        <div class="stepper__circulo">
+          @if (etapa.completada) {
+            <i class="pi pi-check"></i>
+          } @else {
+            {{ i + 1 }}
+          }
+        </div>
+        <span class="stepper__label">{{ etapa.label }}</span>
+        @if (!last) {
+          <div class="stepper__conector"
+               [class.stepper__conector--completado]="etapa.completada"></div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Acordeón con gestiones por etapa -->
+  <p-accordion [multiple]="false" [(value)]="activeValue">
+    @for (etapa of etapas(); track etapa.label; let i = $index) {
+      <p-accordionpanel [value]="i">
+        <p-accordionheader>
+          <span class="etapa-header">Etapa: {{ etapa.label }}</span>
+        </p-accordionheader>
+        <p-accordioncontent>
+          @if (etapa.gestiones && etapa.gestiones.length > 0) {
+            <div class="gestiones-timeline">
+              @for (gestion of etapa.gestiones; track gestion.fecha) {
+                <div class="gestion">
+                  <div class="gestion__indicador"></div>
+                  <div class="gestion__contenido">
+                    <div class="gestion__titulo">{{ gestion.titulo }}</div>
+                    <div class="gestion__detalle">
+                      <span><strong>Responsable:</strong> {{ gestion.responsable }}</span>
+                      <span class="gestion__fecha">{{ gestion.fecha }}</span>
+                      <span><strong>Observación:</strong> {{ gestion.observacion }}</span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="sin-gestiones">No hay gestiones registradas en esta etapa.</p>
+          }
+        </p-accordioncontent>
+      </p-accordionpanel>
+    }
+  </p-accordion>
+
+</p-fieldset>

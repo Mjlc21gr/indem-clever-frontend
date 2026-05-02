@@ -1,92 +1,86 @@
-import { Component, model, output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, model, output, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Divider } from 'primeng/divider';
-import { SeccionAseguradoComponent } from './secciones/seccion-asegurado/seccion-asegurado.component';
-import { SeccionRadicadoComponent } from './secciones/seccion-radicado/seccion-radicado.component';
-import { SeccionSiniestroComponent } from './secciones/seccion-siniestro/seccion-siniestro.component';
-import { SeccionBancariaComponent } from './secciones/seccion-bancaria/seccion-bancaria.component';
-import { SeccionNumeroSiniestroComponent } from './secciones/seccion-numero-siniestro/seccion-numero-siniestro.component';
-import { SeccionArchivosComponent } from './secciones/seccion-archivos/seccion-archivos.component';
-import { SeccionHistorialComponent } from './secciones/seccion-historial/seccion-historial.component';
-import { SeccionObservacionesComponent } from './secciones/seccion-observaciones/seccion-observaciones.component';
+import { SeccionFormularioDinamicoComponent } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
+import { SeccionArchivosComponent } from '@shared/components/secciones/seccion-archivos/seccion-archivos.component';
+import { SeccionPanelGenericoComponent } from '@shared/components/secciones/seccion-panel-generico/seccion-panel-generico.component';
+import { SeccionObservacionesGenericaComponent } from '@shared/components/secciones/seccion-observaciones-generica/seccion-observaciones-generica.component';
+import type { CampoFormulario } from '@shared/components/secciones/seccion-formulario-dinamico/seccion-formulario-dinamico.component';
 
-/** Ventana: Datos Generales (Tab 0 del modal Agregar Caso). */
 @Component({
   selector: 'app-ventana-datos-generales',
   imports: [
     Divider,
-    SeccionAseguradoComponent,
-    SeccionRadicadoComponent,
-    SeccionSiniestroComponent,
-    SeccionBancariaComponent,
-    SeccionNumeroSiniestroComponent,
+    SeccionFormularioDinamicoComponent,
     SeccionArchivosComponent,
-    SeccionHistorialComponent,
-    SeccionObservacionesComponent,
+    SeccionPanelGenericoComponent,
+    SeccionObservacionesGenericaComponent,
   ],
   templateUrl: './ventana-datos-generales.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VentanaDatosGeneralesComponent {
-  /* Asegurado */
-  tipoDocumentoAsegurado = model('');
-  numeroDocumentoAsegurado = model('');
-  nombreAsegurado = model('');
-  apellidos = model('');
-  edadAsegurado = model('');
-  correoAsegurado = model('');
-  telefonoContacto = model('');
+  readonly camposAsegurado: CampoFormulario[] = [
+    { key: 'tipoDocumento', label: 'Tipo Documento', readonly: true },
+    { key: 'numeroDocumento', label: 'Número Documento', readonly: true },
+    { key: 'nombre', label: 'Nombre Asegurado', readonly: true },
+    { key: 'apellidos', label: 'Apellidos', readonly: true },
+    { key: 'edad', label: 'Edad Asegurado', readonly: true },
+    { key: 'correo', label: 'Correo Electrónico', type: 'email', readonly: true },
+    { key: 'telefono', label: 'Teléfono de Contacto', type: 'tel', readonly: true },
+  ];
+  readonly camposRadicado: CampoFormulario[] = [
+    { key: 'numeroPoliza', label: 'Número Póliza', readonly: true },
+    { key: 'codigoProducto', label: 'Código Producto', readonly: true },
+    { key: 'portafolioCodigo', label: 'Portafolio Cod.', readonly: true },
+    { key: 'portafolioNombre', label: 'Portafolio Nombre', readonly: true },
+    { key: 'numeroDeRiesgo', label: 'Número de Riesgo', readonly: true },
+    { key: 'riesgoCliente', label: 'Riesgo Cliente', readonly: true },
+    { key: 'cobertura', label: 'Cobertura', readonly: true },
+    { key: 'codCobertura', label: 'Cod. Cobertura', readonly: true },
+    { key: 'fechaAviso', label: 'Fecha Aviso', readonly: true },
+    { key: 'valorAsegurado', label: 'Valor Asegurado', readonly: true },
+    { key: 'valorAseguradoVida', label: 'Val. Aseg. Vida', readonly: true },
+    { key: 'valorAseguradoItp', label: 'Val. Aseg. ITP', readonly: true },
+    { key: 'scoreCliente', label: 'Score Cliente', readonly: true },
+    { key: 'superoPeso', label: 'Superó Peso', readonly: true },
+    { key: 'masDeUnIngreso', label: 'Más de un Ingreso', readonly: true },
+    { key: 'aprobacionTerminos', label: 'Aprobación Términos', readonly: true },
+    { key: 'nitEmpresa', label: 'NIT Empresa', readonly: true },
+    { key: 'nombreEmpresa', label: 'Nombre Empresa', readonly: true },
+  ];
+  readonly camposSiniestro: CampoFormulario[] = [
+    { key: 'cucConceptoGeneral', label: 'CUC. Concepto', type: 'textarea', rows: 1, fullWidth: true },
+    { key: 'coberturaPrincipal', label: 'Cobertura Principal', type: 'textarea', rows: 1, fullWidth: true },
+    { key: 'fechaSiniestro', label: 'Fecha Siniestro' },
+    { key: 'ciudadOcurrencia', label: 'Ciudad Ocurrencia' },
+    { key: 'causaCodificada', label: 'Causa (Cod)' },
+    { key: 'intencion', label: 'Intención' },
+    { key: 'accionData', label: 'Acción' },
+    { key: 'casoPadre', label: 'Caso Padre' },
+    { key: 'causa', label: 'Versión del Siniestro', type: 'textarea', rows: 2, fullWidth: true },
+    { key: 'consecuencia', label: 'Consecuencia', type: 'textarea', rows: 1, fullWidth: true },
+    { key: 'observacion', label: 'Observación', type: 'textarea', rows: 1, fullWidth: true },
+  ];
+  readonly camposBancaria: CampoFormulario[] = [
+    { key: 'numeroCuenta', label: 'Número de Cuenta' },
+    { key: 'entidadBancaria', label: 'Entidad Bancaria' },
+    { key: 'codBanco', label: 'Cod. Banco' },
+    { key: 'tipoCuenta', label: 'Tipo de Cuenta' },
+    { key: 'aprobacionCuenta', label: 'Aprobación Cta' },
+  ];
+  readonly camposNumeroSiniestro: CampoFormulario[] = [
+    { key: 'numeroSiniestro', label: 'Número Siniestro' },
+    { key: 'superoPesoDocumentos', label: 'Superó Peso Documentos', readonly: true },
+  ];
 
-  /* Radicado */
-  numeroPoliza = model('');
-  codigoProducto = model('');
-  portafolioCodigoProducto = model('');
-  portafolioNombreProducto = model('');
-  numeroDeRiesgo = model('');
-  riesgoCliente = model('');
-  cobertura = model('');
-  codCobertura = model('');
-  fechaAviso = model('');
-  valorAsegurado = model('');
-  valorAseguradoVida = model('');
-  valorAseguradoItp = model('');
-  scoreCliente = model('');
-  superoPeso = model('');
-  masDeUnIngreso = model('');
-  aprobacionTerminos = model('');
-  nitEmpresa = model('');
-  nombreEmpresa = model('');
-
-  /* Siniestro */
-  cucConceptoGeneral = model('');
-  coberturaPrincipal = model('');
-  fechaSiniestro = model('');
-  ciudadOcurrencia = model('');
-  causaCodificada = model('');
-  intencion = model('');
-  accionData = model('');
-  casoPadre = model('');
-  causa = model('');
-  consecuencia = model('');
-  observacion = model('');
-
-  /* Bancaria */
-  numeroCuentaBancaria = model('');
-  entidadBancaria = model('');
-  codBanco = model('');
-  tipoCuentaBancaria = model('');
-  aprobacionCuenta = model('');
-
-  /* Número Siniestro */
-  numeroSiniestroRadi = model('');
-  superoPesoRadicacion = model('');
-
-  /* Observaciones */
+  valoresAsegurado = signal<Record<string, string>>({});
+  valoresRadicado = signal<Record<string, string>>({});
+  valoresSiniestro = signal<Record<string, string>>({});
+  valoresBancaria = signal<Record<string, string>>({});
+  valoresNumeroSiniestro = signal<Record<string, string>>({});
   observacionRadicado = model('');
 
-  /** Emits when files are selected. */
   readonly filesSelected = output<{ files: File[] }>();
-
-  /** Handles file selection from seccion-archivos. */
   onFilesSelected(event: { files: File[] }): void {
     this.filesSelected.emit(event);
   }

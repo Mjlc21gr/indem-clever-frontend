@@ -1,0 +1,63 @@
+<p-dialog
+  header="Análisis de Caso"
+  [visible]="visible()"
+  (visibleChange)="onVisibleChange($event)"
+  [modal]="true"
+  [draggable]="false"
+  [maximizable]="true"
+  [closable]="true"
+  [style]="{ width: '90vw' }"
+  styleClass="app-dialog-constrained"
+  (onHide)="close()">
+
+  <app-seccion-formulario-dinamico
+    legend="Información del Asegurado"
+    [campos]="camposAsegurado"
+    [valores]="valoresAsegurado()"
+    (valoresChange)="valoresAsegurado.set($event)" />
+
+  <app-seccion-formulario-dinamico
+    legend="Información del Radicado"
+    [campos]="camposRadicado"
+    [valores]="valoresRadicado()"
+    (valoresChange)="valoresRadicado.set($event)" />
+
+  <app-seccion-formulario-dinamico
+    legend="Información del Siniestro"
+    [campos]="camposSiniestro"
+    [valores]="valoresSiniestro()"
+    (valoresChange)="valoresSiniestro.set($event)" />
+
+  <app-seccion-formulario-dinamico
+    legend="Información Bancaria"
+    [campos]="camposBancaria"
+    [valores]="valoresBancaria()"
+    (valoresChange)="valoresBancaria.set($event)" />
+
+  <app-seccion-formulario-dinamico
+    legend="Sugerencia Final (OpenL)"
+    [campos]="camposOpenL"
+    [valores]="valoresOpenL()"
+    (valoresChange)="valoresOpenL.set($event)" />
+
+  <app-seccion-panel-generico
+    header="Documentos del Caso"
+    emptyMessage="Sin documentos registrados." />
+
+  <app-seccion-analisis-ia />
+
+  <app-seccion-decision />
+
+  <app-seccion-archivos />
+
+  <app-seccion-panel-generico
+    header="Historial del Caso"
+    emptyMessage="Sin historial registrado." />
+
+  <ng-template #footer>
+    <app-boton-accion label="Cerrar" icon="pi pi-times" severity="secondary" (accion)="close()" />
+    <app-boton-accion label="Guardar Documentos" icon="pi pi-save" severity="success" (accion)="guardarDocumentos()" />
+    <app-boton-accion label="Confirmar Decisión" icon="pi pi-check" severity="info" (accion)="confirmarDecision()" />
+  </ng-template>
+
+</p-dialog>
