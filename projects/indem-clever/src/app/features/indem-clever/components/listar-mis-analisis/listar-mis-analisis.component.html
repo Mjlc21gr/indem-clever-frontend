@@ -1,10 +1,13 @@
-<p-panel header="Mis Casos">
-  <app-tabla-dinamica
-    [columnas]="columnas"
-    [datos]="data()"
-    [loading]="loading()"
-    [showActions]="true"
-    [acciones]="acciones"
-    (accionEjecutada)="onAccion($event)" />
-</p-panel>
+<div class="page-panel">
+  <div class="page-panel__header">Mis Casos</div>
+  <div class="page-panel__body">
+    <app-tabla-dinamica
+      [columnas]="columnas"
+      [datos]="data()"
+      [loading]="loading()"
+      [showActions]="true"
+      [acciones]="acciones"
+      (accionEjecutada)="onAccion($event)" />
+  </div>
+</div>
 <app-modal-analisis [visible]="showModal()" (onClose)="closeModal()" />

@@ -1,76 +1,27 @@
-<p-fieldset legend="Checklist de Documentos" [toggleable]="true">
-  <section class="checklist-grid">
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="regCivilDefuncion" [binary]="true" inputId="regCivilDefuncion" />
-      <label for="regCivilDefuncion">Registro civil de defunción</label>
+<div class="section-card">
+  <div class="section-card__header">
+    <span class="section-card__title">Checklist de Documentos</span>
+  </div>
+  <div class="section-card__body">
+    <div class="checklist-grid">
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="regCivilDefuncion" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Registro civil de defunción</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="docIdentidadAsegurado" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Documento de identidad asegurado</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="epicrisis" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Epicrisis o historia clínica</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="certFiscalia" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Certificado de la fiscalía</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="sentenciaFecha" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Sentencia fecha presuntiva</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="croquis" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Croquís del accidente</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="dictamenCapacidad" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Dictamen pérdida capacidad</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="regCivilBeneficiarios" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Registro civil beneficiarios</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="docBeneficiarios" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Documento beneficiarios</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="formB114" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Formulario B-114</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="formB121" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Formulario B-121</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="certHospitalizacion" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Certificado hospitalización (Opcional)</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="certIncapacidad" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Certificado incapacidad (Opcional)</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="examenesDiagnostico" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Exámenes diagnóstico</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="formB337" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Formulario B-337</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="pruebaAlcoholemia" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Prueba alcoholemia</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="reciboFactura" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Recibo o Factura</span></label>
+      <label class="sb-ui-checkbox"><input type="checkbox" class="sb-ui-checkbox__input" [(ngModel)]="certDeuda" /><span class="sb-ui-checkbox__box"></span><span class="sb-ui-checkbox__label">Certificado Deuda</span></label>
     </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="docIdentidadAsegurado" [binary]="true" inputId="docIdentidadAsegurado" />
-      <label for="docIdentidadAsegurado">Documento de identidad asegurado</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="epicrisis" [binary]="true" inputId="epicrisis" />
-      <label for="epicrisis">Epicrisis o historia clínica</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="certFiscalia" [binary]="true" inputId="certFiscalia" />
-      <label for="certFiscalia">Certificado de la fiscalía</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="sentenciaFecha" [binary]="true" inputId="sentenciaFecha" />
-      <label for="sentenciaFecha">Sentencia fecha presuntiva</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="croquis" [binary]="true" inputId="croquis" />
-      <label for="croquis">Croquís del accidente</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="dictamenCapacidad" [binary]="true" inputId="dictamenCapacidad" />
-      <label for="dictamenCapacidad">Dictamen pérdida capacidad</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="regCivilBeneficiarios" [binary]="true" inputId="regCivilBeneficiarios" />
-      <label for="regCivilBeneficiarios">Registro civil beneficiarios</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="docBeneficiarios" [binary]="true" inputId="docBeneficiarios" />
-      <label for="docBeneficiarios">Documento beneficiarios</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="formB114" [binary]="true" inputId="formB114" />
-      <label for="formB114">Formulario B-114</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="formB121" [binary]="true" inputId="formB121" />
-      <label for="formB121">Formulario B-121</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="certHospitalizacion" [binary]="true" inputId="certHospitalizacion" />
-      <label for="certHospitalizacion">Certificado hospitalización (Opcional)</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="certIncapacidad" [binary]="true" inputId="certIncapacidad" />
-      <label for="certIncapacidad">Certificado incapacidad (Opcional)</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="examenesDiagnostico" [binary]="true" inputId="examenesDiagnostico" />
-      <label for="examenesDiagnostico">Exámenes diagnóstico</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="formB337" [binary]="true" inputId="formB337" />
-      <label for="formB337">Formulario B-337</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="pruebaAlcoholemia" [binary]="true" inputId="pruebaAlcoholemia" />
-      <label for="pruebaAlcoholemia">Prueba alcoholemia</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="reciboFactura" [binary]="true" inputId="reciboFactura" />
-      <label for="reciboFactura">Recibo o Factura</label>
-    </div>
-    <div class="checklist-item">
-      <p-checkbox [(ngModel)]="certDeuda" [binary]="true" inputId="certDeuda" />
-      <label for="certDeuda">Certificado Deuda</label>
-    </div>
-  </section>
-</p-fieldset>
+  </div>
+</div>

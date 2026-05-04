@@ -1,6 +1,4 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Panel } from 'primeng/panel';
-import { Button } from 'primeng/button';
 import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_RADICACIONES } from '@shared';
 import { ModalAgregarCasoComponent } from './modal-agregar-caso/modal-agregar-caso.component';
 import { ModalMesaPerfeccionamientoComponent } from './modal-mesa-perfeccionamiento/modal-mesa-perfeccionamiento.component';
@@ -9,8 +7,6 @@ import { ModalRadicacionComponent } from './modal-radicacion/modal-radicacion.co
 @Component({
   selector: 'app-listar-radicaciones',
   imports: [
-    Panel,
-    Button,
     TablaDinamicaComponent,
     ModalAgregarCasoComponent,
     ModalMesaPerfeccionamientoComponent,
@@ -26,8 +22,9 @@ export class ListarradicacionesComponent {
 
   /** Definición de columnas para la tabla de radicaciones. */
   columnas: ColumnaTabla[] = [
-    { field: 'idRadicado', header: 'ID Radicado', sortable: true, width: '120px' },
-    { field: 'numeroPoliza', header: 'Numero Poliza', sortable: true },
+    { field: 'idRadicado', header: 'ID', sortable: true },
+    { field: 'numeroPoliza', header: 'Póliza', sortable: true },
+    { field: 'cobertura', header: 'Cobertura', sortable: true },
     { field: 'fechaAviso', header: 'Fecha Aviso', type: 'date', sortable: true },
     { field: 'decision', header: 'Decisión', type: 'tag', sortable: true, tagMap: {
       'Aprobado': { label: 'Aprobado', severity: 'success' },
@@ -35,8 +32,6 @@ export class ListarradicacionesComponent {
       'Pendiente': { label: 'Pendiente', severity: 'warn' },
       'En análisis': { label: 'En análisis', severity: 'info' },
     }},
-    { field: 'cobertura', header: 'Cobertura', sortable: true },
-    { field: 'tipoPoliza', header: 'Tipo Poliza', sortable: true },
     { field: 'estado', header: 'Estado', type: 'tag', sortable: true, tagMap: {
       'Activo': { label: 'Activo', severity: 'success' },
       'Inactivo': { label: 'Inactivo', severity: 'danger' },
@@ -47,7 +42,7 @@ export class ListarradicacionesComponent {
 
   /** Acciones disponibles por fila. */
   acciones = [
-    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver caso', severity: 'info' },
+    { action: 'ver', icon: 'fa-solid fa-eye', tooltip: 'Ver caso', severity: 'info' },
   ];
 
   showModalAgregarCaso = signal(false);
@@ -81,6 +76,7 @@ export class ListarradicacionesComponent {
     }
   }
 
+  /** Closes the Radicacion modal. */
   closeRadicacion(): void {
     this.showModalRadicacion.set(false);
   }

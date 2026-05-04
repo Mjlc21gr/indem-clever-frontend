@@ -28,6 +28,11 @@
                 "output": "/assets/sb-ui"
               },
               {
+                "glob": "sb-ui-seguros-bolivar.min.js",
+                "input": "node_modules/@seguros-bolivar/ui-bundle/dist",
+                "output": "/assets/sb-ui"
+              },
+              {
                 "glob": "**/*",
                 "input": "node_modules/@seguros-bolivar/ui-bundle/dist/fonts",
                 "output": "/assets/sb-ui/fonts"
@@ -36,11 +41,19 @@
                 "glob": "**/*",
                 "input": "node_modules/@seguros-bolivar/ui-bundle/dist/webfonts",
                 "output": "/assets/sb-ui/webfonts"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@seguros-bolivar/ui-bundle/dist/fonts",
+                "output": "/fonts"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@seguros-bolivar/ui-bundle/dist/webfonts",
+                "output": "/webfonts"
               }
             ],
             "styles": [
-              "node_modules/primeicons/primeicons.css",
-              "projects/indem-clever/src/tailwind.css",
               "projects/indem-clever/src/styles.scss"
             ],
             "scripts": [

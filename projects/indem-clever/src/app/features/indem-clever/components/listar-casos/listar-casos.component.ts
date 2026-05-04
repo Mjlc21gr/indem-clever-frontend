@@ -1,11 +1,10 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Panel } from 'primeng/panel';
 import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila } from '@shared';
 import { ModalCasoComponent } from './modal-caso/modal-caso.component';
 
 @Component({
   selector: 'app-listar-casos',
-  imports: [Panel, TablaDinamicaComponent, ModalCasoComponent],
+  imports: [TablaDinamicaComponent, ModalCasoComponent],
   templateUrl: './listar-casos.component.html',
   styleUrl: './listar-casos.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,9 +22,9 @@ export class ListarcasosComponent {
 
   /** Definición de columnas para la tabla de consultar casos. */
   readonly columnas: ColumnaTabla[] = [
-    { field: 'idRadicado', header: 'ID Radicado', sortable: true, width: '120px' },
+    { field: 'idRadicado', header: 'ID', sortable: true },
     { field: 'documento', header: 'Documento', sortable: true },
-    { field: 'fechaAviso', header: 'Fecha Aviso', type: 'date', sortable: true },
+    { field: 'fechaAviso', header: 'F. Aviso', type: 'date', sortable: true },
     { field: 'estado', header: 'Estado', type: 'tag', sortable: true, tagMap: {
       'Activo': { label: 'Activo', severity: 'success' },
       'En proceso': { label: 'En proceso', severity: 'info' },
@@ -35,7 +34,7 @@ export class ListarcasosComponent {
 
   /** Acciones disponibles por fila. */
   readonly acciones: { action: string; icon: string; tooltip: string; severity: string }[] = [
-    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver caso', severity: 'info' },
+    { action: 'ver', icon: 'fa-solid fa-eye', tooltip: 'Ver caso', severity: 'info' },
   ];
 
   onAccion(event: AccionFila): void {

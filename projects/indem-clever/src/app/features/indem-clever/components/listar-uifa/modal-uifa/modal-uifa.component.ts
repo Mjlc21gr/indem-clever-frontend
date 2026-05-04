@@ -1,9 +1,8 @@
 import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Dialog } from 'primeng/dialog';
 import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionPanelGenericoComponent, SeccionArchivosComponent, SeccionObservacionesGenericaComponent, BotonAccionComponent } from '@shared';
 @Component({
   selector: 'app-modal-uifa',
-  imports: [Dialog, SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent, SeccionArchivosComponent, SeccionObservacionesGenericaComponent, BotonAccionComponent],
+  imports: [SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent, SeccionArchivosComponent, SeccionObservacionesGenericaComponent, BotonAccionComponent],
   templateUrl: './modal-uifa.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -42,11 +41,13 @@ export class ModalUifaComponent {
   valoresSiniestro = signal<Record<string, string>>({});
   valoresUifa = signal<Record<string, string>>({});
   observacionProveedor = signal('');
-  /** Cierra el modal. */
-  close(): void { this.onClose.emit(); }
+  maximized = false;
 
-  /** Maneja cambio de visibilidad del diálogo. */
-  onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
+  /** Cierra el modal. */
+  close(): void { this.maximized = false; this.onClose.emit(); }
+
+  /** Alterna entre maximizado y normal. */
+  toggleMaximize(): void { this.maximized = !this.maximized; }
 
   /** TODO: Conectar al backend — completar movilización UIFA. */
   completar(): void { /* TODO: implementar */ }

@@ -3,14 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { TopbarComponent } from './shared/components/topbar/topbar.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { AuthService } from './core/services/auth.service';
-import { Toast } from 'primeng/toast';
 
 /** Breakpoint below which the sidebar becomes a mobile overlay. */
 const MOBILE_BREAKPOINT = 768;
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TopbarComponent, SidebarComponent, Toast],
+  imports: [RouterOutlet, TopbarComponent, SidebarComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

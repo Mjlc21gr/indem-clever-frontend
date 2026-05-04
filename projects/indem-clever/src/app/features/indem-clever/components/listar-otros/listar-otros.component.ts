@@ -1,11 +1,10 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Panel } from 'primeng/panel';
 import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_OBJECIONES, DialogoConfirmacionComponent } from '@shared';
 import { ModalObjecionComponent } from './modal-objecion/modal-objecion.component';
 
 @Component({
   selector: 'app-listar-otros',
-  imports: [Panel, TablaDinamicaComponent, ModalObjecionComponent, DialogoConfirmacionComponent],
+  imports: [TablaDinamicaComponent, ModalObjecionComponent, DialogoConfirmacionComponent],
   templateUrl: './listar-otros.component.html',
   styleUrl: './listar-otros.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,9 +23,9 @@ export class ListarotrosComponent {
 
   /** Definición de columnas para la tabla de objeciones. */
   readonly columnas: ColumnaTabla[] = [
-    { field: 'id', header: 'ID', sortable: true, width: '80px' },
+    { field: 'id', header: 'ID', sortable: true },
     { field: 'fecha', header: 'Fecha', type: 'date', sortable: true },
-    { field: 'numeroSiniestro', header: 'No. Siniestro', sortable: true },
+    { field: 'numeroSiniestro', header: 'Siniestro', sortable: true },
     { field: 'cobertura', header: 'Cobertura', sortable: true },
     { field: 'poliza', header: 'Póliza', sortable: true },
     { field: 'total', header: 'Total', type: 'currency', sortable: true },
@@ -34,9 +33,9 @@ export class ListarotrosComponent {
 
   /** Acciones disponibles por fila. */
   readonly acciones: { action: string; icon: string; tooltip: string; severity: string }[] = [
-    { action: 'info', icon: 'pi pi-info-circle', tooltip: 'Ver detalle', severity: 'info' },
-    { action: 'aprobar', icon: 'pi pi-check', tooltip: 'Aprobar', severity: 'success' },
-    { action: 'devolver', icon: 'pi pi-replay', tooltip: 'Devolver a análisis', severity: 'warn' },
+    { action: 'info', icon: 'fa-solid fa-circle-info', tooltip: 'Ver detalle', severity: 'info' },
+    { action: 'aprobar', icon: 'fa-solid fa-check', tooltip: 'Aprobar', severity: 'success' },
+    { action: 'devolver', icon: 'fa-solid fa-rotate-left', tooltip: 'Devolver a análisis', severity: 'warn' },
   ];
 
   onAccion(event: AccionFila): void {

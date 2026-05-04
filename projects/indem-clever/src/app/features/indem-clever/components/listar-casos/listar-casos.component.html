@@ -1,15 +1,18 @@
-<p-panel header="Consultar Casos">
-  <app-tabla-dinamica
-    [columnas]="columnas"
-    [datos]="data()"
-    [loading]="loading()"
-    [showActions]="true"
-    [acciones]="acciones"
-    [selectable]="true"
-    selectionMode="multiple"
-    dataKey="idRadicado"
-    (accionEjecutada)="onAccion($event)" />
-</p-panel>
+<div class="page-panel">
+  <div class="page-panel__header">Consultar Casos</div>
+  <div class="page-panel__body">
+    <app-tabla-dinamica
+      [columnas]="columnas"
+      [datos]="data()"
+      [loading]="loading()"
+      [showActions]="true"
+      [acciones]="acciones"
+      [selectable]="true"
+      selectionMode="multiple"
+      dataKey="idRadicado"
+      (accionEjecutada)="onAccion($event)" />
+  </div>
+</div>
 
 <app-modal-caso
   [visible]="showModal()"

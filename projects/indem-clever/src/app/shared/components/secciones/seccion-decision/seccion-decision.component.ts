@@ -1,14 +1,11 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Select } from 'primeng/select';
-import { Fieldset } from 'primeng/fieldset';
-import { Fluid } from 'primeng/fluid';
-import { Divider } from 'primeng/divider';
 import { SeccionObservacionesGenericaComponent } from '../seccion-observaciones-generica/seccion-observaciones-generica.component';
 
+/** Sección: Análisis de Terceros (Decisión) — sb-ui. */
 @Component({
   selector: 'app-seccion-decision',
-  imports: [FormsModule, Select, Fieldset, Fluid, Divider, SeccionObservacionesGenericaComponent],
+  imports: [FormsModule, SeccionObservacionesGenericaComponent],
   templateUrl: './seccion-decision.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

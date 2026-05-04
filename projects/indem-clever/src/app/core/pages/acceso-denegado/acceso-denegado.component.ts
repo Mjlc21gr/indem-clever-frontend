@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Button } from 'primeng/button';
 
 /**
  * Página de acceso denegado (403).
@@ -8,13 +7,15 @@ import { Button } from 'primeng/button';
  */
 @Component({
   selector: 'app-acceso-denegado',
-  imports: [RouterLink, Button],
+  imports: [RouterLink],
   template: `
     <div class="error-page">
-      <i class="pi pi-lock error-page__icon error-page__icon--warn"></i>
+      <i class="fa-solid fa-lock error-page__icon error-page__icon--warn"></i>
       <h1 class="error-page__title">Acceso Denegado</h1>
       <p class="error-page__message">No tiene permisos para acceder a esta sección.</p>
-      <p-button label="Volver al inicio" icon="pi pi-home" routerLink="/inicio" />
+      <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-left" routerLink="/inicio">
+        <i class="fa-solid fa-house"></i> Volver al inicio
+      </button>
     </div>
   `,
   styles: [`
@@ -29,8 +30,8 @@ import { Button } from 'primeng/button';
     }
     .error-page__icon {
       font-size: 4rem;
-      color: #0a6e45;
-      &--warn { color: #f2c010; }
+      color: var(--sb-ui-color-primary-base, #009056);
+      &--warn { color: var(--sb-ui-color-secondary-D400, #ffc918); }
     }
     .error-page__title {
       font-size: 1.5rem;

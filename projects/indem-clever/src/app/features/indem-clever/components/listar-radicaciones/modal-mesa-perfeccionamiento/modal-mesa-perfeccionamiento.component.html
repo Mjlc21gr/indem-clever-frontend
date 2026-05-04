@@ -1,52 +1,54 @@
-<p-dialog
-  header="Mesa de Perfeccionamiento"
-  [visible]="visible()"
-  (visibleChange)="onVisibleChange($event)"
-  [modal]="true"
-  [draggable]="false"
-  [maximizable]="true"
-  [closable]="true"
-  [style]="{ width: '70vw' }"
-  styleClass="app-dialog-constrained"
-  (onHide)="close()">
+@if (visible()) {
+  <div class="modal-overlay" [class.modal-overlay--maximized]="maximized" (click)="maximized ? null : close()">
+    <div class="modal-container" [class.modal-container--maximized]="maximized" style="width: 70vw" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-header__title">Mesa de Perfeccionamiento</span>
+        <div class="modal-header__actions">
+          <button class="modal-header__btn" (click)="toggleMaximize()" [title]="maximized ? 'Restaurar' : 'Maximizar'">
+            <i [class]="maximized ? 'fa-solid fa-compress' : 'fa-solid fa-expand'"></i>
+          </button>
+          <button class="modal-header__btn" (click)="close()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <app-seccion-formulario-dinamico
+          legend="Datos del Caso"
+          [campos]="camposDatosCaso"
+          [valores]="valoresDatosCaso()"
+          (valoresChange)="valoresDatosCaso.set($event)" />
 
-  <app-seccion-formulario-dinamico
-    legend="Datos del Caso"
-    [campos]="camposDatosCaso"
-    [valores]="valoresDatosCaso()"
-    (valoresChange)="valoresDatosCaso.set($event)" />
+        <hr style="border: none; border-top: 1px solid #e1e1e1; margin: 0.75rem 0" />
 
-  <p-divider />
+        <app-seccion-checklist
+          [(regCivilDefuncion)]="regCivilDefuncion"
+          [(docIdentidadAsegurado)]="docIdentidadAsegurado"
+          [(epicrisis)]="epicrisis"
+          [(certFiscalia)]="certFiscalia"
+          [(sentenciaFecha)]="sentenciaFecha"
+          [(croquis)]="croquis"
+          [(dictamenCapacidad)]="dictamenCapacidad"
+          [(regCivilBeneficiarios)]="regCivilBeneficiarios"
+          [(docBeneficiarios)]="docBeneficiarios"
+          [(formB114)]="formB114"
+          [(formB121)]="formB121"
+          [(certHospitalizacion)]="certHospitalizacion"
+          [(certIncapacidad)]="certIncapacidad"
+          [(examenesDiagnostico)]="examenesDiagnostico"
+          [(formB337)]="formB337"
+          [(pruebaAlcoholemia)]="pruebaAlcoholemia"
+          [(reciboFactura)]="reciboFactura"
+          [(certDeuda)]="certDeuda" />
 
-  <app-seccion-checklist
-    [(regCivilDefuncion)]="regCivilDefuncion"
-    [(docIdentidadAsegurado)]="docIdentidadAsegurado"
-    [(epicrisis)]="epicrisis"
-    [(certFiscalia)]="certFiscalia"
-    [(sentenciaFecha)]="sentenciaFecha"
-    [(croquis)]="croquis"
-    [(dictamenCapacidad)]="dictamenCapacidad"
-    [(regCivilBeneficiarios)]="regCivilBeneficiarios"
-    [(docBeneficiarios)]="docBeneficiarios"
-    [(formB114)]="formB114"
-    [(formB121)]="formB121"
-    [(certHospitalizacion)]="certHospitalizacion"
-    [(certIncapacidad)]="certIncapacidad"
-    [(examenesDiagnostico)]="examenesDiagnostico"
-    [(formB337)]="formB337"
-    [(pruebaAlcoholemia)]="pruebaAlcoholemia"
-    [(reciboFactura)]="reciboFactura"
-    [(certDeuda)]="certDeuda" />
+        <hr style="border: none; border-top: 1px solid #e1e1e1; margin: 0.75rem 0" />
 
-  <p-divider />
-
-  <app-seccion-observaciones-generica
-    legend="Observaciones"
-    [(valor)]="observaciones" />
-
-  <ng-template #footer>
-    <app-boton-accion label="Cancelar" icon="pi pi-times" severity="secondary" (accion)="close()" />
-    <app-boton-accion label="Guardar" icon="pi pi-save" severity="success" (accion)="guardar()" />
-  </ng-template>
-
-</p-dialog>
+        <app-seccion-observaciones-generica
+          legend="Observaciones"
+          [(valor)]="observaciones" />
+      </div>
+      <div class="modal-footer">
+        <app-boton-accion label="Cancelar" icon="fa-solid fa-xmark" severity="secondary" (accion)="close()" />
+        <app-boton-accion label="Guardar" icon="fa-solid fa-floppy-disk" severity="success" (accion)="guardar()" />
+      </div>
+    </div>
+  </div>
+}

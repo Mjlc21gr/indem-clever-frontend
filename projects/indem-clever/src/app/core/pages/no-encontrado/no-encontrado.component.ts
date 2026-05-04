@@ -1,19 +1,20 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Button } from 'primeng/button';
 
 /**
  * Página 404 — Ruta no encontrada.
  */
 @Component({
   selector: 'app-no-encontrado',
-  imports: [RouterLink, Button],
+  imports: [RouterLink],
   template: `
     <div class="error-page">
-      <i class="pi pi-map error-page__icon"></i>
+      <i class="fa-solid fa-map error-page__icon"></i>
       <h1 class="error-page__title">404 — Página no encontrada</h1>
       <p class="error-page__message">La ruta que buscas no existe o fue movida.</p>
-      <p-button label="Volver al inicio" icon="pi pi-home" routerLink="/inicio" />
+      <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-left" routerLink="/inicio">
+        <i class="fa-solid fa-house"></i> Volver al inicio
+      </button>
     </div>
   `,
   styles: [`
@@ -28,7 +29,7 @@ import { Button } from 'primeng/button';
     }
     .error-page__icon {
       font-size: 4rem;
-      color: #0a6e45;
+      color: var(--sb-ui-color-primary-base, #009056);
     }
     .error-page__title {
       font-size: 1.5rem;

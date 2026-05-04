@@ -1,7 +1,4 @@
 import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Dialog } from 'primeng/dialog';
-import { TabPanel, Tabs, TabList, Tab, TabPanels } from 'primeng/tabs';
-import { Divider } from 'primeng/divider';
 import { VentanaDatosGeneralesComponent } from './ventana-datos-generales/ventana-datos-generales.component';
 import { VentanaDataOperativaComponent } from './ventana-data-operativa/ventana-data-operativa.component';
 import { SeccionDerivacionComponent, BotonAccionComponent } from '@shared';
@@ -9,7 +6,6 @@ import { SeccionDerivacionComponent, BotonAccionComponent } from '@shared';
 @Component({
   selector: 'app-modal-agregar-caso',
   imports: [
-    Dialog, Tabs, TabList, Tab, TabPanels, TabPanel, Divider,
     VentanaDatosGeneralesComponent, VentanaDataOperativaComponent,
     SeccionDerivacionComponent, BotonAccionComponent,
   ],
@@ -39,11 +35,13 @@ export class ModalAgregarCasoComponent {
   agenteTecnicoRadi = signal('');
   motivoMovilizacionTecnico = signal('');
 
-  /** Cierra el modal. */
-  close(): void { this.onClose.emit(); }
+  maximized = false;
 
-  /** Maneja cambio de visibilidad del diálogo. */
-  onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
+  /** Cierra el modal. */
+  close(): void { this.maximized = false; this.onClose.emit(); }
+
+  /** Alterna entre maximizado y normal. */
+  toggleMaximize(): void { this.maximized = !this.maximized; }
 
   /** TODO: Conectar al backend — subir archivos adjuntos al caso. */
   onFileUpload(_e: { files: File[] }): void { /* TODO: implementar */ }

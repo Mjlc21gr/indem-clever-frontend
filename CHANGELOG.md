@@ -7,6 +7,29 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 
 ## [No publicado]
 
+### Corregido
+- Se corrigió typo HTML en 8 modales: doble cierre de etiqueta `>>` en el `div.modal-overlay` — archivos afectados: `modal-uifa`, `modal-tecnico`, `modal-radicacion`, `modal-mesa-perfeccionamiento`, `modal-objecion`, `modal-pago`, `modal-medico`, `modal-investigador`
+
+### Cambiado
+- Se optimizaron las definiciones de columnas (`columnas`) en 6 componentes de listado: `listar-tecnico`, `listar-medico`, `listar-investigador`, `listar-mesa-perfect`, `listar-mis-analisis`, `listar-analisis-linea` — se simplificaron headers (ej. 'ID Radicado' → 'ID', 'Numero Poliza' → 'Póliza', 'Fecha Aviso' → 'F. Aviso'), se eliminaron anchos fijos (`width`), se removieron columnas redundantes (`tipoPoliza`, `fechaSiniestro`) y se reordenaron campos para consistencia
+
+### Agregado
+- Se agregó funcionalidad de maximizar/restaurar a los 10 modales del proyecto: `modal-agregar-caso`, `modal-radicacion`, `modal-mesa-perfeccionamiento`, `modal-uifa`, `modal-medico`, `modal-investigador`, `modal-tecnico`, `modal-pago`, `modal-objecion`, `modal-caso` — siguiendo el patrón existente de `modal-analisis` con propiedad `maximized`, método `toggleMaximize()`, reset en `close()`, y clases CSS condicionales `modal-overlay--maximized` / `modal-container--maximized`
+
+### Cambiado
+- Se completó migración PrimeNG → sb-ui en `projects/indem-clever/`: se migraron íconos del sidebar (`sidebar-menu.data.ts`) de PrimeIcons a Font Awesome, se reemplazó `p-button` por `sb-ui-button` en páginas de error (acceso-denegado, no-encontrado), y se eliminaron archivos HTML huérfanos de componentes shared que ya usaban templates inline
+- Se migró la totalidad de componentes PrimeNG a sb-ui (Seguros Bolívar Design System) en `projects/indem-clever/`: 10 modales (`modal-uifa`, `modal-tecnico`, `modal-medico`, `modal-investigador`, `modal-pago`, `modal-objecion`, `modal-caso`, `modal-mesa-perfeccionamiento`, `modal-agregar-caso`, `modal-radicacion`), 2 ventanas (`ventana-datos-generales`, `ventana-data-operativa`), 10 listados (`listar-radicaciones`, `listar-casos`, `listar-uifa`, `listar-tecnico`, `listar-medico`, `listar-investigador`, `listar-mis-analisis`, `listar-analisis-linea`, `listar-mesa-perfect`, `listar-usuarios`) y dashboard (`inicio`)
+- Se reemplazó `p-dialog` por modal sb-ui (`@if` + `modal-overlay` / `modal-container` / `modal-header` / `modal-body` / `modal-footer`)
+- Se reemplazó `p-panel` por `page-panel` sb-ui (`page-panel__header` / `page-panel__body`)
+- Se reemplazó `p-fieldset` por `section-card` sb-ui (`section-card__header` / `section-card__body`)
+- Se reemplazó `p-table` por `sb-ui-table` nativa con `@for` loops
+- Se reemplazó `p-tabs` / `p-tablist` / `p-tab` / `p-tabpanels` / `p-tabpanel` por `sb-ui-tabs` con signal `activeTab`
+- Se reemplazó `p-divider` por `<hr>` con estilo inline
+- Se reemplazó `p-button` en `listar-radicaciones` por botones `sb-ui-button`
+- Se reemplazaron todos los íconos PrimeIcons (`pi pi-*`) por Font Awesome (`fa-solid fa-*`) en templates y datos de componentes
+- Se eliminaron imports de `Dialog`, `Panel`, `Button`, `Divider`, `Fieldset`, `TableModule`, `TabPanel`, `Tabs`, `TabList`, `Tab`, `TabPanels` de todos los archivos TS
+- Se mantuvo `UIChart` de PrimeNG en `inicio.component.ts` como excepción (sb-ui no tiene componente de gráficas)
+
 ### Agregado
 - Se configuró integración con `@seguros-bolivar/ui-bundle` (Design System): `.npmrc` para JFrog, CSS como asset estático en `angular.json`, atributos `data-brand` y `data-theme` en `index.html`, JS de Web Components en scripts
 - Se crearon 4 steering files globales del Design System en `~/.kiro/steering/`: `CSS.md`, `variables-01-css.md`, `componentes-01-sb-ui.md`, `workflow-01-implementar.md`

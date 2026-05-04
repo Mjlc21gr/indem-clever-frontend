@@ -1,10 +1,9 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Panel } from 'primeng/panel';
 import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_RADICACIONES } from '@shared';
 
 @Component({
   selector: 'app-listar-mesa-perfect',
-  imports: [Panel, TablaDinamicaComponent],
+  imports: [TablaDinamicaComponent],
   templateUrl: './listar-mesa-perfect.component.html',
   styleUrl: './listar-mesa-perfect.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,17 +14,16 @@ export class ListarmesaperfectComponent {
 
   /** Definición de columnas para la tabla de mesa de perfeccionamiento. */
   columnas: ColumnaTabla[] = [
-    { field: 'idRadicado', header: 'ID Radicado', sortable: true, width: '120px' },
-    { field: 'numeroPoliza', header: 'Numero Poliza', sortable: true },
-    { field: 'fechaAviso', header: 'Fecha Aviso', type: 'date', sortable: true },
+    { field: 'idRadicado', header: 'ID', sortable: true },
+    { field: 'numeroPoliza', header: 'Póliza', sortable: true },
+    { field: 'cobertura', header: 'Cobertura', sortable: true },
+    { field: 'fechaAviso', header: 'F. Aviso', type: 'date', sortable: true },
     { field: 'decision', header: 'Decisión', type: 'tag', sortable: true, tagMap: {
       'Aprobado': { label: 'Aprobado', severity: 'success' },
       'Rechazado': { label: 'Rechazado', severity: 'danger' },
       'Pendiente': { label: 'Pendiente', severity: 'warn' },
       'En análisis': { label: 'En análisis', severity: 'info' },
     }},
-    { field: 'cobertura', header: 'Cobertura', sortable: true },
-    { field: 'tipoPoliza', header: 'Tipo Poliza', sortable: true },
     { field: 'estado', header: 'Estado', type: 'tag', sortable: true, tagMap: {
       'Activo': { label: 'Activo', severity: 'success' },
       'Inactivo': { label: 'Inactivo', severity: 'danger' },
@@ -36,8 +34,8 @@ export class ListarmesaperfectComponent {
 
   /** Acciones disponibles por fila. */
   acciones = [
-    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver detalle', severity: 'info' },
-    { action: 'editar', icon: 'pi pi-pencil', tooltip: 'Editar', severity: 'success' },
+    { action: 'ver', icon: 'fa-solid fa-eye', tooltip: 'Ver detalle', severity: 'info' },
+    { action: 'editar', icon: 'fa-solid fa-pen', tooltip: 'Editar', severity: 'success' },
   ];
 
   /** Handles row action clicks. */

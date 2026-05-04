@@ -1,34 +1,29 @@
-<p-panel header="Órdenes de Pago">
-  <ng-template #icons>
-    <p-button
-      label="Aprobar seleccionados"
-      icon="pi pi-check"
-      severity="success"
-      size="small"
-      (onClick)="confirmarMasivo('aprobar')" />
-    <p-button
-      label="Devolver seleccionados"
-      icon="pi pi-replay"
-      severity="warn"
-      size="small"
-      [outlined]="true"
-      (onClick)="confirmarMasivo('devolver')" />
-  </ng-template>
+<div class="page-panel">
+  <div class="page-panel__header">
+    <span>Órdenes de Pago</span>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+      <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left" (click)="confirmarMasivo('aprobar')">
+        <i class="fa-solid fa-check"></i> Aprobar seleccionados
+      </button>
+      <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left" (click)="confirmarMasivo('devolver')">
+        <i class="fa-solid fa-rotate-left"></i> Devolver seleccionados
+      </button>
+    </div>
+  </div>
+  <div class="page-panel__body">
+    <app-tabla-dinamica
+      [columnas]="columnas"
+      [datos]="data()"
+      [loading]="loading()"
+      [showActions]="true"
+      [acciones]="acciones"
+      [selectable]="true"
+      selectionMode="multiple"
+      (accionEjecutada)="onAccion($event)" />
+  </div>
+</div>
 
-  <app-tabla-dinamica
-    [columnas]="columnas"
-    [datos]="data()"
-    [loading]="loading()"
-    [showActions]="true"
-    [acciones]="acciones"
-    [selectable]="true"
-    selectionMode="multiple"
-    (accionEjecutada)="onAccion($event)" />
-</p-panel>
-
-<app-modal-pago
-  [visible]="showModal()"
-  (onClose)="closeModal()" />
+<app-modal-pago [visible]="showModal()" (onClose)="closeModal()" />
 
 <app-dialogo-confirmacion
   [visible]="showConfirm()"

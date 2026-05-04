@@ -1,26 +1,17 @@
-<p-toolbar styleClass="topbar">
-  <ng-template #start>
-    <p-button
-      icon="pi pi-bars"
-      [text]="true"
-      severity="contrast"
-      (onClick)="onToggleSidebar()"
-      ariaLabel="Alternar menú lateral" />
-    <p-tag styleClass="topbar__title" value="CLEVERFLOW" [rounded]="true" />
-  </ng-template>
-
-  <ng-template #end>
-    <p-button
-      icon="pi pi-home"
-      [text]="true"
-      severity="contrast"
-      routerLink="/inicio"
-      ariaLabel="Ir al inicio"
-      styleClass="topbar__home-btn" />
-    <p-avatar
-      icon="pi pi-user"
-      shape="circle"
-      styleClass="topbar__avatar" />
-    <p-tag styleClass="topbar__user-name" [value]="userName()" severity="contrast" />
-  </ng-template>
-</p-toolbar>
+<nav class="topbar">
+  <div class="topbar__start">
+    <button class="topbar__btn" (click)="onToggleSidebar()" aria-label="Alternar menú lateral">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <span class="topbar__title">CLEVERFLOW</span>
+  </div>
+  <div class="topbar__end">
+    <a class="topbar__btn" routerLink="/inicio" aria-label="Ir al inicio">
+      <i class="fa-solid fa-house"></i>
+    </a>
+    <div class="topbar__avatar">
+      <i class="fa-solid fa-user"></i>
+    </div>
+    <span class="topbar__user-name">{{ userName() }}</span>
+  </div>
+</nav>

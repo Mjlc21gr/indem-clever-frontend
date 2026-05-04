@@ -1,28 +1,25 @@
-<p-panel header="Radicaciones">
-  <ng-template #icons>
-    <p-button
-      label="Agregar Caso"
-      icon="pi pi-plus"
-      severity="success"
-      size="small"
-      (onClick)="openAgregarCaso()" />
-    <p-button
-      label="Mesa de Perfeccionamiento"
-      icon="pi pi-sync"
-      severity="warn"
-      size="small"
-      [outlined]="true"
-      (onClick)="openMesaPerfeccionamiento()" />
-  </ng-template>
-
-  <app-tabla-dinamica
-    [columnas]="columnas"
-    [datos]="data()"
-    [loading]="loading()"
-    [showActions]="true"
-    [acciones]="acciones"
-    (accionEjecutada)="onAccion($event)" />
-</p-panel>
+<div class="page-panel">
+  <div class="page-panel__header">
+    <span>Radicaciones</span>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+      <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left" (click)="openAgregarCaso()">
+        <i class="fa-solid fa-plus"></i> Agregar Caso
+      </button>
+      <button class="sb-ui-button sb-ui-button--secondary sb-ui-button--small sb-ui-button--icon-left" (click)="openMesaPerfeccionamiento()">
+        <i class="fa-solid fa-arrows-rotate"></i> Mesa de Perfeccionamiento
+      </button>
+    </div>
+  </div>
+  <div class="page-panel__body">
+    <app-tabla-dinamica
+      [columnas]="columnas"
+      [datos]="data()"
+      [loading]="loading()"
+      [showActions]="true"
+      [acciones]="acciones"
+      (accionEjecutada)="onAccion($event)" />
+  </div>
+</div>
 
 <app-modal-agregar-caso
   [visible]="showModalAgregarCaso()"
