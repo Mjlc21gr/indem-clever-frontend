@@ -1,6 +1,4 @@
 import { Component, signal, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Panel } from 'primeng/panel';
-import { Button } from 'primeng/button';
 import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila } from '@shared';
 import { ModalAgregarCasoComponent } from './modal-agregar-caso/modal-agregar-caso.component';
 import { ModalMesaPerfeccionamientoComponent } from './modal-mesa-perfeccionamiento/modal-mesa-perfeccionamiento.component';
@@ -12,8 +10,6 @@ import type { RadicacionResumen } from '../../../../core/models';
 @Component({
   selector: 'app-listar-radicaciones',
   imports: [
-    Panel,
-    Button,
     TablaDinamicaComponent,
     ModalAgregarCasoComponent,
     ModalMesaPerfeccionamientoComponent,
