@@ -1,16 +1,16 @@
-import { Component, input, output, inject, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { Component, input, output, signal, inject, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { PanelMenu } from 'primeng/panelmenu';
-import { ScrollPanel } from 'primeng/scrollpanel';
-import { Tooltip } from 'primeng/tooltip';
-import { Button } from 'primeng/button';
-import { Image } from 'primeng/image';
-import { Divider } from 'primeng/divider';
-import { MenuItem } from 'primeng/api';
 import { SIDEBAR_MENU } from '../../data/sidebar-menu.data';
-import { SidebarMenuItem } from '../../models/sidebar-menu.model';
 
-/** Collapsed item with group context for visual separators. */
+/** Grupo de menú con estado de expansión. */
+interface MenuGroup {
+  label: string;
+  icon: string;
+  expanded: boolean;
+  items: { label: string; icon: string; routerLink: string }[];
+}
+
+/** Item colapsado para modo icon-only. */
 interface CollapsedItem {
   label: string;
   icon: string;
@@ -18,70 +18,65 @@ interface CollapsedItem {
   isFirstInGroup: boolean;
 }
 
+/**
+ * Sidebar — menú lateral de la aplicación.
+ * Usa sb-ui-menu + HTML nativo. Sin PrimeNG.
+ */
 @Component({
   selector: 'app-sidebar',
-  imports: [PanelMenu, ScrollPanel, Tooltip, Button, Image, RouterLink, Divider],
+  imports: [RouterLink],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
-  /** Whether the sidebar is collapsed to icon-only mode. */
+  /** Si el sidebar está colapsado (solo iconos). */
   collapsed = input(false);
 
-  /** Emits when a menu item is selected (used to close mobile sidebar). */
+  /** Emite cuando se selecciona un item (para cerrar sidebar mobile). */
   readonly itemSelected = output<void>();
 
-  /** Binds the collapsed class directly to the host element. */
+  /** Clase CSS en el host. */
   @HostBinding('class.sidebar-collapsed')
-  get isCollapsed(): boolean {
-    return this.collapsed();
-  }
+  get isCollapsed(): boolean { return this.collapsed(); }
 
-  /** PrimeNG PanelMenu items for expanded mode. */
-  readonly menuItems: MenuItem[] = SIDEBAR_MENU.map((group) => ({
-    label: group.label,
-    icon: group.icon,
-    items: group.items.map((item) => ({
-      label: item.label,
-      icon: item.icon,
-      command: () => {
-        this.router.navigate([item.routerLink]);
-        this.itemSelected.emit();
-      },
-    })),
+  /** Grupos de menú con estado de expansión. */
+  readonly menuGroups: MenuGroup[] = SIDEBAR_MENU.map(g => ({
+    label: g.label,
+    icon: g.icon,
+    expanded: true,
+    items: g.items,
   }));
 
-  /**
-   * All individual items for collapsed mode, deduplicated by routerLink.
-   * Includes a flag to mark the first item of each group for visual spacing.
-   */
-  readonly collapsedItems: CollapsedItem[] = this.buildCollapsedItems();
+  /** Items para modo colapsado. */
+  readonly collapsedItems: CollapsedItem[] = this._buildCollapsedItems();
 
-  /** Builds a deduplicated flat list of all menu items with group separators. */
-  private buildCollapsedItems(): CollapsedItem[] {
+  /** Toggle expansión de un grupo. */
+  toggleGroup(group: MenuGroup): void {
+    group.expanded = !group.expanded;
+  }
+
+  /** Navega a una ruta y emite itemSelected. */
+  navigateTo(routerLink: string): void {
+    this.router.navigate([routerLink]);
+    this.itemSelected.emit();
+  }
+
+  /** Construye lista plana deduplicada para modo colapsado. */
+  private _buildCollapsedItems(): CollapsedItem[] {
     const seen = new Set<string>();
     const items: CollapsedItem[] = [];
-
     for (const group of SIDEBAR_MENU) {
       let isFirst = true;
       for (const item of group.items) {
-        if (seen.has(item.routerLink)) {
-          continue;
-        }
+        if (seen.has(item.routerLink)) continue;
         seen.add(item.routerLink);
-        items.push({
-          label: item.label,
-          icon: item.icon,
-          routerLink: item.routerLink,
-          isFirstInGroup: isFirst,
-        });
+        items.push({ label: item.label, icon: item.icon, routerLink: item.routerLink, isFirstInGroup: isFirst });
         isFirst = false;
       }
     }
-
     return items;
   }
 }

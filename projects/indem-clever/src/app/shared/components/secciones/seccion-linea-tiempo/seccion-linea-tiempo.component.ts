@@ -1,14 +1,6 @@
 import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Fieldset } from 'primeng/fieldset';
-import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion';
 
-/**
- * Gestión individual dentro de una etapa.
- * @property titulo - Título del evento (ej: "CASO ASIGNADO A RADICADOR - RENTAS").
- * @property responsable - Email o nombre del responsable.
- * @property fecha - Fecha de la gestión.
- * @property observacion - Observación o detalle de la gestión.
- */
+/** Gestión individual dentro de una etapa. */
 export interface GestionEtapa {
   titulo: string;
   responsable: string;
@@ -16,13 +8,7 @@ export interface GestionEtapa {
   observacion: string;
 }
 
-/**
- * Etapa de la línea de tiempo.
- * @property label - Nombre visible de la etapa (RADICADO, DEFINICIÓN, etc.).
- * @property completada - Si la etapa ya fue completada.
- * @property activa - Si es la etapa actual en curso.
- * @property gestiones - Array de gestiones/logs dentro de esta etapa.
- */
+/** Etapa de la línea de tiempo. */
 export interface EtapaLineaTiempo {
   label: string;
   completada?: boolean;
@@ -31,15 +17,13 @@ export interface EtapaLineaTiempo {
 }
 
 /**
- * Sección: Línea de Tiempo / Historial del Caso.
- * Muestra un stepper horizontal con 5 etapas numeradas
- * y un acordeón debajo con las gestiones de cada etapa.
+ * Sección: Línea de Tiempo / Historial del Caso — sb-ui.
+ * Stepper horizontal + acordeón con gestiones por etapa.
  */
 @Component({
   selector: 'app-seccion-linea-tiempo',
-  imports: [Fieldset, Accordion, AccordionPanel, AccordionHeader, AccordionContent],
   templateUrl: './seccion-linea-tiempo.component.html',
-  styleUrl: './seccion-linea-tiempo.component.scss',
+  styleUrls: ['./seccion-linea-tiempo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SeccionLineaTiempoComponent {
@@ -47,6 +31,14 @@ export class SeccionLineaTiempoComponent {
   toggleable = input(true);
   etapas = input<EtapaLineaTiempo[]>([]);
 
-  /** Controla qué panel del acordeón está abierto. null = todos cerrados. */
-  activeValue = signal<string | null>(null);
+  collapsed = false;
+  activePanel = signal<number | null>(null);
+
+  /** Toggle la sección principal. */
+  toggle(): void { if (this.toggleable()) this.collapsed = !this.collapsed; }
+
+  /** Toggle un panel del acordeón. */
+  togglePanel(index: number): void {
+    this.activePanel.set(this.activePanel() === index ? null : index);
+  }
 }

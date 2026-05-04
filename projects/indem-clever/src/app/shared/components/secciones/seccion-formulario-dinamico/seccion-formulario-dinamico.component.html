@@ -1,30 +1,60 @@
-<p-fieldset [legend]="legend()" [toggleable]="toggleable()">
-  <p-fluid>
-    @if (camposFull().length > 0) {
-      <section class="form-grid form-grid--full">
-        @for (campo of camposFull(); track campo.key) {
-          <label>{{ campo.label }}
-            @if (campo.type === 'textarea') {
-              <textarea pTextarea [ngModel]="getValor(campo.key)" (ngModelChange)="setValor(campo.key, $event)" [rows]="campo.rows ?? 2" [readonly]="campo.readonly ?? false"></textarea>
-            } @else {
-              <input pInputText [type]="campo.type ?? 'text'" [ngModel]="getValor(campo.key)" (ngModelChange)="setValor(campo.key, $event)" [readonly]="campo.readonly ?? false" />
-            }
-          </label>
-        }
-      </section>
+<div class="section-card">
+  <div class="section-card__header" (click)="toggle()">
+    <span class="section-card__title">{{ legend() }}</span>
+    @if (toggleable()) {
+      <i class="fa-solid fa-chevron-down section-card__toggle" [class.section-card__toggle--collapsed]="collapsed"></i>
     }
-    @if (camposGrid().length > 0) {
-      <section class="form-grid">
-        @for (campo of camposGrid(); track campo.key) {
-          <label>{{ campo.label }}
-            @if (campo.type === 'textarea') {
-              <textarea pTextarea [ngModel]="getValor(campo.key)" (ngModelChange)="setValor(campo.key, $event)" [rows]="campo.rows ?? 2" [readonly]="campo.readonly ?? false"></textarea>
-            } @else {
-              <input pInputText [type]="campo.type ?? 'text'" [ngModel]="getValor(campo.key)" (ngModelChange)="setValor(campo.key, $event)" [readonly]="campo.readonly ?? false" />
-            }
-          </label>
-        }
-      </section>
-    }
-  </p-fluid>
-</p-fieldset>
+  </div>
+  @if (!collapsed) {
+    <div class="section-card__body">
+      @if (camposFull().length > 0) {
+        <div class="form-grid form-grid--full">
+          @for (campo of camposFull(); track campo.key) {
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label">{{ campo.label }}</label>
+              @if (campo.type === 'textarea') {
+                <textarea
+                  class="sb-ui-textarea"
+                  [ngModel]="getValor(campo.key)"
+                  (ngModelChange)="setValor(campo.key, $event)"
+                  [rows]="campo.rows ?? 2"
+                  [readOnly]="campo.readonly ?? false"></textarea>
+              } @else {
+                <input
+                  class="sb-ui-input"
+                  [type]="campo.type ?? 'text'"
+                  [ngModel]="getValor(campo.key)"
+                  (ngModelChange)="setValor(campo.key, $event)"
+                  [readOnly]="campo.readonly ?? false" />
+              }
+            </div>
+          }
+        </div>
+      }
+      @if (camposGrid().length > 0) {
+        <div class="form-grid">
+          @for (campo of camposGrid(); track campo.key) {
+            <div class="sb-ui-input-container">
+              <label class="sb-ui-input-label">{{ campo.label }}</label>
+              @if (campo.type === 'textarea') {
+                <textarea
+                  class="sb-ui-textarea"
+                  [ngModel]="getValor(campo.key)"
+                  (ngModelChange)="setValor(campo.key, $event)"
+                  [rows]="campo.rows ?? 2"
+                  [readOnly]="campo.readonly ?? false"></textarea>
+              } @else {
+                <input
+                  class="sb-ui-input"
+                  [type]="campo.type ?? 'text'"
+                  [ngModel]="getValor(campo.key)"
+                  (ngModelChange)="setValor(campo.key, $event)"
+                  [readOnly]="campo.readonly ?? false" />
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

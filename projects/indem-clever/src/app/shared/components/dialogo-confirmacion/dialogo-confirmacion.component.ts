@@ -1,57 +1,60 @@
 import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
-import { Dialog } from 'primeng/dialog';
-import { BotonAccionComponent } from '../boton-accion/boton-accion.component';
 
 /**
- * Diálogo de confirmación reutilizable.
- *
- * Muestra un mensaje con dos botones: Cancelar y Confirmar.
- * Previene acciones accidentales como aprobar o devolver.
- *
- * Uso:
- * ```html
- * <app-dialogo-confirmacion
- *   [visible]="showConfirm()"
- *   titulo="¿Aprobar este caso?"
- *   mensaje="Esta acción enviará el caso a pago. ¿Está seguro?"
- *   labelConfirmar="Sí, aprobar"
- *   severityConfirmar="success"
- *   (confirmar)="aprobar()"
- *   (cancelar)="showConfirm.set(false)" />
- * ```
+ * Diálogo de confirmación reutilizable — sb-ui.
+ * Modal simple con título, mensaje y botones confirmar/cancelar.
  */
 @Component({
   selector: 'app-dialogo-confirmacion',
-  imports: [Dialog, BotonAccionComponent],
   template: `
-    <p-dialog
-      [header]="titulo()"
-      [visible]="visible()"
-      (visibleChange)="onVisibleChange($event)"
-      [modal]="true"
-      [closable]="true"
-      [style]="{ width: '450px' }"
-      (onHide)="cancelar.emit()">
-      <p>{{ mensaje() }}</p>
-      <ng-template #footer>
-        <app-boton-accion label="Cancelar" icon="pi pi-times" severity="secondary" (accion)="cancelar.emit()" />
-        <app-boton-accion [label]="labelConfirmar()" [icon]="iconConfirmar()" [severity]="severityConfirmar()" (accion)="confirmar.emit()" />
-      </ng-template>
-    </p-dialog>
+    @if (visible()) {
+      <div class="modal-overlay" (click)="onCancel()">
+        <div class="modal-container" style="max-width: 480px" (click)="$event.stopPropagation()">
+          <div class="modal-header">
+            <span class="modal-header__title">{{ titulo() }}</span>
+            <button class="modal-header__btn" (click)="onCancel()">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p style="margin: 0; font-size: 0.875rem; color: #374151">{{ mensaje() }}</p>
+          </div>
+          <div class="modal-footer">
+            <button class="sb-ui-button sb-ui-button--secondary" (click)="onCancel()">Cancelar</button>
+            <button [class]="'sb-ui-button sb-ui-button--fill ' + confirmBtnClass()" (click)="onConfirm()">
+              {{ labelConfirmar() }}
+            </button>
+          </div>
+        </div>
+      </div>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogoConfirmacionComponent {
   visible = input(false);
-  titulo = input('Confirmar acción');
+  titulo = input('Confirmar');
   mensaje = input('¿Está seguro de realizar esta acción?');
   labelConfirmar = input('Confirmar');
-  iconConfirmar = input('pi pi-check');
   severityConfirmar = input<'success' | 'danger' | 'warn' | 'info'>('success');
+
   readonly confirmar = output<void>();
   readonly cancelar = output<void>();
 
-  onVisibleChange(v: boolean): void {
-    if (!v) { this.cancelar.emit(); }
-  }
+  /** Clase del botón de confirmación según severity. */
+  confirmBtnClass = () => {
+    const map: Record<string, string> = {
+      success: 'sb-ui-button--primary',
+      danger: 'sb-ui-button--error',
+      warn: 'sb-ui-button--tertiary',
+      info: 'sb-ui-button--secondary',
+    };
+    return map[this.severityConfirmar()] ?? 'sb-ui-button--primary';
+  };
+
+  /** Emite confirmación. */
+  onConfirm(): void { this.confirmar.emit(); }
+
+  /** Emite cancelación. */
+  onCancel(): void { this.cancelar.emit(); }
 }

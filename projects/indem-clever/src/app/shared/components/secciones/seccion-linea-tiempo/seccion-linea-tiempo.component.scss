@@ -27,9 +27,9 @@
   justify-content: center;
   font-weight: 700;
   font-size: 0.875rem;
-  border: 3px solid #d1d5db;
-  background: #fff;
-  color: #9ca3af;
+  border: 3px solid var(--app-border);
+  background: var(--app-surface);
+  color: var(--app-text-muted);
   transition: all 0.3s ease;
   z-index: 1;
 }
@@ -39,7 +39,7 @@
   font-size: 0.7rem;
   font-weight: 600;
   text-align: center;
-  color: #9ca3af;
+  color: var(--app-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.03em;
   transition: color 0.3s ease;
@@ -51,46 +51,38 @@
   left: calc(50% + 22px);
   width: calc(100% - 44px);
   height: 3px;
-  background: #d1d5db;
+  background: var(--app-border);
   transition: background 0.3s ease;
 }
 
 /* Completado */
 .stepper__paso--completado {
   .stepper__circulo {
-    background: #0a6e45;
-    border-color: #0a6e45;
-    color: #fff;
+    background: var(--app-green);
+    border-color: var(--app-green);
+    color: var(--app-surface);
   }
   .stepper__label {
-    color: #0a6e45;
+    color: var(--app-green);
   }
 }
 
 .stepper__conector--completado {
-  background: #0a6e45;
+  background: var(--app-green);
 }
 
 /* Activo */
 .stepper__paso--activo {
   .stepper__circulo {
-    background: #fff;
-    border-color: #f2c010;
-    color: #f2c010;
-    box-shadow: 0 0 0 4px rgba(242, 192, 16, 0.2);
+    background: var(--app-surface);
+    border-color: var(--app-gold);
+    color: var(--app-gold-dark);
+    box-shadow: 0 0 0 4px rgba(255, 225, 111, 0.25);
   }
   .stepper__label {
-    color: #0d3b2a;
+    color: var(--app-text);
     font-weight: 700;
   }
-}
-
-/* =============================================
-   Acordeón — Etapas expandibles
-   ============================================= */
-.etapa-header {
-  font-weight: 600;
-  font-size: 0.9rem;
 }
 
 /* =============================================
@@ -108,7 +100,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #d1d5db;
+    background: var(--app-border);
   }
 }
 
@@ -123,7 +115,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #0a6e45;
+  background: var(--app-green);
   margin-top: 0.5rem;
   flex-shrink: 0;
   z-index: 1;
@@ -134,12 +126,12 @@
 }
 
 .gestion__titulo {
-  background: #fef3c7;
+  background: var(--sb-ui-color-secondary-L400, #fff8e1);
   padding: 0.5rem 0.75rem;
   border-radius: 4px;
   font-weight: 600;
   font-size: 0.85rem;
-  color: #0d3b2a;
+  color: var(--app-text);
   margin-bottom: 0.375rem;
 }
 
@@ -153,12 +145,12 @@
 }
 
 .gestion__fecha {
-  color: #9ca3af;
+  color: var(--app-text-muted);
   font-size: 0.75rem;
 }
 
 .sin-gestiones {
-  color: #9ca3af;
+  color: var(--app-text-muted);
   font-style: italic;
   font-size: 0.85rem;
   padding: 0.5rem 0;
@@ -168,27 +160,9 @@
    Responsive
    ============================================= */
 @media (max-width: 576px) {
-  .stepper {
-    gap: 0;
-  }
-
-  .stepper__paso {
-    min-width: 60px;
-  }
-
-  .stepper__circulo {
-    width: 32px;
-    height: 32px;
-    font-size: 0.75rem;
-  }
-
-  .stepper__label {
-    font-size: 0.6rem;
-  }
-
-  .stepper__conector {
-    top: 16px;
-    left: calc(50% + 18px);
-    width: calc(100% - 36px);
-  }
+  .stepper { gap: 0; }
+  .stepper__paso { min-width: 60px; }
+  .stepper__circulo { width: 32px; height: 32px; font-size: 0.75rem; }
+  .stepper__label { font-size: 0.6rem; }
+  .stepper__conector { top: 16px; left: calc(50% + 18px); width: calc(100% - 36px); }
 }

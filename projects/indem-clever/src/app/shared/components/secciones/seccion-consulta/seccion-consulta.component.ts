@@ -1,26 +1,41 @@
 import { Component, model, output, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { InputText } from 'primeng/inputtext';
-import { Fieldset } from 'primeng/fieldset';
-import { Fluid } from 'primeng/fluid';
-import { Button } from 'primeng/button';
 
-/** Sección: Consultar Data Operativa. */
+/** Sección: Consultar Data Operativa — sb-ui. */
 @Component({
   selector: 'app-seccion-consulta',
-  imports: [FormsModule, InputText, Fieldset, Fluid, Button],
-  templateUrl: './seccion-consulta.component.html',
+  imports: [FormsModule],
+  template: `
+    <div class="section-card">
+      <div class="section-card__header">
+        <span class="section-card__title">Consultar Data Operativa</span>
+      </div>
+      <div class="section-card__body">
+        <div class="form-grid form-grid--2col">
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Tipo Documento</label>
+            <input class="sb-ui-input" [(ngModel)]="consultaTipoDoc" placeholder="CC, NIT, etc." />
+          </div>
+          <div class="sb-ui-input-container">
+            <label class="sb-ui-input-label">Número Documento</label>
+            <input class="sb-ui-input" [(ngModel)]="consultaNumDoc" placeholder="Número..." />
+          </div>
+        </div>
+        <div style="margin-top: 0.75rem">
+          <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--icon-left" (click)="onConsultar()">
+            <i class="fa-solid fa-search"></i> Consultar
+          </button>
+        </div>
+      </div>
+    </div>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SeccionConsultaComponent {
   consultaTipoDoc = model('');
   consultaNumDoc = model('');
-
-  /** Emits when the user clicks "Consultar". */
   readonly consultar = output<void>();
 
-  /** Triggers the consultation. */
-  onConsultar(): void {
-    this.consultar.emit();
-  }
+  /** Emite evento de consulta. */
+  onConsultar(): void { this.consultar.emit(); }
 }

@@ -1,12 +1,9 @@
 import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Dialog } from 'primeng/dialog';
-import { Divider } from 'primeng/divider';
 import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionChecklistComponent, SeccionObservacionesGenericaComponent, BotonAccionComponent } from '@shared';
 
 @Component({
   selector: 'app-modal-mesa-perfeccionamiento',
   imports: [
-    Dialog, Divider,
     SeccionFormularioDinamicoComponent,
     SeccionChecklistComponent,
     SeccionObservacionesGenericaComponent,
@@ -51,11 +48,13 @@ export class ModalMesaPerfeccionamientoComponent {
   reciboFactura = signal(false);
   certDeuda = signal(false);
 
-  /** Cierra el modal. */
-  close(): void { this.onClose.emit(); }
+  maximized = false;
 
-  /** Maneja cambio de visibilidad del diálogo. */
-  onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
+  /** Cierra el modal. */
+  close(): void { this.maximized = false; this.onClose.emit(); }
+
+  /** Alterna entre maximizado y normal. */
+  toggleMaximize(): void { this.maximized = !this.maximized; }
 
   /** TODO: Conectar al backend — guardar checklist y observaciones de mesa. */
   guardar(): void { /* TODO: implementar */ }

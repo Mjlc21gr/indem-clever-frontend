@@ -4,7 +4,7 @@
     <h1 class="banner__saludo">Bienvenido, {{ nombreUsuario() }}</h1>
     <p class="banner__sub">Panel de gestión de indemnizaciones — Seguros Bolívar</p>
   </div>
-  <i class="pi pi-shield banner__icon"></i>
+  <i class="fa-solid fa-shield banner__icon"></i>
 </section>
 
 <!-- KPIs -->
@@ -19,7 +19,7 @@
         <span class="kpi__lbl">{{ k.label }}</span>
       </div>
       <span class="kpi__trend" [class.kpi__trend--up]="k.positiva" [class.kpi__trend--down]="!k.positiva">
-        <i [class]="k.positiva ? 'pi pi-arrow-up' : 'pi pi-arrow-down'"></i> {{ k.tendencia }}
+        <i [class]="k.positiva ? 'fa-solid fa-arrow-up' : 'fa-solid fa-arrow-down'"></i> {{ k.tendencia }}
       </span>
     </div>
   }
@@ -27,53 +27,68 @@
 
 <!-- Fila 1: Barras módulos + Dona estado -->
 <section class="row">
-  <p-panel header="Casos por Módulo" class="row__panel row__panel--2">
-    <div class="chart-box chart-box--md">
-      <p-chart type="bar" [data]="chartModulosData" [options]="chartModulosOpts" />
+  <div class="page-panel row__panel row__panel--2">
+    <div class="page-panel__header">Casos por Módulo</div>
+    <div class="page-panel__body">
+      <div class="chart-box chart-box--md">
+        <p-chart type="bar" [data]="chartModulosData" [options]="chartModulosOpts" />
+      </div>
     </div>
-  </p-panel>
-  <p-panel header="Distribución por Estado" class="row__panel row__panel--1">
-    <div class="chart-box chart-box--md">
-      <p-chart type="doughnut" [data]="chartEstadoData" [options]="chartEstadoOpts" />
+  </div>
+  <div class="page-panel row__panel row__panel--1">
+    <div class="page-panel__header">Distribución por Estado</div>
+    <div class="page-panel__body">
+      <div class="chart-box chart-box--md">
+        <p-chart type="doughnut" [data]="chartEstadoData" [options]="chartEstadoOpts" />
+      </div>
     </div>
-  </p-panel>
+  </div>
 </section>
 
 <!-- Fila 2: Tendencia mensual (ancho completo) -->
 <section class="row">
-  <p-panel header="Tendencia Anual — Ingresados vs Resueltos" class="row__panel row__panel--full">
-    <div class="chart-box chart-box--sm">
-      <p-chart type="line" [data]="chartTendenciaData" [options]="chartTendenciaOpts" />
+  <div class="page-panel row__panel row__panel--full">
+    <div class="page-panel__header">Tendencia Anual — Ingresados vs Resueltos</div>
+    <div class="page-panel__body">
+      <div class="chart-box chart-box--sm">
+        <p-chart type="line" [data]="chartTendenciaData" [options]="chartTendenciaOpts" />
+      </div>
     </div>
-  </p-panel>
+  </div>
 </section>
 
 <!-- Fila 3: Rendimiento por analista + Top gestores -->
 <section class="row">
-  <p-panel header="Rendimiento por Analista" class="row__panel row__panel--2">
-    <div class="chart-box chart-box--md">
-      <p-chart type="bar" [data]="chartRendimientoData" [options]="chartRendimientoOpts" />
+  <div class="page-panel row__panel row__panel--2">
+    <div class="page-panel__header">Rendimiento por Analista</div>
+    <div class="page-panel__body">
+      <div class="chart-box chart-box--md">
+        <p-chart type="bar" [data]="chartRendimientoData" [options]="chartRendimientoOpts" />
+      </div>
     </div>
-  </p-panel>
-  <p-panel header="Top Gestores — Tasa de Resolución" class="row__panel row__panel--1">
-    <div class="top-list">
-      @for (u of topUsuarios; track u.nombre; let i = $index) {
-        <div class="top-item">
-          <span class="top-item__rank" [class.top-item__rank--gold]="i === 0" [class.top-item__rank--silver]="i === 1" [class.top-item__rank--bronze]="i === 2">{{ i + 1 }}</span>
-          <div class="top-item__info">
-            <span class="top-item__name">{{ u.nombre }}</span>
-            <span class="top-item__role">{{ u.rol }} · {{ u.asignados }} casos</span>
-          </div>
-          <div class="top-item__bar">
-            <div class="top-item__bar-track">
-              <div class="top-item__bar-fill" [style.width.%]="getPct(u.resueltos, u.asignados)" [style.background]="getPct(u.resueltos, u.asignados) >= 80 ? '#0a6e45' : getPct(u.resueltos, u.asignados) >= 60 ? '#f59e0b' : '#ef4444'"></div>
+  </div>
+  <div class="page-panel row__panel row__panel--1">
+    <div class="page-panel__header">Top Gestores — Tasa de Resolución</div>
+    <div class="page-panel__body">
+      <div class="top-list">
+        @for (u of topUsuarios; track u.nombre; let i = $index) {
+          <div class="top-item">
+            <span class="top-item__rank" [class.top-item__rank--gold]="i === 0" [class.top-item__rank--silver]="i === 1" [class.top-item__rank--bronze]="i === 2">{{ i + 1 }}</span>
+            <div class="top-item__info">
+              <span class="top-item__name">{{ u.nombre }}</span>
+              <span class="top-item__role">{{ u.rol }} · {{ u.asignados }} casos</span>
             </div>
-            <span class="top-item__pct">{{ getPct(u.resueltos, u.asignados) }}%</span>
+            <div class="top-item__bar">
+              <div class="top-item__bar-track">
+                <div class="top-item__bar-fill" [style.width.%]="getPct(u.resueltos, u.asignados)" [style.background]="getPct(u.resueltos, u.asignados) >= 80 ? '#009056' : getPct(u.resueltos, u.asignados) >= 60 ? '#f59e0b' : '#ef4444'"></div>
+              </div>
+              <span class="top-item__pct">{{ getPct(u.resueltos, u.asignados) }}%</span>
+            </div>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
-  </p-panel>
+  </div>
 </section>
 
 <!-- Accesos rápidos -->

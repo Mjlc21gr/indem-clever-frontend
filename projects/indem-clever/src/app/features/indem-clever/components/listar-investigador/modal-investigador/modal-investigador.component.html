@@ -1,14 +1,29 @@
-<p-dialog header="Gestión Investigador" [visible]="visible()" (visibleChange)="onVisibleChange($event)" [modal]="true" [draggable]="false" [maximizable]="true" [closable]="true" [style]="{ width: '90vw' }" styleClass="app-dialog-constrained" (onHide)="close()">
-  <app-seccion-formulario-dinamico legend="Datos del Asegurado" [campos]="camposAsegurado" [valores]="valoresAsegurado()" (valoresChange)="valoresAsegurado.set($event)" />
-  <app-seccion-formulario-dinamico legend="Información del Radicado" [campos]="camposRadicado" [valores]="valoresRadicado()" (valoresChange)="valoresRadicado.set($event)" />
-  <app-seccion-formulario-dinamico legend="Información del Siniestro" [campos]="camposSiniestro" [valores]="valoresSiniestro()" (valoresChange)="valoresSiniestro.set($event)" />
-  <app-seccion-panel-generico header="Historial del Caso" emptyMessage="Sin historial registrado." />
-  <app-seccion-panel-generico header="Documentos del Caso" emptyMessage="Sin documentos registrados." />
-  <app-seccion-formulario-dinamico legend="Datos Específicos: Investigador" [campos]="camposInvestigador" [valores]="valoresInvestigador()" (valoresChange)="valoresInvestigador.set($event)" />
-  <app-seccion-archivos />
-  <app-seccion-observaciones-generica legend="Observaciones del Proveedor" [(valor)]="observacionProveedor" />
-  <ng-template #footer>
-    <app-boton-accion label="Cerrar" icon="pi pi-times" severity="secondary" (accion)="close()" />
-    <app-boton-accion label="Completar Movilización" icon="pi pi-check" severity="success" (accion)="completar()" />
-  </ng-template>
-</p-dialog>
+@if (visible()) {
+  <div class="modal-overlay" [class.modal-overlay--maximized]="maximized" (click)="maximized ? null : close()">
+    <div class="modal-container" [class.modal-container--maximized]="maximized" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-header__title">Gestión Investigador</span>
+        <div class="modal-header__actions">
+          <button class="modal-header__btn" (click)="toggleMaximize()" [title]="maximized ? 'Restaurar' : 'Maximizar'">
+            <i [class]="maximized ? 'fa-solid fa-compress' : 'fa-solid fa-expand'"></i>
+          </button>
+          <button class="modal-header__btn" (click)="close()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <app-seccion-formulario-dinamico legend="Datos del Asegurado" [campos]="camposAsegurado" [valores]="valoresAsegurado()" (valoresChange)="valoresAsegurado.set($event)" />
+        <app-seccion-formulario-dinamico legend="Información del Radicado" [campos]="camposRadicado" [valores]="valoresRadicado()" (valoresChange)="valoresRadicado.set($event)" />
+        <app-seccion-formulario-dinamico legend="Información del Siniestro" [campos]="camposSiniestro" [valores]="valoresSiniestro()" (valoresChange)="valoresSiniestro.set($event)" />
+        <app-seccion-panel-generico header="Historial del Caso" emptyMessage="Sin historial registrado." />
+        <app-seccion-panel-generico header="Documentos del Caso" emptyMessage="Sin documentos registrados." />
+        <app-seccion-formulario-dinamico legend="Datos Específicos: Investigador" [campos]="camposInvestigador" [valores]="valoresInvestigador()" (valoresChange)="valoresInvestigador.set($event)" />
+        <app-seccion-archivos />
+        <app-seccion-observaciones-generica legend="Observaciones del Proveedor" [(valor)]="observacionProveedor" />
+      </div>
+      <div class="modal-footer">
+        <app-boton-accion label="Cerrar" icon="fa-solid fa-xmark" severity="secondary" (accion)="close()" />
+        <app-boton-accion label="Completar Movilización" icon="fa-solid fa-check" severity="success" (accion)="completar()" />
+      </div>
+    </div>
+  </div>
+}

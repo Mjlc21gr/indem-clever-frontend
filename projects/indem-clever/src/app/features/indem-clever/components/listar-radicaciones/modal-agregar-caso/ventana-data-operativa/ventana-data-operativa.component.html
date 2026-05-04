@@ -4,7 +4,7 @@
   (consultar)="consultarDataOperativa()" />
 
 @if (showResultadosData()) {
-  <p-divider />
+  <hr style="border: none; border-top: 1px solid #e1e1e1; margin: 0.75rem 0" />
 
   <app-seccion-formulario-dinamico
     legend="Datos del Asegurado"
@@ -12,7 +12,7 @@
     [valores]="valoresDatosAsegurado()"
     (valoresChange)="valoresDatosAsegurado.set($event)" />
 
-  <p-divider />
+  <hr style="border: none; border-top: 1px solid #e1e1e1; margin: 0.75rem 0" />
 
   <app-seccion-formulario-dinamico
     legend="Demográfica"
@@ -20,7 +20,7 @@
     [valores]="valoresDemografica()"
     (valoresChange)="valoresDemografica.set($event)" />
 
-  <p-divider />
+  <hr style="border: none; border-top: 1px solid #e1e1e1; margin: 0.75rem 0" />
 
   <app-seccion-panel-generico header="Portafolio" emptyMessage="Sin datos de portafolio." />
   <app-seccion-panel-generico header="Siniestros" emptyMessage="Sin datos de siniestros." />

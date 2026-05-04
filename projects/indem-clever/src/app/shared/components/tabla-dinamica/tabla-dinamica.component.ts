@@ -1,29 +1,15 @@
 import { Component, input, output, computed, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TableModule } from 'primeng/table';
-import { InputText } from 'primeng/inputtext';
-import { Button } from 'primeng/button';
-import { Tag } from 'primeng/tag';
-import { IconField } from 'primeng/iconfield';
-import { InputIcon } from 'primeng/inputicon';
-import { Tooltip } from 'primeng/tooltip';
 import { CurrencyPipe } from '@angular/common';
 
 /** Definición de una columna para la tabla dinámica. */
 export interface ColumnaTabla {
-  /** Clave del campo en el objeto de datos. */
   field: string;
-  /** Texto del encabezado de la columna. */
   header: string;
-  /** Tipo de dato para renderizado especial. */
   type?: 'text' | 'date' | 'currency' | 'tag' | 'boolean';
-  /** Si la columna es ordenable. */
   sortable?: boolean;
-  /** Si la columna es filtrable. */
   filterable?: boolean;
-  /** Ancho fijo de la columna (ej: '120px'). */
   width?: string;
-  /** Mapeo de valores para columnas tipo 'tag' (valor → { label, severity }). */
   tagMap?: Record<string, { label: string; severity: string }>;
 }
 
@@ -41,106 +27,191 @@ export interface AccionFila<T = unknown> {
 }
 
 /**
- * Tabla dinámica reutilizable.
- *
- * Recibe columnas y datos como inputs, se adapta automáticamente
- * al número de columnas y tipos de datos de cada módulo.
+ * Tabla dinámica reutilizable — sb-ui.
+ * Sorting, filtering, paginación, selección múltiple y acciones por fila.
+ * Sin dependencias de PrimeNG.
  */
 @Component({
   selector: 'app-tabla-dinamica',
-  imports: [
-    FormsModule,
-    CurrencyPipe,
-    TableModule,
-    InputText,
-    Button,
-    Tag,
-    IconField,
-    InputIcon,
-    Tooltip,
-  ],
+  imports: [FormsModule, CurrencyPipe],
   templateUrl: './tabla-dinamica.component.html',
-  styleUrl: './tabla-dinamica.component.scss',
+  styleUrls: ['./tabla-dinamica.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TablaDinamicaComponent {
-  /** Definición de columnas. */
   columnas = input.required<ColumnaTabla[]>();
-
-  /** Datos a mostrar en la tabla. */
   datos = input<unknown[]>([]);
-
-  /** Si la tabla está cargando datos. */
   loading = input(false);
-
-  /** Número de filas por página. */
   rowsPerPage = input(10);
-
-  /** Opciones de filas por página. */
   rowsPerPageOptions = input([10, 25, 50]);
-
-  /** Si se muestra el buscador global. */
   showGlobalFilter = input(true);
-
-  /** Si se muestra el paginador. */
   showPaginator = input(true);
-
-  /** Si las filas son seleccionables. */
   selectable = input(false);
-
-  /** Modo de selección: 'single' o 'multiple'. */
   selectionMode = input<'single' | 'multiple'>('single');
-
-  /** Campo clave para identificar filas (requerido para selección múltiple). */
   dataKey = input('id');
-
-  /** Texto cuando no hay datos. */
   emptyMessage = input('No se encontraron registros.');
-
-  /** Si se muestra la columna de acciones. */
   showActions = input(false);
-
-  /** Etiqueta del encabezado de acciones. */
   actionsHeader = input('Acciones');
-
-  /** Ancho de la columna de acciones. */
   actionsWidth = input('100px');
-
-  /** Acciones disponibles por fila. */
   acciones = input<{ action: string; icon: string; tooltip: string; severity?: string }[]>([]);
 
-  /** Emite cuando se selecciona una fila. */
   readonly filaSeleccionada = output<FilaSeleccionada>();
-
-  /** Emite cuando se ejecuta una acción en una fila. */
   readonly accionEjecutada = output<AccionFila>();
 
-  /** Campos ordenables para el componente. */
-  camposOrdenables = computed(() =>
-    this.columnas().filter(c => c.sortable).map(c => c.field)
-  );
+  /** Estado interno */
+  globalFilter = signal('');
+  sortField = signal('');
+  sortOrder = signal<1 | -1>(1);
+  currentPage = signal(0);
+  selectedKeys = signal<Set<string>>(new Set());
 
-  /** Campos filtrables para el buscador global. */
-  camposFiltrables = computed(() =>
-    this.columnas().filter(c => c.filterable !== false).map(c => c.field)
-  );
+  /** Datos filtrados por búsqueda global. */
+  private filteredData = computed(() => {
+    const filter = this.globalFilter().toLowerCase().trim();
+    const data = this.datos();
+    if (!filter) return data;
+    const fields = this.columnas().filter(c => c.filterable !== false).map(c => c.field);
+    return data.filter(row => {
+      return fields.some(f => {
+        const val = this.getFieldValue(row, f);
+        return val != null && String(val).toLowerCase().includes(filter);
+      });
+    });
+  });
 
-  /** Valor del filtro global. */
-  globalFilterValue = signal('');
+  /** Datos filtrados + ordenados. */
+  private sortedData = computed(() => {
+    const data = [...this.filteredData()];
+    const field = this.sortField();
+    const order = this.sortOrder();
+    if (!field) return data;
+    return data.sort((a, b) => {
+      const va = this.getFieldValue(a, field);
+      const vb = this.getFieldValue(b, field);
+      if (va == null && vb == null) return 0;
+      if (va == null) return 1;
+      if (vb == null) return -1;
+      const sa = String(va);
+      const sb = String(vb);
+      const na = Number(va);
+      const nb = Number(vb);
+      if (!isNaN(na) && !isNaN(nb)) return (na - nb) * order;
+      return sa.localeCompare(sb) * order;
+    });
+  });
 
-  /** Fila(s) seleccionada(s). */
-  selection = signal<unknown>(null);
+  /** Datos paginados (lo que se muestra en la tabla). */
+  paginatedData = computed(() => {
+    const data = this.sortedData();
+    if (!this.showPaginator()) return data;
+    const start = this.currentPage() * this.rowsPerPage();
+    return data.slice(start, start + this.rowsPerPage());
+  });
 
-  /** Aplica el filtro global sobre la tabla. */
-  onGlobalFilter(value: string, table: { filterGlobal: (value: string, matchMode: string) => void }): void {
-    this.globalFilterValue.set(value);
-    table.filterGlobal(value, 'contains');
+  /** Total de registros filtrados. */
+  totalRecords = computed(() => this.filteredData().length);
+
+  /** Total de páginas. */
+  totalPages = computed(() => Math.ceil(this.totalRecords() / this.rowsPerPage()));
+
+  /** Array de números de página para el paginador. */
+  pageNumbers = computed(() => {
+    const total = this.totalPages();
+    const current = this.currentPage();
+    const pages: number[] = [];
+    const maxVisible = 5;
+    let start = Math.max(0, current - Math.floor(maxVisible / 2));
+    const end = Math.min(total, start + maxVisible);
+    start = Math.max(0, end - maxVisible);
+    for (let i = start; i < end; i++) pages.push(i);
+    return pages;
+  });
+
+  /** Total de columnas (para colspan del empty message). */
+  totalCols = computed(() => {
+    let cols = this.columnas().length;
+    if (this.showActions()) cols++;
+    if (this.selectable() && this.selectionMode() === 'multiple') cols++;
+    return cols;
+  });
+
+  /** Si todos los items de la página actual están seleccionados. */
+  allSelected = computed(() => {
+    const data = this.paginatedData();
+    if (data.length === 0) return false;
+    const keys = this.selectedKeys();
+    return data.every(row => keys.has(this.getRowKey(row)));
+  });
+
+  /** Ordena por una columna. */
+  toggleSort(col: ColumnaTabla): void {
+    if (!col.sortable) return;
+    if (this.sortField() === col.field) {
+      this.sortOrder.set(this.sortOrder() === 1 ? -1 : 1);
+    } else {
+      this.sortField.set(col.field);
+      this.sortOrder.set(1);
+    }
   }
 
-  /** Maneja la selección de una fila. */
-  onRowSelect(event: unknown): void {
-    const e = event as { data: unknown };
-    this.filaSeleccionada.emit({ data: e.data, index: 0 });
+  /** Texto de sort para una columna (Unicode, no depende de fuentes). */
+  getSortText(field: string): string {
+    if (this.sortField() !== field) return '⇅';
+    return this.sortOrder() === 1 ? '↑' : '↓';
+  }
+
+  /** Cambia de página. */
+  goToPage(page: number): void {
+    if (page >= 0 && page < this.totalPages()) {
+      this.currentPage.set(page);
+    }
+  }
+
+  /** Cambia filas por página. */
+  onRowsPerPageChange(value: string): void {
+    this.currentPage.set(0);
+    // rowsPerPage is an input, we need to handle this differently
+    // For now, the parent controls rowsPerPage
+  }
+
+  /** Aplica filtro global. */
+  onFilterChange(value: string): void {
+    this.globalFilter.set(value);
+    this.currentPage.set(0);
+  }
+
+  /** Toggle selección de una fila. */
+  toggleRowSelection(row: unknown): void {
+    const key = this.getRowKey(row);
+    const keys = new Set(this.selectedKeys());
+    if (keys.has(key)) {
+      keys.delete(key);
+    } else {
+      keys.add(key);
+    }
+    this.selectedKeys.set(keys);
+  }
+
+  /** Toggle selección de todas las filas de la página. */
+  toggleAllSelection(): void {
+    const data = this.paginatedData();
+    const keys = new Set(this.selectedKeys());
+    if (this.allSelected()) {
+      data.forEach(row => keys.delete(this.getRowKey(row)));
+    } else {
+      data.forEach(row => keys.add(this.getRowKey(row)));
+    }
+    this.selectedKeys.set(keys);
+  }
+
+  /** Verifica si una fila está seleccionada. */
+  isSelected(row: unknown): boolean {
+    return this.selectedKeys().has(this.getRowKey(row));
+  }
+
+  /** Obtiene la key de una fila. */
+  getRowKey(row: unknown): string {
+    return String(this.getFieldValue(row, this.dataKey()) ?? '');
   }
 
   /** Ejecuta una acción sobre una fila. */
@@ -148,13 +219,11 @@ export class TablaDinamicaComponent {
     this.accionEjecutada.emit({ action, data: rowData, index: rowIndex });
   }
 
-  /** Obtiene el valor de un campo del objeto de datos. */
+  /** Obtiene el valor de un campo (soporta dot notation). */
   getFieldValue(row: unknown, field: string): unknown {
     const obj = row as Record<string, unknown>;
     return field.split('.').reduce<unknown>((acc, key) => {
-      if (acc && typeof acc === 'object') {
-        return (acc as Record<string, unknown>)[key];
-      }
+      if (acc && typeof acc === 'object') return (acc as Record<string, unknown>)[key];
       return undefined;
     }, obj);
   }
@@ -162,21 +231,60 @@ export class TablaDinamicaComponent {
   /** Obtiene la configuración de tag para un valor. */
   getTagConfig(col: ColumnaTabla, value: unknown): { label: string; severity: string } {
     if (col.tagMap && value != null) {
-      return col.tagMap[String(value)] ?? { label: String(value), severity: 'info' };
+      return col.tagMap[String(value)] ?? { label: String(value), severity: 'default' };
     }
-    return { label: String(value ?? ''), severity: 'info' };
+    return { label: String(value ?? ''), severity: 'default' };
   }
 
-  /** Obtiene el valor numérico de un campo para el pipe currency. */
+  /** Obtiene el valor numérico de un campo. */
   getNumericValue(row: unknown, field: string): number {
     const val = this.getFieldValue(row, field);
     return typeof val === 'number' ? val : 0;
   }
 
-  /** Obtiene el severity tipado para PrimeNG components. */
-  getSeverity(value: string | undefined): 'success' | 'info' | 'warn' | 'danger' | 'secondary' | 'contrast' {
-    const valid = ['success', 'info', 'warn', 'danger', 'secondary', 'contrast'] as const;
-    type Severity = typeof valid[number];
-    return valid.includes(value as Severity) ? (value as Severity) : 'info';
+  /** Mapea severity a clase sb-ui-chip. */
+  getChipClass(severity: string): string {
+    const map: Record<string, string> = {
+      success: 'sb-ui-chip--primary sb-ui-chip--soft',
+      info: 'sb-ui-chip--soft',
+      warn: 'sb-ui-chip--soft',
+      warning: 'sb-ui-chip--soft',
+      danger: 'sb-ui-chip--error sb-ui-chip--soft',
+      error: 'sb-ui-chip--error sb-ui-chip--soft',
+      secondary: 'sb-ui-chip--soft',
+      contrast: 'sb-ui-chip--soft',
+      default: 'sb-ui-chip--soft',
+    };
+    return map[severity] ?? 'sb-ui-chip--soft';
   }
+
+  /** Mapea severity a clase sb-ui-badge (legacy). */
+  getBadgeClass(severity: string): string {
+    const map: Record<string, string> = {
+      success: 'sb-ui-badge--success',
+      info: 'sb-ui-badge--info',
+      warn: 'sb-ui-badge--warning',
+      warning: 'sb-ui-badge--warning',
+      danger: 'sb-ui-badge--error',
+      error: 'sb-ui-badge--error',
+      secondary: 'sb-ui-badge--default',
+      contrast: 'sb-ui-badge--default',
+    };
+    return map[severity] ?? 'sb-ui-badge--default';
+  }
+
+  /** Mapea severity a clase sb-ui-button. */
+  getActionBtnClass(severity?: string): string {
+    const map: Record<string, string> = {
+      success: 'sb-ui-button--primary',
+      info: 'sb-ui-button--secondary',
+      warn: 'sb-ui-button--error',
+      danger: 'sb-ui-button--error',
+    };
+    return map[severity ?? ''] ?? 'sb-ui-button--secondary';
+  }
+
+  /** Rango de registros mostrados. */
+  rangeStart = computed(() => this.totalRecords() === 0 ? 0 : this.currentPage() * this.rowsPerPage() + 1);
+  rangeEnd = computed(() => Math.min((this.currentPage() + 1) * this.rowsPerPage(), this.totalRecords()));
 }

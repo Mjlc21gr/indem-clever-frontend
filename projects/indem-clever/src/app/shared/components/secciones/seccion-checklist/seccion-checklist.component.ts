@@ -1,12 +1,10 @@
 import { Component, model, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Checkbox } from 'primeng/checkbox';
-import { Fieldset } from 'primeng/fieldset';
 
-/** Sección: Checklist de Documentos (Mesa de Perfeccionamiento). */
+/** Sección: Checklist de Documentos — sb-ui. */
 @Component({
   selector: 'app-seccion-checklist',
-  imports: [FormsModule, Checkbox, Fieldset],
+  imports: [FormsModule],
   templateUrl: './seccion-checklist.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

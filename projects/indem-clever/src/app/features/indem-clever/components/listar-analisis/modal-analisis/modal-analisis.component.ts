@@ -1,11 +1,18 @@
 import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Dialog } from 'primeng/dialog';
-import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionPanelGenericoComponent, SeccionArchivosComponent, SeccionAnalisisIaComponent, SeccionDecisionComponent, BotonAccionComponent } from '@shared';
+import {
+  SeccionFormularioDinamicoComponent, type CampoFormulario,
+  SeccionPanelGenericoComponent, SeccionArchivosComponent,
+  SeccionAnalisisIaComponent, SeccionDecisionComponent,
+  BotonAccionComponent,
+} from '@shared';
 
+/**
+ * Modal de Análisis de Caso — sb-ui.
+ * Usado por listar-analisis, listar-analisis-linea y listar-mis-analisis.
+ */
 @Component({
   selector: 'app-modal-analisis',
   imports: [
-    Dialog,
     SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent,
     SeccionArchivosComponent, SeccionAnalisisIaComponent,
     SeccionDecisionComponent, BotonAccionComponent,
@@ -76,10 +83,14 @@ export class ModalAnalisisComponent {
   valoresSiniestro = signal<Record<string, string>>({});
   valoresBancaria = signal<Record<string, string>>({});
   valoresOpenL = signal<Record<string, string>>({});
-  observacionAnalista = signal('');
+  maximized = false;
 
-  close(): void { this.onClose.emit(); }
-  onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
+  /** Cierra el modal. */
+  close(): void { this.maximized = false; this.onClose.emit(); }
+
+  /** Alterna entre maximizado y normal. */
+  toggleMaximize(): void { this.maximized = !this.maximized; }
+
   /** TODO: Conectar al backend — guardar documentos adjuntos. */
   guardarDocumentos(): void { /* TODO: implementar */ }
 

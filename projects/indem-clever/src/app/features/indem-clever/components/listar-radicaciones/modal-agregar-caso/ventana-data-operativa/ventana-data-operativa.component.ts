@@ -1,10 +1,9 @@
 import { Component, model, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Divider } from 'primeng/divider';
 import { SeccionConsultaComponent, SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent, type CampoFormulario } from '@shared';
 
 @Component({
   selector: 'app-ventana-data-operativa',
-  imports: [Divider, SeccionConsultaComponent, SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent],
+  imports: [SeccionConsultaComponent, SeccionFormularioDinamicoComponent, SeccionPanelGenericoComponent],
   templateUrl: './ventana-data-operativa.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -33,6 +32,7 @@ export class VentanaDataOperativaComponent {
   valoresDatosAsegurado = signal<Record<string, string>>({});
   valoresDemografica = signal<Record<string, string>>({});
 
+  /** Ejecuta la consulta de data operativa. */
   consultarDataOperativa(): void {
     this.showResultadosData.set(true);
   }

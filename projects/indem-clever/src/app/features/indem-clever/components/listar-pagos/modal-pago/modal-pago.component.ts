@@ -1,10 +1,9 @@
 import { Component, input, output, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Dialog } from 'primeng/dialog';
 import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionAnalisisIaComponent, SeccionPanelGenericoComponent, BotonAccionComponent } from '@shared';
 
 @Component({
   selector: 'app-modal-pago',
-  imports: [Dialog, SeccionFormularioDinamicoComponent, SeccionAnalisisIaComponent, SeccionPanelGenericoComponent, BotonAccionComponent],
+  imports: [SeccionFormularioDinamicoComponent, SeccionAnalisisIaComponent, SeccionPanelGenericoComponent, BotonAccionComponent],
   templateUrl: './modal-pago.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -72,6 +71,11 @@ export class ModalPagoComponent {
   valoresBancaria = signal<Record<string, string>>({});
   valoresOpenL = signal<Record<string, string>>({});
 
-  close(): void { this.onClose.emit(); }
-  onVisibleChange(v: boolean): void { if (!v) { this.onClose.emit(); } }
+  maximized = false;
+
+  /** Cierra el modal. */
+  close(): void { this.maximized = false; this.onClose.emit(); }
+
+  /** Alterna entre maximizado y normal. */
+  toggleMaximize(): void { this.maximized = !this.maximized; }
 }

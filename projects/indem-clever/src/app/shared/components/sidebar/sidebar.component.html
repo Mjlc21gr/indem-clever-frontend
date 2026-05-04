@@ -1,32 +1,48 @@
-<p-scrollPanel [style]="{ width: '100%', height: '100%' }" styleClass="sidebar__scroll">
+<div class="sidebar__scroll">
   @if (!collapsed()) {
-    <p-image
-      src="https://raw.githubusercontent.com/Mjlc21gr/Synapse/main/Img/CleverFlow.png"
-      alt="CleverFlow Logo"
-      width="48"
-      styleClass="sidebar__logo" />
+    <!-- Logo -->
+    <div class="sidebar__logo">
+      <img src="https://raw.githubusercontent.com/Mjlc21gr/Synapse/main/Img/CleverFlow.png" alt="CleverFlow Logo" width="48" height="48" />
+    </div>
+    <hr class="sidebar__divider" />
 
-    <p-divider styleClass="sidebar__divider" />
-
-    <p-panelMenu
-      [model]="menuItems"
-      [multiple]="true"
-      styleClass="sidebar__menu" />
-  } @else {
-    @for (item of collapsedItems; track item.routerLink) {
-      @if (item.isFirstInGroup && !$first) {
-        <p-divider styleClass="sidebar__icon-divider" />
+    <!-- Menu expandido -->
+    <nav class="sb-ui-menu sb-ui-menu--vertical sb-ui-menu--collapsible">
+      @for (group of menuGroups; track group.label) {
+        <div class="sidebar__group">
+          <button class="sidebar__group-header" (click)="toggleGroup(group)">
+            <i [class]="group.icon" class="sidebar__group-icon"></i>
+            <span class="sidebar__group-label">{{ group.label }}</span>
+            <i class="fa-solid fa-chevron-down sidebar__group-arrow" [class.sidebar__group-arrow--collapsed]="!group.expanded"></i>
+          </button>
+          @if (group.expanded) {
+            <div class="sidebar__group-items">
+              @for (item of group.items; track item.routerLink) {
+                <a class="sidebar__item" [routerLink]="item.routerLink" (click)="itemSelected.emit()">
+                  <i [class]="item.icon" class="sidebar__item-icon"></i>
+                  <span class="sidebar__item-label">{{ item.label }}</span>
+                </a>
+              }
+            </div>
+          }
+        </div>
       }
-      <p-button
-        [icon]="item.icon"
-        [rounded]="true"
-        [text]="true"
-        severity="contrast"
-        [pTooltip]="item.label"
-        tooltipPosition="right"
-        [routerLink]="item.routerLink"
-        (onClick)="itemSelected.emit()"
-        styleClass="sidebar__icon-btn" />
-    }
+    </nav>
+  } @else {
+    <!-- Menu colapsado (solo iconos) -->
+    <div class="sidebar__collapsed-items">
+      @for (item of collapsedItems; track item.routerLink) {
+        @if (item.isFirstInGroup && !$first) {
+          <hr class="sidebar__icon-divider" />
+        }
+        <a
+          class="sidebar__icon-btn"
+          [routerLink]="item.routerLink"
+          [title]="item.label"
+          (click)="itemSelected.emit()">
+          <i [class]="item.icon"></i>
+        </a>
+      }
+    </div>
   }
-</p-scrollPanel>
+</div>

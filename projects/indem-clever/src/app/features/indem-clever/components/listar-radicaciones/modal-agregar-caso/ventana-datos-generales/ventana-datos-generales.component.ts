@@ -1,11 +1,9 @@
 import { Component, model, output, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Divider } from 'primeng/divider';
 import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionArchivosComponent, SeccionPanelGenericoComponent, SeccionObservacionesGenericaComponent } from '@shared';
 
 @Component({
   selector: 'app-ventana-datos-generales',
   imports: [
-    Divider,
     SeccionFormularioDinamicoComponent,
     SeccionArchivosComponent,
     SeccionPanelGenericoComponent,

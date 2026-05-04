@@ -1,57 +1,28 @@
-<p-dialog
-  header="Detalle de Objeción"
-  [visible]="visible()"
-  (visibleChange)="onVisibleChange($event)"
-  [modal]="true"
-  [draggable]="false"
-  [maximizable]="true"
-  [closable]="true"
-  [style]="{ width: '90vw' }"
-  styleClass="app-dialog-constrained"
-  (onHide)="close()">
-
-  <app-seccion-formulario-dinamico
-    legend="Información del Asegurado"
-    [campos]="camposAsegurado"
-    [valores]="valoresAsegurado()"
-    (valoresChange)="valoresAsegurado.set($event)" />
-
-  <app-seccion-formulario-dinamico
-    legend="Información del Radicado"
-    [campos]="camposRadicado"
-    [valores]="valoresRadicado()"
-    (valoresChange)="valoresRadicado.set($event)" />
-
-  <app-seccion-formulario-dinamico
-    legend="Información del Siniestro"
-    [campos]="camposSiniestro"
-    [valores]="valoresSiniestro()"
-    (valoresChange)="valoresSiniestro.set($event)" />
-
-  <app-seccion-formulario-dinamico
-    legend="Información Bancaria"
-    [campos]="camposBancaria"
-    [valores]="valoresBancaria()"
-    (valoresChange)="valoresBancaria.set($event)" />
-
-  <app-seccion-formulario-dinamico
-    legend="Sugerencia Final (OpenL)"
-    [campos]="camposOpenL"
-    [valores]="valoresOpenL()"
-    (valoresChange)="valoresOpenL.set($event)" />
-
-  <app-seccion-analisis-ia />
-
-  <app-seccion-panel-generico
-    header="Resumen del Caso"
-    emptyMessage="Cargando historial del caso..." />
-
-  <app-seccion-panel-generico
-    header="Enlaces del Caso"
-    emptyMessage="No hay enlaces de documentos cargados." />
-
-  <ng-template #footer>
-    <app-boton-accion label="Cerrar" icon="pi pi-times" severity="secondary" (accion)="close()" />
-  </ng-template>
-
-</p-dialog>
+@if (visible()) {
+  <div class="modal-overlay" [class.modal-overlay--maximized]="maximized" (click)="maximized ? null : close()">
+    <div class="modal-container" [class.modal-container--maximized]="maximized" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-header__title">Detalle de Objeción</span>
+        <div class="modal-header__actions">
+          <button class="modal-header__btn" (click)="toggleMaximize()" [title]="maximized ? 'Restaurar' : 'Maximizar'">
+            <i [class]="maximized ? 'fa-solid fa-compress' : 'fa-solid fa-expand'"></i>
+          </button>
+          <button class="modal-header__btn" (click)="close()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <app-seccion-formulario-dinamico legend="Información del Asegurado" [campos]="camposAsegurado" [valores]="valoresAsegurado()" (valoresChange)="valoresAsegurado.set($event)" />
+        <app-seccion-formulario-dinamico legend="Información del Radicado" [campos]="camposRadicado" [valores]="valoresRadicado()" (valoresChange)="valoresRadicado.set($event)" />
+        <app-seccion-formulario-dinamico legend="Información del Siniestro" [campos]="camposSiniestro" [valores]="valoresSiniestro()" (valoresChange)="valoresSiniestro.set($event)" />
+        <app-seccion-formulario-dinamico legend="Información Bancaria" [campos]="camposBancaria" [valores]="valoresBancaria()" (valoresChange)="valoresBancaria.set($event)" />
+        <app-seccion-formulario-dinamico legend="Sugerencia Final (OpenL)" [campos]="camposOpenL" [valores]="valoresOpenL()" (valoresChange)="valoresOpenL.set($event)" />
+        <app-seccion-analisis-ia />
+        <app-seccion-panel-generico header="Resumen del Caso" emptyMessage="Cargando historial del caso..." />
+        <app-seccion-panel-generico header="Enlaces del Caso" emptyMessage="No hay enlaces de documentos cargados." />
+      </div>
+      <div class="modal-footer">
+        <app-boton-accion label="Cerrar" icon="fa-solid fa-xmark" severity="secondary" (accion)="close()" />
+      </div>
+    </div>
+  </div>
+}

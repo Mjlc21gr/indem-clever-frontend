@@ -1,7 +1,6 @@
 :host {
   display: block;
   width: 100%;
-  overflow: hidden;
 }
 
 .tabla-toolbar {
@@ -9,56 +8,115 @@
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 0.75rem;
-  gap: 0.5rem;
 }
 
-.tabla-search {
+.tabla-toolbar__search {
+  position: relative;
   min-width: 220px;
   max-width: 320px;
+}
+
+.tabla-toolbar__search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--app-text-muted);
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+.tabla-toolbar__search-input {
+  padding-left: 2.25rem;
   width: 100%;
 }
 
-.tabla-acciones-header {
-  text-align: center;
+/* Contenedor de tabla con scroll solo cuando es necesario */
+.sb-ui-table-container {
+  border-radius: 8px;
+  overflow-x: auto;
 }
 
-.tabla-acciones-cell {
+/* La tabla usa auto layout — columnas se ajustan al contenido */
+.sb-ui-table-container table {
+  width: 100%;
+}
+
+/* Celdas: texto truncado con ellipsis para datos largos */
+.sb-ui-table-container td {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Headers: permitir wrap para que no se corten */
+.sb-ui-table-container th {
+  white-space: nowrap;
+}
+
+.tabla-loading {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.125rem;
+  padding: 2rem;
+}
+
+.tabla-acciones {
+  text-align: center;
+  white-space: nowrap;
+
+  .sb-ui-button {
+    margin: 0 1px;
+  }
 }
 
 .tabla-empty {
   text-align: center;
-  padding: 3rem 1rem !important;
+  padding: 3rem 1rem;
 }
 
-.tabla-empty-content {
+.tabla-empty__content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  color: var(--p-text-muted-color, #94a3b8);
+  color: var(--app-text-muted);
 
-  i {
-    font-size: 2.5rem;
-    opacity: 0.5;
-  }
-
-  span {
-    font-size: 0.875rem;
-  }
+  i { font-size: 2.5rem; opacity: 0.5; }
+  span { font-size: 0.875rem; }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .tabla-toolbar {
-    justify-content: stretch;
-  }
+th.sortable {
+  cursor: pointer;
+  user-select: none;
+  &:hover { opacity: 0.85; }
+}
 
-  .tabla-search {
+.sort-indicator {
+  margin-left: 0.25rem;
+  font-size: 0.625rem;
+  opacity: 0.5;
+}
+
+.col-checkbox {
+  width: 2.5rem;
+  text-align: center;
+}
+
+.col-acciones {
+  width: auto;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .tabla-toolbar__search {
     min-width: 0;
     max-width: none;
+    width: 100%;
+  }
+
+  .tabla-toolbar {
+    justify-content: stretch;
   }
 }

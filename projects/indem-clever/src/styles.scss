@@ -1,318 +1,75 @@
 /* ============================================
-   Global Styles — CleverFlow
-   Paleta Seguros Bolívar:
-     Verde corporativo: #0a6e45
-     Verde oscuro:      #0d3b2a
-     Dorado acento:     #f2c010
+   Global Styles — Clever Indem
+   Design System: Seguros Bolívar UI (sb-ui)
    ============================================ */
 
 :root {
   --app-topbar-height: 3.5rem;
   --app-sidebar-width: 16rem;
   --app-sidebar-collapsed-width: 4rem;
-  --app-sidebar-bg: #ffffff;
-  --app-topbar-bg: #0a6e45;
-  --app-accent: #f2c010;
-  --app-accent-hover: #d4a80e;
-  --app-radius: 0.5rem;
-  --app-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --app-radius: 8px;
+  --app-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
   --app-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --app-transition: 0.25s ease;
+
+  /* Colores de la librería sb-ui Seguros Bolívar */
+  --app-green: var(--sb-ui-color-primary-base, #009056);
+  --app-green-dark: var(--sb-ui-color-primary-D400, #0b613e);
+  --app-green-mid: var(--sb-ui-color-primary-D100, #038450);
+  --app-green-light: var(--sb-ui-color-primary-L300, #e5f4ee);
+  --app-gold: var(--sb-ui-color-secondary-base, #ffe16f);
+  --app-gold-dark: var(--sb-ui-color-secondary-D400, #ffc918);
+  --app-border: var(--sb-ui-color-grayscale-L200, #e0e0e0);
+  --app-bg: var(--sb-ui-color-grayscale-L400, #fafafa);
+  --app-surface: var(--sb-ui-color-grayscale-white, #ffffff);
+  --app-text: var(--sb-ui-color-grayscale-black, #1b1b1b);
+  --app-text-muted: var(--sb-ui-color-grayscale-base, #9b9b9b);
+  --app-error: var(--sb-ui-color-feedback-error-base, #dc3545);
 }
 
 /* Reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
-  font-family: var(--p-font-family, 'Inter', ui-sans-serif, system-ui, sans-serif);
   font-size: 14px;
-  color: var(--p-text-color);
-  background-color: var(--p-surface-ground, #f4f6f8);
+  background-color: var(--app-bg);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--p-surface-300, #cbd5e1);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--p-surface-400, #94a3b8);
-}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background-color: #94a3b8; }
 
 /* Links */
-a {
-  color: var(--p-primary-color);
-  text-decoration: none;
-
-  &:hover {
-    color: var(--p-primary-hover-color);
-  }
-}
+a { color: var(--app-green); text-decoration: none; }
+a:hover { color: var(--app-green-dark); }
 
 /* =============================================
-   PrimeNG Panel
+   sb-ui Table — dejar que la librería maneje los estilos nativos.
+   Solo ajustamos lo mínimo necesario.
    ============================================= */
-.p-panel {
-  .p-panel-header {
-    background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
-    color: #ffffff;
-    border: none;
-    border-radius: var(--app-radius) var(--app-radius) 0 0;
-    padding: 0.75rem 1.25rem;
-    font-weight: 600;
-    font-size: 0.9375rem;
-    border-bottom: 3px solid var(--app-accent);
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+.sb-ui-table {
+  width: 100%;
 
-  .p-panel-content {
-    border: 1px solid var(--p-surface-200, #e2e8f0);
-    border-top: none;
-    border-radius: 0 0 var(--app-radius) var(--app-radius);
-    padding: 1rem;
-    overflow-x: auto;
-  }
-
-  .p-panel-title {
-    color: #ffffff;
-    white-space: nowrap;
-  }
-
-  .p-panel-icons {
-    color: rgba(255, 255, 255, 0.7);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem;
-  }
-}
-
-/* =============================================
-   PrimeNG Card
-   ============================================= */
-.p-card {
-  border: 1px solid var(--p-surface-200, #e2e8f0);
-  box-shadow: var(--app-shadow-sm);
-  transition: box-shadow var(--app-transition), transform var(--app-transition);
-
-  &:hover {
-    box-shadow: var(--app-shadow-md);
-    transform: translateY(-2px);
-  }
-
-  .p-card-title {
-    color: #0a6e45;
-    font-size: 1rem;
-    font-weight: 600;
-  }
-
-  .p-card-body {
-    font-size: 0.875rem;
-    color: var(--p-text-muted-color, #64748b);
-    line-height: 1.6;
-  }
-}
-
-/* =============================================
-   PrimeNG Dialog
-   ============================================= */
-.p-dialog {
-  max-height: 90vh;
-  border-radius: var(--app-radius);
-  overflow: hidden;
-
-  .p-dialog-header {
-    background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
-    color: #ffffff;
-    border-bottom: 3px solid var(--app-accent);
-    padding: 0.875rem 1.25rem;
-
-    .p-dialog-title {
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .p-dialog-header-actions {
-      gap: 0.25rem;
-    }
-
-    .p-dialog-header-close,
-    .p-dialog-maximize-button {
-      color: rgba(255, 255, 255, 0.7);
-      border-radius: var(--app-radius);
-      transition: all var(--app-transition);
-
-      &:hover {
-        color: #ffffff;
-        background-color: rgba(255, 255, 255, 0.15);
-      }
+  thead th {
+    &.sortable {
+      cursor: pointer;
+      &:hover { opacity: 0.85; }
     }
   }
 
-  .p-dialog-content {
-    padding: 1.25rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  .p-dialog-footer {
-    padding: 0.75rem 1.25rem;
-    border-top: 1px solid var(--p-surface-200, #e2e8f0);
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-}
-
-/* =============================================
-   PrimeNG DataTable
-   ============================================= */
-.p-datatable {
-  border-radius: var(--app-radius);
-  overflow: hidden;
-
-  .p-datatable-thead > tr > th {
-    background: linear-gradient(135deg, #0a6e45 0%, #085a38 100%);
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    border: none;
-    padding: 0.625rem 0.75rem;
-    white-space: nowrap;
-  }
-
-  .p-datatable-tbody > tr {
-    transition: background-color var(--app-transition);
-
-    &:hover {
-      background-color: rgba(10, 110, 69, 0.04);
-    }
-
-    > td {
-      font-size: 0.8125rem;
-      padding: 0.5rem 0.75rem;
-      border-bottom: 1px solid var(--p-surface-200, #e2e8f0);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 200px;
-    }
-  }
-
-  .p-datatable-emptymessage td {
-    max-width: none;
-    white-space: normal;
-  }
-
-  /* Paginator */
-  .p-paginator {
-    padding: 0.5rem;
+  tbody tr td {
     font-size: 0.8125rem;
-    border-top: 1px solid var(--p-surface-200, #e2e8f0);
-  }
-
-  /* Sort icon */
-  .p-sortable-column-icon {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.75rem;
   }
 }
 
 /* =============================================
-   PrimeNG Fieldset
-   ============================================= */
-.p-fieldset {
-  border: 1px solid var(--p-surface-200, #e2e8f0);
-  border-radius: var(--app-radius);
-  margin-bottom: 0;
-
-  .p-fieldset-legend {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #0a6e45;
-    padding: 0.5rem 1rem;
-    border-radius: var(--app-radius);
-    background: var(--p-surface-0, #ffffff);
-  }
-
-  .p-fieldset-content {
-    padding: 0.75rem 0 0;
-  }
-}
-
-/* =============================================
-   PrimeNG Tabs
-   ============================================= */
-.p-tabs {
-  .p-tablist {
-    border-bottom: 2px solid var(--p-surface-200, #e2e8f0);
-  }
-
-  .p-tab {
-    font-size: 0.875rem;
-    font-weight: 500;
-    padding: 0.625rem 1rem;
-    transition: all var(--app-transition);
-
-    &.p-tab-active {
-      color: #0a6e45;
-      border-bottom-color: #0a6e45;
-    }
-  }
-}
-
-/* =============================================
-   PrimeNG Tag — compact
-   ============================================= */
-.p-tag {
-  font-size: 0.6875rem;
-  padding: 0.2rem 0.5rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* =============================================
-   PrimeNG Inputs — consistent sizing
-   ============================================= */
-.p-inputtext {
-  font-size: 0.8125rem;
-  padding: 0.5rem 0.75rem;
-}
-
-.p-textarea {
-  font-size: 0.8125rem;
-}
-
-.p-select {
-  font-size: 0.8125rem;
-}
-
-/* =============================================
-   Form Grid — global (usado por todos los modales)
+   Form Grid — global
    ============================================= */
 .form-grid {
   display: grid;
@@ -320,48 +77,308 @@ a {
   gap: 1rem;
   margin-top: 0.75rem;
 
-  &--2col {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  &--full {
-    grid-template-columns: 1fr;
-  }
-
-  label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: #374151;
-    min-width: 0;
-  }
+  &--2col { grid-template-columns: repeat(2, 1fr); }
+  &--full { grid-template-columns: 1fr; }
 }
 
-.form-radio-group {
+.form-group {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.form-checkbox-group {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.form-field-label {
-  font-size: 0.875rem;
-  font-weight: 600;
+.form-group__label {
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: #374151;
 }
 
-.required {
-  color: #dc3545;
+.required { color: #dc3545; }
+
+/* =============================================
+   Section card (fieldset replacement)
+   ============================================= */
+.section-card {
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  margin-bottom: 1rem;
+  background: var(--app-surface);
+  overflow: hidden;
 }
 
+.section-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 1rem;
+  background: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+  cursor: pointer;
+  user-select: none;
+
+  &:hover { background: #fafafa; }
+}
+
+.section-card__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--app-green);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-left: 3px solid var(--app-green);
+  padding-left: 0.625rem;
+}
+
+.section-card__toggle {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  transition: transform var(--app-transition);
+
+  &--collapsed { transform: rotate(-90deg); }
+}
+
+.section-card__body {
+  padding: 1rem;
+}
+
+/* =============================================
+   Modal overlay (for sb-ui-modal)
+   ============================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+
+  &--maximized {
+    top: var(--app-topbar-height, 3.5rem);
+    left: var(--app-sidebar-width, 16rem);
+    right: 0;
+    bottom: 0;
+    background: none;
+    pointer-events: none;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.sidebar-collapsed .modal-overlay--maximized {
+  left: var(--app-sidebar-collapsed-width, 4rem);
+}
+
+.modal-container {
+  background: var(--app-surface);
+  border-radius: var(--app-radius);
+  width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.25s ease;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &--maximized {
+    position: fixed;
+    top: var(--app-topbar-height, 3.5rem);
+    left: var(--app-sidebar-width, 16rem);
+    width: calc(100vw - var(--app-sidebar-width, 16rem));
+    height: calc(100vh - var(--app-topbar-height, 3.5rem));
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+    pointer-events: auto;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.sidebar-collapsed .modal-container--maximized {
+  left: var(--app-sidebar-collapsed-width, 4rem);
+  width: calc(100vw - var(--app-sidebar-collapsed-width, 4rem));
+}
+
+.modal-header {
+  background: linear-gradient(135deg, var(--app-green) 0%, var(--app-green-dark) 100%);
+  color: #fff;
+  padding: 0.875rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--app-gold);
+  flex-shrink: 0;
+}
+
+.modal-header__title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.modal-header__actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.modal-header__btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--app-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--app-transition);
+
+  &:hover { color: #fff; background: rgba(255, 255, 255, 0.15); }
+}
+
+.modal-body {
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--app-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  background: #fafafa;
+}
+
+/* =============================================
+   Panel header (for listing pages)
+   ============================================= */
+.page-panel {
+  border: 1px solid var(--app-border);
+  border-radius: var(--app-radius);
+  background: var(--app-surface);
+  overflow: hidden;
+}
+
+.page-panel__header {
+  background: linear-gradient(135deg, var(--app-green) 0%, var(--app-green-dark) 100%);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-bottom: 3px solid var(--app-gold);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.page-panel__body {
+  padding: 1rem;
+}
+
+/* =============================================
+   Toolbar (search bar above tables)
+   ============================================= */
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.table-toolbar__search {
+  position: relative;
+  min-width: 220px;
+  max-width: 320px;
+}
+
+.table-toolbar__search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.table-toolbar__search-input {
+  padding-left: 2.25rem;
+}
+
+/* =============================================
+   Pagination
+   ============================================= */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pagination__info {
+  font-size: 0.75rem;
+}
+
+.pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pagination__btn {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--app-border);
+  border-radius: 4px;
+  background: var(--app-surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #374151;
+  transition: all var(--app-transition);
+
+  &:hover:not(:disabled) { border-color: var(--app-green); color: var(--app-green); }
+  &:disabled { opacity: 0.4; cursor: default; }
+  &--active { background: var(--app-green); color: #fff; border-color: var(--app-green); }
+}
+
+.pagination__select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--app-border);
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+/* =============================================
+   Empty state
+   ============================================= */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #9ca3af;
+
+  i { font-size: 2.5rem; opacity: 0.5; display: block; margin-bottom: 0.75rem; }
+  span { font-size: 0.875rem; }
+}
+
+/* =============================================
+   Checklist grid
+   ============================================= */
 .checklist-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -372,362 +389,63 @@ a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-
-  label {
-    font-size: 0.8125rem;
-    color: #374151;
-    cursor: pointer;
-  }
-}
-
-/* Proveedor fieldsets */
-.proveedor-fieldset {
-  &--investigador .p-fieldset-legend {
-    border-left: 4px solid #6c757d;
-  }
-
-  &--uifa .p-fieldset-legend {
-    border-left: 4px solid #17a2b8;
-  }
-
-  &--tecnico .p-fieldset-legend {
-    border-left: 4px solid #f2c010;
-  }
-}
-
-/* =============================================
-   Dialog maximizado — respeta topbar y sidebar
-   ============================================= */
-.p-dialog-mask:has(.app-dialog-constrained.p-dialog-maximized) {
-  top: var(--app-topbar-height, 3.5rem) !important;
-  left: var(--app-sidebar-width, 16rem) !important;
-  width: calc(100vw - var(--app-sidebar-width, 16rem)) !important;
-  height: calc(100vh - var(--app-topbar-height, 3.5rem)) !important;
-  transition: left 0.3s ease, width 0.3s ease;
-}
-
-.sidebar-collapsed .p-dialog-mask:has(.app-dialog-constrained.p-dialog-maximized) {
-  left: var(--app-sidebar-collapsed-width, 4rem) !important;
-  width: calc(100vw - var(--app-sidebar-collapsed-width, 4rem)) !important;
-}
-
-.app-dialog-constrained.p-dialog-maximized {
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-/* =============================================
-   Responsive — Mobile first breakpoints
-   ============================================= */
-
-/* Tablet (≤992px) */
-@media (max-width: 992px) {
-  .form-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .p-dialog {
-    width: 95vw !important;
-    max-width: 95vw !important;
-  }
-}
-
-/* Mobile (≤768px) */
-@media (max-width: 768px) {
-  .p-dialog-mask:has(.app-dialog-constrained.p-dialog-maximized),
-  .sidebar-collapsed .p-dialog-mask:has(.app-dialog-constrained.p-dialog-maximized) {
-    left: 0 !important;
-    width: 100vw !important;
-  }
-
-  .p-dialog {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    max-height: 100vh !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-
-    .p-dialog-content {
-      padding: 0.75rem;
-    }
-
-    .p-dialog-footer {
-      padding: 0.5rem 0.75rem;
-    }
-  }
-
-  .p-panel {
-    .p-panel-header {
-      padding: 0.625rem 0.75rem;
-      font-size: 0.875rem;
-    }
-
-    .p-panel-content {
-      padding: 0.75rem;
-    }
-
-    .p-panel-icons {
-      width: 100%;
-      justify-content: flex-end;
-    }
-  }
-
-  .checklist-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Small mobile (≤576px) */
-@media (max-width: 576px) {
-  .form-grid,
-  .form-grid--2col {
-    grid-template-columns: 1fr;
-  }
-
-  .form-radio-group,
-  .form-checkbox-group {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .p-dialog .p-dialog-footer {
-    flex-direction: column;
-
-    .p-button {
-      width: 100%;
-    }
-  }
-
-  .p-datatable .p-datatable-tbody > tr > td {
-    font-size: 0.75rem;
-    padding: 0.375rem 0.5rem;
-  }
-
-  .p-datatable .p-datatable-thead > tr > th {
-    font-size: 0.6875rem;
-    padding: 0.5rem;
-  }
-}
-
-/* Utility */
-.loading-pulse {
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 0.75rem; }
-
-/* =============================================
-   UX/UI Polish — Mejoras visuales globales
-   ============================================= */
-
-/* --- Spacing entre fieldsets dentro de modales --- */
-.p-dialog-content {
-  > app-seccion-formulario-dinamico,
-  > app-seccion-panel-generico,
-  > app-seccion-archivos,
-  > app-seccion-analisis-ia,
-  > app-seccion-decision,
-  > app-seccion-checklist,
-  > app-seccion-observaciones-generica,
-  > app-seccion-derivacion,
-  > app-seccion-linea-tiempo,
-  > p-fieldset {
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
-  }
-}
-
-/* --- Fieldset legend con icono de borde izquierdo --- */
-.p-fieldset .p-fieldset-legend {
-  border-left: 3px solid #0a6e45;
-  transition: background-color var(--app-transition);
-}
-
-.p-fieldset:hover > .p-fieldset-legend {
-  background-color: #f0faf5;
-}
-
-/* --- Inputs readonly: fondo sutil para diferenciar --- */
-.p-inputtext[readonly],
-textarea.p-textarea[readonly] {
-  background-color: var(--p-surface-50, #f8fafc);
-  color: #374151;
-  border-color: var(--p-surface-200, #e2e8f0);
-  cursor: default;
-  opacity: 0.85;
-}
-
-/* --- Dialog footer: separación visual más clara --- */
-.p-dialog .p-dialog-footer {
-  background-color: var(--p-surface-50, #f8fafc);
-  border-top: 2px solid var(--p-surface-200, #e2e8f0);
-}
-
-/* --- Checklist items: hover feedback --- */
-.checklist-item {
   padding: 0.375rem 0.5rem;
   border-radius: var(--app-radius);
-  transition: background-color var(--app-transition);
+  transition: background var(--app-transition);
 
-  &:hover {
-    background-color: #f0faf5;
+  &:hover { background: #f0faf5; }
+
+  label { font-size: 0.8125rem; color: #374151; cursor: pointer; }
+}
+
+/* =============================================
+   Animations
+   ============================================= */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 992px) {
+  .form-grid { grid-template-columns: repeat(2, 1fr); }
+  .modal-container { width: 95vw; }
+}
+
+@media (max-width: 768px) {
+  .modal-container {
+    width: 100vw;
+    max-height: 100vh;
+    margin: 0;
+    border-radius: 0;
   }
-}
 
-/* --- Accordion dentro de línea de tiempo --- */
-.p-accordion {
-  .p-accordionpanel {
-    border: 1px solid var(--p-surface-200, #e2e8f0);
-    border-radius: var(--app-radius);
-    margin-bottom: 0.375rem;
-    overflow: hidden;
+  .modal-container--maximized,
+  .sidebar-collapsed .modal-container--maximized {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
   }
 
-  .p-accordionheader {
-    background-color: var(--p-surface-50, #f8fafc);
-    padding: 0.625rem 1rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: #1f2937;
-    transition: background-color var(--app-transition);
-    border: none;
-
-    &:hover {
-      background-color: #e8f5ee;
-    }
+  .modal-overlay--maximized,
+  .sidebar-collapsed .modal-overlay--maximized {
+    top: 0;
+    left: 0;
   }
 
-  .p-accordioncontent {
-    padding: 0.75rem 1rem;
-    border-top: 1px solid var(--p-surface-200, #e2e8f0);
-  }
+  .modal-body { padding: 0.75rem; }
+  .modal-footer { padding: 0.5rem 0.75rem; }
+  .checklist-grid { grid-template-columns: 1fr; }
 }
 
-/* --- Panel genérico (historial, documentos) --- */
-.p-panel:not(:has(.p-panel-header)) {
-  border: 1px solid var(--p-surface-200, #e2e8f0);
-  border-radius: var(--app-radius);
-}
-
-/* --- Tabla de acciones: botones más visibles --- */
-.tabla-acciones-cell .p-button {
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-
-  &:hover {
-    transform: scale(1.15);
-    box-shadow: 0 2px 8px rgba(10, 110, 69, 0.15);
-  }
-}
-
-/* --- Tabla header checkbox: alineación --- */
-.p-datatable .p-datatable-thead th:has(p-tableHeaderCheckbox) {
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* --- Divider dentro de modales: más sutil --- */
-.p-dialog-content .p-divider {
-  margin: 0.75rem 0;
-
-  &::before {
-    border-color: var(--p-surface-200, #e2e8f0);
-  }
-}
-
-/* --- Tabs: active tab con barra verde más gruesa --- */
-.p-tabs .p-tab.p-tab-active {
-  border-bottom: 3px solid #0a6e45;
-  color: #0a6e45;
-  font-weight: 600;
-}
-
-/* --- Select/Dropdown: borde sutil en focus --- */
-.p-select:focus-within,
-.p-inputtext:focus {
-  border-color: #0a6e45;
-  box-shadow: 0 0 0 2px rgba(10, 110, 69, 0.1);
-}
-
-/* --- FileUpload: estilo corporativo --- */
-.p-fileupload {
-  border: 2px dashed var(--p-surface-300, #cbd5e1);
-  border-radius: var(--app-radius);
-  transition: border-color var(--app-transition), background-color var(--app-transition);
-
-  &:hover {
-    border-color: #0a6e45;
-    background-color: #f0faf5;
-  }
-}
-
-/* --- Radio/Checkbox: color corporativo --- */
-.p-checkbox.p-checkbox-checked .p-checkbox-box,
-.p-radiobutton.p-radiobutton-checked .p-radiobutton-box {
-  background-color: #0a6e45;
-  border-color: #0a6e45;
-}
-
-/* --- Inicio cards grid --- */
-.inicio__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 0.5rem 0;
-}
-
-.inicio__card.p-card {
-  border-radius: var(--app-radius);
-  overflow: hidden;
-
-  .p-card-header img {
-    height: 180px;
-    object-fit: cover;
-    width: 100%;
-  }
-}
-
-/* --- Smooth scroll para dialog content --- */
-.p-dialog .p-dialog-content {
-  scroll-behavior: smooth;
-}
-
-/* --- Proveedor fieldsets: borde izquierdo más visible --- */
-.proveedor-fieldset .p-fieldset-legend {
-  border-left-width: 4px;
-}
-
-/* --- Text muted utility --- */
-.text-muted {
-  color: #9ca3af;
-  font-size: 0.8125rem;
-  font-style: italic;
-}
-
-/* --- Responsive: accordion en mobile --- */
 @media (max-width: 576px) {
-  .p-accordion .p-accordionheader {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
-  }
-
-  .p-accordion .p-accordioncontent {
-    padding: 0.5rem 0.75rem;
-  }
+  .form-grid, .form-grid--2col { grid-template-columns: 1fr; }
+  .modal-footer { flex-direction: column; }
+  .modal-footer .sb-ui-button { width: 100%; }
 }
+
+/* Utilities */
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 0.75rem; }
+.text-muted { color: #9ca3af; font-size: 0.8125rem; font-style: italic; }

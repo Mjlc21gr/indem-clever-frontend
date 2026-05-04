@@ -1,20 +1,19 @@
-import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Fieldset } from 'primeng/fieldset';
-import { Fluid } from 'primeng/fluid';
-import { Divider } from 'primeng/divider';
-import { RadioButton } from 'primeng/radiobutton';
 import { SeccionFormularioDinamicoComponent } from '../seccion-formulario-dinamico/seccion-formulario-dinamico.component';
 import { SeccionObservacionesGenericaComponent } from '../seccion-observaciones-generica/seccion-observaciones-generica.component';
 import type { CampoFormulario } from '../seccion-formulario-dinamico/seccion-formulario-dinamico.component';
 
+/** Sección: Análisis de la IA — sb-ui. */
 @Component({
   selector: 'app-seccion-analisis-ia',
-  imports: [FormsModule, Fieldset, Fluid, Divider, RadioButton, SeccionFormularioDinamicoComponent, SeccionObservacionesGenericaComponent],
+  imports: [FormsModule, SeccionFormularioDinamicoComponent, SeccionObservacionesGenericaComponent],
   templateUrl: './seccion-analisis-ia.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SeccionAnalisisIaComponent {
+  collapsed = false;
+
   readonly camposHospGeneral: CampoFormulario[] = [
     { key: 'fechaInicio', label: 'Fecha Inicio', readonly: true },
     { key: 'fechaFin', label: 'Fecha Fin', readonly: true },
@@ -86,4 +85,7 @@ export class SeccionAnalisisIaComponent {
   valoresReglasIncapacidad = signal<Record<string, string>>({});
   asertividadIA = '';
   observacionesIA = signal('');
+
+  /** Toggle la sección principal. */
+  toggle(): void { this.collapsed = !this.collapsed; }
 }

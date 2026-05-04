@@ -1,25 +1,25 @@
 import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Toolbar } from 'primeng/toolbar';
-import { Button } from 'primeng/button';
-import { Avatar } from 'primeng/avatar';
-import { Tag } from 'primeng/tag';
 
+/**
+ * Topbar — barra superior de la aplicación.
+ * Usa clases sb-ui + HTML nativo. Sin PrimeNG.
+ */
 @Component({
   selector: 'app-topbar',
-  imports: [Toolbar, Button, Avatar, Tag, RouterLink],
+  imports: [RouterLink],
   templateUrl: './topbar.component.html',
-  styleUrl: './topbar.component.scss',
+  styleUrls: ['./topbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopbarComponent {
-  /** Name displayed in the user avatar area. */
+  /** Nombre del usuario mostrado en el avatar. */
   userName = input('Usuario');
 
-  /** Emits when the sidebar toggle button is clicked. */
+  /** Emite cuando se hace click en el botón de toggle del sidebar. */
   readonly toggleSidebar = output<void>();
 
-  /** Handles the sidebar toggle button click. */
+  /** Maneja el click del botón de toggle. */
   onToggleSidebar(): void {
     this.toggleSidebar.emit();
   }

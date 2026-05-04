@@ -1,11 +1,10 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Panel } from 'primeng/panel';
 import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_TECNICO } from '@shared';
 import { ModalTecnicoComponent } from './modal-tecnico/modal-tecnico.component';
 
 @Component({
   selector: 'app-listar-tecnico',
-  imports: [Panel, TablaDinamicaComponent, ModalTecnicoComponent],
+  imports: [TablaDinamicaComponent, ModalTecnicoComponent],
   templateUrl: './listar-tecnico.component.html',
   styleUrl: './listar-tecnico.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,13 +14,13 @@ export class ListartecnicoComponent {
   data = signal<unknown[]>(MOCK_TECNICO);
 
   columnas: ColumnaTabla[] = [
-    { field: 'idRadicado', header: 'ID Radicado', sortable: true, width: '120px' },
-    { field: 'numeroPoliza', header: 'Numero Poliza', sortable: true },
-    { field: 'fechaAviso', header: 'Fecha Aviso', type: 'date', sortable: true },
+    { field: 'idRadicado', header: 'ID', sortable: true },
+    { field: 'numeroPoliza', header: 'Póliza', sortable: true },
+    { field: 'fechaAviso', header: 'F. Aviso', type: 'date', sortable: true },
   ];
 
   acciones = [
-    { action: 'ver', icon: 'pi pi-eye', tooltip: 'Ver análisis', severity: 'info' },
+    { action: 'ver', icon: 'fa-solid fa-eye', tooltip: 'Ver análisis', severity: 'info' },
   ];
 
   showModal = signal(false);

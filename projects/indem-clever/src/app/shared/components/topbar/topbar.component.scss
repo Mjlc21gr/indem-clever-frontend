@@ -1,10 +1,6 @@
-/* =============================================
-   Topbar — Colores Seguros Bolívar
-   Verde corporativo: #0a6e45
-   ============================================= */
-
-$topbar-bg: #0a6e45;
-$gold: #f2c010;
+$green: var(--app-green, #009056);
+$green-dark: var(--app-green-dark, #0b613e);
+$gold: var(--app-gold, #ffe16f);
 
 :host {
   display: block;
@@ -15,72 +11,73 @@ $gold: #f2c010;
   z-index: 1000;
 }
 
-/* Toolbar */
-:host ::ng-deep .topbar.p-toolbar {
-  background: linear-gradient(135deg, $topbar-bg 0%, #075a38 100%);
-  border: none;
-  border-radius: 0;
+.topbar {
+  background: linear-gradient(135deg, $green 0%, $green-dark 100%);
+  border-bottom: 3px solid $gold;
   padding: 0 1.5rem;
   min-height: var(--app-topbar-height, 3.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-  border-bottom: 3px solid $gold;
 }
 
-/* Title — transparent tag, looks like text */
-:host ::ng-deep .topbar__title.p-tag {
-  background: transparent;
-  color: #ffffff;
+.topbar__start,
+.topbar__end {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topbar__btn {
+  background: none;
+  border: none;
+  color: #fff;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: $gold;
+  }
+}
+
+.topbar__title {
+  color: #fff;
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  padding: 0 0 0 0.5rem;
-  border: none;
-  box-shadow: none;
+  margin-left: 0.25rem;
 }
 
-/* User name — gold chip */
-:host ::ng-deep .topbar__user-name.p-tag {
+.topbar__avatar {
+  width: 2.125rem;
+  height: 2.125rem;
+  border-radius: 50%;
+  background: rgba($gold, 0.2);
+  color: $gold;
+  border: 2px solid rgba($gold, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.topbar__user-name {
   background: rgba($gold, 0.15);
   color: $gold;
   font-size: 0.8125rem;
   font-weight: 600;
   padding: 0.3rem 0.875rem;
   border: 1px solid rgba($gold, 0.3);
-  margin-left: 0.625rem;
+  border-radius: 1rem;
   letter-spacing: 0.01em;
-}
-
-/* Avatar — gold ring */
-:host ::ng-deep .topbar__avatar.p-avatar {
-  background-color: rgba($gold, 0.2);
-  color: $gold;
-  width: 2.125rem;
-  height: 2.125rem;
-  font-size: 0.9375rem;
-  border: 2px solid rgba($gold, 0.4);
-}
-
-/* Toggle button */
-:host ::ng-deep .topbar .p-button.p-button-text.p-button-contrast {
-  color: #ffffff;
-  width: 2.25rem;
-  height: 2.25rem;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-    color: $gold;
-  }
-}
-
-/* Home button */
-:host ::ng-deep .topbar__home-btn.p-button {
-  color: #ffffff;
-  width: 2.25rem;
-  height: 2.25rem;
-  margin-right: 0.5rem;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-    color: $gold;
-  }
 }
