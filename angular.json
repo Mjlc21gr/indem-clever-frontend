@@ -80,7 +80,8 @@
           "options": {
             "port": 4202,
             "publicHost": "http://localhost:4202",
-            "extraWebpackConfig": "projects/indem-clever/webpack.config.js"
+            "extraWebpackConfig": "projects/indem-clever/webpack.config.js",
+            "proxyConfig": "projects/indem-clever/proxy.conf.json"
           },
           "configurations": {
             "production": {

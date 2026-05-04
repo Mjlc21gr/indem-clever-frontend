@@ -4,7 +4,7 @@
  */
 export const environment = {
   production: true,
-  apiUrl: '/api/v1',
+  apiUrl: '/siniestros/api/v1',
   appName: 'CleverFlow',
   tokenKey: 'cf_token',
 };

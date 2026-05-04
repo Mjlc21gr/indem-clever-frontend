@@ -8,6 +8,16 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 ## [No publicado]
 
 ### Agregado
+- Se creó servicio `RadicacionesService` en `core/services/` para consumir el endpoint `GET /radicaciones` del backend de siniestros con paginación
+- Se creó modelo `ApiResponse<T>` y `PaginatedData<T>` en `core/models/` para tipar las respuestas del backend
+- Se creó interfaz `RadicacionResumen` para representar los datos del listado de radicaciones
+
+### Cambiado
+- Se conectó `listar-radicaciones` al backend real (`http://localhost:8080/siniestros/api/v1/radicaciones?estado=R`) reemplazando los datos mock
+- Se actualizó `environment.ts` y `environment.prod.ts` con la URL base correcta del backend (`/siniestros/api/v1`)
+- Se actualizaron los `tagMap` de las columnas Decisión y Estado para coincidir con los valores del backend (UPPER_SNAKE_CASE y códigos de estado)
+
+### Agregado
 - Se configuró integración con `@seguros-bolivar/ui-bundle` (Design System): `.npmrc` para JFrog, CSS como asset estático en `angular.json`, atributos `data-brand` y `data-theme` en `index.html`, JS de Web Components en scripts
 - Se crearon 4 steering files globales del Design System en `~/.kiro/steering/`: `CSS.md`, `variables-01-css.md`, `componentes-01-sb-ui.md`, `workflow-01-implementar.md`
 - Se creó sección `seccion-linea-tiempo` en shared: stepper horizontal con 5 etapas + acordeón expandible con gestiones (responsable, fecha, observación) por etapa

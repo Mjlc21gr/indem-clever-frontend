@@ -1,10 +1,13 @@
-import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Panel } from 'primeng/panel';
 import { Button } from 'primeng/button';
-import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila, MOCK_RADICACIONES } from '@shared';
+import { TablaDinamicaComponent, type ColumnaTabla, type AccionFila } from '@shared';
 import { ModalAgregarCasoComponent } from './modal-agregar-caso/modal-agregar-caso.component';
 import { ModalMesaPerfeccionamientoComponent } from './modal-mesa-perfeccionamiento/modal-mesa-perfeccionamiento.component';
 import { ModalRadicacionComponent } from './modal-radicacion/modal-radicacion.component';
+import { RadicacionesService } from '../../../../core/services/radicaciones.service';
+import { NotificacionService } from '../../../../core/services/notificacion.service';
+import type { RadicacionResumen } from '../../../../core/models';
 
 @Component({
   selector: 'app-listar-radicaciones',
@@ -20,9 +23,12 @@ import { ModalRadicacionComponent } from './modal-radicacion/modal-radicacion.co
   styleUrl: './listar-radicaciones.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListarradicacionesComponent {
+export class ListarradicacionesComponent implements OnInit {
+  private radicacionesService = inject(RadicacionesService);
+  private notificacionService = inject(NotificacionService);
+
   loading = signal(false);
-  data = signal<unknown[]>(MOCK_RADICACIONES);
+  data = signal<RadicacionResumen[]>([]);
 
   /** Definición de columnas para la tabla de radicaciones. */
   columnas: ColumnaTabla[] = [
@@ -30,18 +36,18 @@ export class ListarradicacionesComponent {
     { field: 'numeroPoliza', header: 'Numero Poliza', sortable: true },
     { field: 'fechaAviso', header: 'Fecha Aviso', type: 'date', sortable: true },
     { field: 'decision', header: 'Decisión', type: 'tag', sortable: true, tagMap: {
-      'Aprobado': { label: 'Aprobado', severity: 'success' },
-      'Rechazado': { label: 'Rechazado', severity: 'danger' },
-      'Pendiente': { label: 'Pendiente', severity: 'warn' },
-      'En análisis': { label: 'En análisis', severity: 'info' },
+      'APROBADO': { label: 'Aprobado', severity: 'success' },
+      'RECHAZADO': { label: 'Rechazado', severity: 'danger' },
+      'PENDIENTE': { label: 'Pendiente', severity: 'warn' },
+      'EN_ANALISIS': { label: 'En análisis', severity: 'info' },
     }},
     { field: 'cobertura', header: 'Cobertura', sortable: true },
     { field: 'tipoPoliza', header: 'Tipo Poliza', sortable: true },
     { field: 'estado', header: 'Estado', type: 'tag', sortable: true, tagMap: {
-      'Activo': { label: 'Activo', severity: 'success' },
-      'Inactivo': { label: 'Inactivo', severity: 'danger' },
-      'En proceso': { label: 'En proceso', severity: 'info' },
-      'Cerrado': { label: 'Cerrado', severity: 'secondary' },
+      'R': { label: 'Radicado', severity: 'info' },
+      'A': { label: 'Activo', severity: 'success' },
+      'I': { label: 'Inactivo', severity: 'danger' },
+      'C': { label: 'Cerrado', severity: 'secondary' },
     }},
   ];
 
@@ -53,6 +59,28 @@ export class ListarradicacionesComponent {
   showModalAgregarCaso = signal(false);
   showModalMesaPerfeccionamiento = signal(false);
   showModalRadicacion = signal(false);
+
+  /** Carga las radicaciones desde el backend al iniciar el componente. */
+  ngOnInit(): void {
+    this.cargarRadicaciones();
+  }
+
+  /** Consulta las radicaciones al backend con estado 'R' (Radicado). */
+  cargarRadicaciones(): void {
+    this.loading.set(true);
+    this.radicacionesService
+      .listar({ estado: 'R', page: 0, size: 10 })
+      .subscribe({
+        next: (paginado) => {
+          this.data.set(paginado.content);
+          this.loading.set(false);
+        },
+        error: () => {
+          this.notificacionService.error('No se pudieron cargar las radicaciones');
+          this.loading.set(false);
+        },
+      });
+  }
 
   /** Opens the Agregar Caso modal. */
   openAgregarCaso(): void {
