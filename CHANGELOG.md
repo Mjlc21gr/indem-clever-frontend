@@ -8,6 +8,8 @@ y este proyecto adhiere a [Versionamiento Semántico](https://semver.org/lang/es
 ## [No publicado]
 
 ### Agregado
+- Se configuró integración con `@seguros-bolivar/ui-bundle` (Design System): `.npmrc` para JFrog, CSS como asset estático en `angular.json`, atributos `data-brand` y `data-theme` en `index.html`, JS de Web Components en scripts
+- Se crearon 4 steering files globales del Design System en `~/.kiro/steering/`: `CSS.md`, `variables-01-css.md`, `componentes-01-sb-ui.md`, `workflow-01-implementar.md`
 - Se creó sección `seccion-linea-tiempo` en shared: stepper horizontal con 5 etapas + acordeón expandible con gestiones (responsable, fecha, observación) por etapa
 - Se convirtió modal de Consultar Casos (Bootstrap → PrimeNG): información del caso en 3 bloques (Asegurado, Radicado, Siniestro), historial con línea de tiempo, resumen de tiempos con 2 tablas (por etapa y por responsable), documentos adjuntos
 - Se aplicó pase de UX/UI global: spacing entre secciones en modales, fieldset legend con borde izquierdo verde, inputs readonly con fondo diferenciado, footer de modales con fondo sutil, checklist con hover feedback, accordion con bordes y hover, tabs con barra activa más gruesa, focus verde en inputs, file upload con estilo corporativo, botones de acción con hover scale

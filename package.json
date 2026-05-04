@@ -23,6 +23,7 @@
     "@angular/platform-browser": "20.3.17",
     "@angular/router": "20.3.17",
     "@primeng/themes": "20.4.0",
+    "@seguros-bolivar/ui-bundle": "^1.0.7",
     "chart.js": "4.4.8",
     "primeicons": "7.0.0",
     "primeng": "20.4.0",

@@ -21,11 +21,30 @@
             "main": "projects/indem-clever/src/main.ts",
             "tsConfig": "projects/indem-clever/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [],
+            "assets": [
+              {
+                "glob": "sb-ui-seguros-bolivar.min.css",
+                "input": "node_modules/@seguros-bolivar/ui-bundle/dist",
+                "output": "/assets/sb-ui"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@seguros-bolivar/ui-bundle/dist/fonts",
+                "output": "/assets/sb-ui/fonts"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/@seguros-bolivar/ui-bundle/dist/webfonts",
+                "output": "/assets/sb-ui/webfonts"
+              }
+            ],
             "styles": [
               "node_modules/primeicons/primeicons.css",
               "projects/indem-clever/src/tailwind.css",
               "projects/indem-clever/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/@seguros-bolivar/ui-bundle/dist/sb-ui-seguros-bolivar.min.js"
             ],
             "extraWebpackConfig": "projects/indem-clever/webpack.config.js",
             "commonChunk": false
