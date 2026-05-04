@@ -47,8 +47,7 @@ export const SIDEBAR_MENU: SidebarMenuGroup[] = [
     icon: 'fa-solid fa-circle-check',
     collapsedTooltip: 'Decisiones',
     items: [
-      { label: 'Órdenes de Pago', icon: 'fa-solid fa-wallet', routerLink: '/listar-pagos' },
-      { label: 'Objeciones', icon: 'fa-solid fa-triangle-exclamation', routerLink: '/listar-otros' },
+      { label: 'Pagos y Objeciones', icon: 'fa-solid fa-wallet', routerLink: '/listar-pagos' },
     ],
   },
   {

@@ -1,6 +1,6 @@
 <div class="page-panel">
   <div class="page-panel__header">
-    <span>Órdenes de Pago</span>
+    <span>Decisiones</span>
     <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
       <button class="sb-ui-button sb-ui-button--primary sb-ui-button--fill sb-ui-button--small sb-ui-button--icon-left" (click)="confirmarMasivo('aprobar')">
         <i class="fa-solid fa-check"></i> Aprobar seleccionados
@@ -19,6 +19,7 @@
       [acciones]="acciones"
       [selectable]="true"
       selectionMode="multiple"
+      dataKey="id"
       (accionEjecutada)="onAccion($event)" />
   </div>
 </div>

@@ -14,11 +14,15 @@ import { FormsModule } from '@angular/forms';
         <div class="form-grid form-grid--2col">
           <div class="sb-ui-input-container">
             <label class="sb-ui-input-label">Tipo Documento</label>
-            <input class="sb-ui-input" [(ngModel)]="consultaTipoDoc" placeholder="CC, NIT, etc." />
+            <div class="sb-ui-input-inner">
+              <input class="sb-ui-input" [(ngModel)]="consultaTipoDoc" placeholder="CC, NIT, etc." />
+            </div>
           </div>
           <div class="sb-ui-input-container">
             <label class="sb-ui-input-label">Número Documento</label>
-            <input class="sb-ui-input" [(ngModel)]="consultaNumDoc" placeholder="Número..." />
+            <div class="sb-ui-input-inner">
+              <input class="sb-ui-input" [(ngModel)]="consultaNumDoc" placeholder="Número..." />
+            </div>
           </div>
         </div>
         <div style="margin-top: 0.75rem">

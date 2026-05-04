@@ -71,8 +71,8 @@ export const REMOTE_ROUTES: Routes = [
   },
   {
     path: 'listar-otros',
-    canActivate: [authGuard],
-    loadComponent: () => import('./features/indem-clever/components/listar-otros/listar-otros.component').then(m => m.ListarotrosComponent),
+    redirectTo: 'listar-pagos',
+    pathMatch: 'full',
   },
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
 ];

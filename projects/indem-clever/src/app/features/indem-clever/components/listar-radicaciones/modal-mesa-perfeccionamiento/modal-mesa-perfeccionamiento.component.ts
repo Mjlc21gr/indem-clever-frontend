@@ -18,7 +18,7 @@ export class ModalMesaPerfeccionamientoComponent {
   readonly onClose = output<void>();
 
   readonly camposDatosCaso: CampoFormulario[] = [
-    { key: 'idClever', label: 'Id Clever', readonly: true },
+    { key: 'idClever', label: 'Id Clever' },
     { key: 'numCaso', label: '# Caso' },
     { key: 'identificacion', label: '# Identificación' },
     { key: 'correo', label: 'Correo', type: 'email' },

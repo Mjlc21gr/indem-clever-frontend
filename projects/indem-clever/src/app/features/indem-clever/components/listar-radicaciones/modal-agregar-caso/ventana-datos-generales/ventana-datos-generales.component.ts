@@ -14,33 +14,33 @@ import { SeccionFormularioDinamicoComponent, type CampoFormulario, SeccionArchiv
 })
 export class VentanaDatosGeneralesComponent {
   readonly camposAsegurado: CampoFormulario[] = [
-    { key: 'tipoDocumento', label: 'Tipo Documento', readonly: true },
-    { key: 'numeroDocumento', label: 'Número Documento', readonly: true },
-    { key: 'nombre', label: 'Nombre Asegurado', readonly: true },
-    { key: 'apellidos', label: 'Apellidos', readonly: true },
-    { key: 'edad', label: 'Edad Asegurado', readonly: true },
-    { key: 'correo', label: 'Correo Electrónico', type: 'email', readonly: true },
-    { key: 'telefono', label: 'Teléfono de Contacto', type: 'tel', readonly: true },
+    { key: 'tipoDocumento', label: 'Tipo Documento' },
+    { key: 'numeroDocumento', label: 'Número Documento' },
+    { key: 'nombre', label: 'Nombre Asegurado' },
+    { key: 'apellidos', label: 'Apellidos' },
+    { key: 'edad', label: 'Edad Asegurado' },
+    { key: 'correo', label: 'Correo Electrónico', type: 'email' },
+    { key: 'telefono', label: 'Teléfono de Contacto', type: 'tel' },
   ];
   readonly camposRadicado: CampoFormulario[] = [
-    { key: 'numeroPoliza', label: 'Número Póliza', readonly: true },
-    { key: 'codigoProducto', label: 'Código Producto', readonly: true },
-    { key: 'portafolioCodigo', label: 'Portafolio Cod.', readonly: true },
-    { key: 'portafolioNombre', label: 'Portafolio Nombre', readonly: true },
-    { key: 'numeroDeRiesgo', label: 'Número de Riesgo', readonly: true },
-    { key: 'riesgoCliente', label: 'Riesgo Cliente', readonly: true },
-    { key: 'cobertura', label: 'Cobertura', readonly: true },
-    { key: 'codCobertura', label: 'Cod. Cobertura', readonly: true },
-    { key: 'fechaAviso', label: 'Fecha Aviso', readonly: true },
-    { key: 'valorAsegurado', label: 'Valor Asegurado', readonly: true },
-    { key: 'valorAseguradoVida', label: 'Val. Aseg. Vida', readonly: true },
-    { key: 'valorAseguradoItp', label: 'Val. Aseg. ITP', readonly: true },
-    { key: 'scoreCliente', label: 'Score Cliente', readonly: true },
-    { key: 'superoPeso', label: 'Superó Peso', readonly: true },
-    { key: 'masDeUnIngreso', label: 'Más de un Ingreso', readonly: true },
-    { key: 'aprobacionTerminos', label: 'Aprobación Términos', readonly: true },
-    { key: 'nitEmpresa', label: 'NIT Empresa', readonly: true },
-    { key: 'nombreEmpresa', label: 'Nombre Empresa', readonly: true },
+    { key: 'numeroPoliza', label: 'Número Póliza' },
+    { key: 'codigoProducto', label: 'Código Producto' },
+    { key: 'portafolioCodigo', label: 'Portafolio Cod.' },
+    { key: 'portafolioNombre', label: 'Portafolio Nombre' },
+    { key: 'numeroDeRiesgo', label: 'Número de Riesgo' },
+    { key: 'riesgoCliente', label: 'Riesgo Cliente' },
+    { key: 'cobertura', label: 'Cobertura' },
+    { key: 'codCobertura', label: 'Cod. Cobertura' },
+    { key: 'fechaAviso', label: 'Fecha Aviso' },
+    { key: 'valorAsegurado', label: 'Valor Asegurado' },
+    { key: 'valorAseguradoVida', label: 'Val. Aseg. Vida' },
+    { key: 'valorAseguradoItp', label: 'Val. Aseg. ITP' },
+    { key: 'scoreCliente', label: 'Score Cliente' },
+    { key: 'superoPeso', label: 'Superó Peso' },
+    { key: 'masDeUnIngreso', label: 'Más de un Ingreso' },
+    { key: 'aprobacionTerminos', label: 'Aprobación Términos' },
+    { key: 'nitEmpresa', label: 'NIT Empresa' },
+    { key: 'nombreEmpresa', label: 'Nombre Empresa' },
   ];
   readonly camposSiniestro: CampoFormulario[] = [
     { key: 'cucConceptoGeneral', label: 'CUC. Concepto', type: 'textarea', rows: 1, fullWidth: true },
@@ -64,7 +64,7 @@ export class VentanaDatosGeneralesComponent {
   ];
   readonly camposNumeroSiniestro: CampoFormulario[] = [
     { key: 'numeroSiniestro', label: 'Número Siniestro' },
-    { key: 'superoPesoDocumentos', label: 'Superó Peso Documentos', readonly: true },
+    { key: 'superoPesoDocumentos', label: 'Superó Peso Documentos' },
   ];
 
   valoresAsegurado = signal<Record<string, string>>({});

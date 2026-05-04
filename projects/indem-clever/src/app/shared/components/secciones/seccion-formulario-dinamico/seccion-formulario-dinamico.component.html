@@ -12,21 +12,23 @@
           @for (campo of camposFull(); track campo.key) {
             <div class="sb-ui-input-container">
               <label class="sb-ui-input-label">{{ campo.label }}</label>
-              @if (campo.type === 'textarea') {
-                <textarea
-                  class="sb-ui-textarea"
-                  [ngModel]="getValor(campo.key)"
-                  (ngModelChange)="setValor(campo.key, $event)"
-                  [rows]="campo.rows ?? 2"
-                  [readOnly]="campo.readonly ?? false"></textarea>
-              } @else {
-                <input
-                  class="sb-ui-input"
-                  [type]="campo.type ?? 'text'"
-                  [ngModel]="getValor(campo.key)"
-                  (ngModelChange)="setValor(campo.key, $event)"
-                  [readOnly]="campo.readonly ?? false" />
-              }
+              <div class="sb-ui-input-inner">
+                @if (campo.type === 'textarea') {
+                  <textarea
+                    class="sb-ui-textarea"
+                    [ngModel]="getValor(campo.key)"
+                    (ngModelChange)="setValor(campo.key, $event)"
+                    [rows]="campo.rows ?? 2"
+                    [readOnly]="campo.readonly ?? false"></textarea>
+                } @else {
+                  <input
+                    class="sb-ui-input"
+                    [type]="campo.type ?? 'text'"
+                    [ngModel]="getValor(campo.key)"
+                    (ngModelChange)="setValor(campo.key, $event)"
+                    [readOnly]="campo.readonly ?? false" />
+                }
+              </div>
             </div>
           }
         </div>
@@ -36,21 +38,23 @@
           @for (campo of camposGrid(); track campo.key) {
             <div class="sb-ui-input-container">
               <label class="sb-ui-input-label">{{ campo.label }}</label>
-              @if (campo.type === 'textarea') {
-                <textarea
-                  class="sb-ui-textarea"
-                  [ngModel]="getValor(campo.key)"
-                  (ngModelChange)="setValor(campo.key, $event)"
-                  [rows]="campo.rows ?? 2"
-                  [readOnly]="campo.readonly ?? false"></textarea>
-              } @else {
-                <input
-                  class="sb-ui-input"
-                  [type]="campo.type ?? 'text'"
-                  [ngModel]="getValor(campo.key)"
-                  (ngModelChange)="setValor(campo.key, $event)"
-                  [readOnly]="campo.readonly ?? false" />
-              }
+              <div class="sb-ui-input-inner">
+                @if (campo.type === 'textarea') {
+                  <textarea
+                    class="sb-ui-textarea"
+                    [ngModel]="getValor(campo.key)"
+                    (ngModelChange)="setValor(campo.key, $event)"
+                    [rows]="campo.rows ?? 2"
+                    [readOnly]="campo.readonly ?? false"></textarea>
+                } @else {
+                  <input
+                    class="sb-ui-input"
+                    [type]="campo.type ?? 'text'"
+                    [ngModel]="getValor(campo.key)"
+                    (ngModelChange)="setValor(campo.key, $event)"
+                    [readOnly]="campo.readonly ?? false" />
+                }
+              </div>
             </div>
           }
         </div>

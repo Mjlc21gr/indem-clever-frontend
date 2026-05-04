@@ -33,4 +33,4 @@ export { DialogoConfirmacionComponent } from './components/dialogo-confirmacion/
 export { MOCK_RADICACIONES } from './mocks/mock-radicaciones.data';
 export { MOCK_ANALISIS } from './mocks/mock-analisis.data';
 export { MOCK_UIFA, MOCK_MEDICO, MOCK_INVESTIGADOR, MOCK_TECNICO } from './mocks/mock-proveedores.data';
-export { MOCK_ORDENES_PAGO, MOCK_OBJECIONES } from './mocks/mock-pagos.data';
+export { MOCK_ORDENES_PAGO, MOCK_OBJECIONES, MOCK_DECISIONES } from './mocks/mock-pagos.data';

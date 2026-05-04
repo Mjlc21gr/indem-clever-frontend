@@ -10,25 +10,25 @@ export class ModalMedicoComponent {
   visible = input(false);
   readonly onClose = output<void>();
   readonly camposAsegurado: CampoFormulario[] = [
-    { key: 'tipoDocumento', label: 'Tipo Documento', readonly: true },
-    { key: 'numeroDocumento', label: 'Número Documento', readonly: true },
-    { key: 'nombre', label: 'Nombre Asegurado', readonly: true },
-    { key: 'correo', label: 'Correo Electrónico', type: 'email', readonly: true },
-    { key: 'telefono', label: 'Teléfono de Contacto', type: 'tel', readonly: true },
+    { key: 'tipoDocumento', label: 'Tipo Documento' },
+    { key: 'numeroDocumento', label: 'Número Documento' },
+    { key: 'nombre', label: 'Nombre Asegurado' },
+    { key: 'correo', label: 'Correo Electrónico', type: 'email' },
+    { key: 'telefono', label: 'Teléfono de Contacto', type: 'tel' },
   ];
   readonly camposRadicado: CampoFormulario[] = [
-    { key: 'idRadicado', label: 'ID Radicado', readonly: true },
-    { key: 'numeroPoliza', label: 'Número Póliza', readonly: true },
-    { key: 'codigoProducto', label: 'Código Producto', readonly: true },
-    { key: 'numeroDeRiesgo', label: 'Número de Riesgo', readonly: true },
-    { key: 'fechaAviso', label: 'Fecha Aviso', readonly: true },
-    { key: 'cobertura', label: 'Cobertura', readonly: true },
+    { key: 'idRadicado', label: 'ID Radicado' },
+    { key: 'numeroPoliza', label: 'Número Póliza' },
+    { key: 'codigoProducto', label: 'Código Producto' },
+    { key: 'numeroDeRiesgo', label: 'Número de Riesgo' },
+    { key: 'fechaAviso', label: 'Fecha Aviso' },
+    { key: 'cobertura', label: 'Cobertura' },
   ];
   readonly camposSiniestro: CampoFormulario[] = [
-    { key: 'fechaSiniestro', label: 'Fecha Siniestro', readonly: true },
-    { key: 'ciudadOcurrencia', label: 'Ciudad Ocurrencia', readonly: true },
-    { key: 'causa', label: 'Versión del Siniestro', readonly: true },
-    { key: 'consecuencia', label: 'Consecuencia', readonly: true },
+    { key: 'fechaSiniestro', label: 'Fecha Siniestro' },
+    { key: 'ciudadOcurrencia', label: 'Ciudad Ocurrencia' },
+    { key: 'causa', label: 'Versión del Siniestro' },
+    { key: 'consecuencia', label: 'Consecuencia' },
   ];
   readonly camposMedico: CampoFormulario[] = [
     { key: 'accionMedico', label: 'Acción' },
